@@ -1,23 +1,36 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+
+
 module.exports = {
+  context: __dirname,
   mode: 'development',
-  entry: path.join(__dirname, 'src', 'app'),
+  entry: {
+    app: path.join(__dirname, 'src', 'index')
+  },
   watch: true,
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
 		filename: "bundle.js",
   },
   devServer: {
-		contentBase: path.resolve(__dirname, "dist"),
+		contentBase: path.resolve(__dirname, "build"),
 		port: 8080,
 		historyApiFallback: true,
   },
   plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].[hash].css',
+      chunkFilename: 'styles/[id].[hash].css',
+  }),
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      filename: '../index.html',
+      template: 'public/index.html',
+      filename: 'index.html',
       inject: 'head'
     }),
     new ScriptExtHtmlWebpackPlugin({
@@ -37,7 +50,18 @@ module.exports = {
         presets: ['env', 'react']
       },
       loader: 'babel-loader',
-    }]
+    },
+    {
+      test: /\.scss$/,
+      use: [
+          {
+              loader: MiniCssExtractPlugin.loader
+          },
+          'css-loader',
+          'sass-loader'
+      ]
+  },
+  ]
   },
   resolve: {
     extensions: ['.json', '.js', '.jsx']

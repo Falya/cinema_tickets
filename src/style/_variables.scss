@@ -1,0 +1,22 @@
+$maxBodyWidth: 2560px;
+$maxHeaderWidth: 1680px;
+
+$mainColor: #8e8e8e;
+$secondColor: #373737;
+$thirdColor: #616161;
+$gradientColor: linear-gradient(to right, $secondColor, #4f5255);
+
+$lineColor: #90caf9;
+$lineColorLight: #c3fdff;
+$lineColorDark: #5d99c6;
+
+$mainColorText: rgba($color: #fff, $alpha: 0.75);
+$secondColorText: rgba($color: #fff, $alpha: 0.55);
+$thirdColorText:  rgba($color: #fff, $alpha: 0.80);
+
+$lineColorText: rgba($color: #000, $alpha: 0.65);
+$lineColorLightText: rgba($color: #000, $alpha: 0.55);
+$lineColorDarkText: rgba($color: #000, $alpha: 0.75);
+
+
+$boxShadow: 1px 0px 5px rgba(0, 0, 0,  0.3);
