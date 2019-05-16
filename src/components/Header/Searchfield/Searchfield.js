@@ -11,21 +11,10 @@ class SearchField extends Component {
 
   search() {
     fetch("/dbImitation/films.json")
+      .then(res => res.json())
       .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        let current = res.films.filter(film => {
-          let { searchTerm } = this.state,
-            { name } = film;
-
-          if (searchTerm && name.toLowerCase().includes(searchTerm.toLowerCase())) {
-           return true;
-          }
-
-        });
-
-        this.setState({ matches: current });
+        const matches = res.films.filter(film => this.state.searchTerm && film.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()));
+        this.setState({ matches });
       });
   }
 
