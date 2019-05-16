@@ -1,0 +1,161 @@
+@import '../../style/variables';
+
+header {
+  background: $gradientColor;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: flex-end;
+  box-shadow: $boxShadow;
+
+  .top-header {
+    width: 100%;
+    max-width: $maxHeaderWidth;
+    display: flex;
+    align-items: baseline;
+    padding: 15px;
+    box-sizing: border-box;
+    color: $secondColorText;
+    margin: auto;
+
+    .brand {
+      flex-basis: 15%;
+      text-align: left;
+      cursor: default;
+    }
+
+    .menu-group {
+      display: flex;
+      flex-basis: 85%;
+      justify-content: space-around;
+
+      li {
+        list-style: none;
+      }
+
+      .nav-group {
+        display: flex;
+        flex-basis: 80%;
+        justify-content: space-between;
+
+        div {
+          text-align: center;
+          box-sizing: border-box;
+          padding: 10px 0;
+          border-bottom: 2px solid transparent;
+          cursor: pointer;
+
+          &:hover {
+            border-bottom-color: $lineColor;
+            color: $thirdColorText;
+          }
+        }
+      }
+
+      .reg-log-group {
+        display: flex;
+        flex-basis: 20%;
+        text-align: right;
+        justify-content: flex-end;
+
+        div {
+          margin: 0 10px;
+          padding: 10px 0;
+          box-sizing: border-box;
+          border-bottom: 2px solid transparent;
+          cursor: pointer;
+
+          &:hover {
+            border-bottom-color: $lineColorLight;
+            color: $thirdColorText;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom-header {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    width: 100%;
+    max-width: $maxHeaderWidth;
+    margin: auto;
+    padding: 3px 0;
+    background: $mainColor;
+    margin-bottom: -20px;
+    box-shadow: $boxShadow;
+
+    .search-field {
+      display: flex;
+      flex-basis: 80%;
+      justify-content: center;
+
+      label {
+        padding: 10px 0;
+        color: $mainColorText;
+      }
+
+      div {
+        flex-basis: 50%;
+        display: flex;
+        box-sizing: border-box;
+        flex-direction: column;
+
+        div {
+          position: relative;
+          width: 100%;
+          background: $secondColor;
+          color: $secondColorText;
+        }
+
+        .matches {
+          position: absolute;
+          width: 100%;
+
+          div {
+            padding: 5px;
+            border-bottom: 1px solid $lineColorGray;
+
+            &:hover {
+              border-bottom-color: $lineColorLight;
+            }
+          }
+        }
+
+        input {
+          width: 100%;
+          border: none;
+          border-bottom: $mainColorText 2px solid;
+          box-sizing: border-box;
+          padding: 10px;
+          background: none;
+          outline: none;
+          caret-color: $mainColorText;
+          color: $mainColorText;
+
+          &:focus {
+            border-bottom-color: $lineColorLight;
+          }
+        }
+      }
+
+      button {
+        flex-basis: 10%;
+        background: none;
+        outline: none;
+        box-sizing: border-box;
+        margin-left: 10px;
+        border: 1px solid $mainColorText;
+        color: $mainColorText;
+        cursor: pointer;
+
+        &:hover {
+          border-color: $lineColorLight;
+          color: $lineColorLight;
+        }
+      }
+    }
+  }
+}

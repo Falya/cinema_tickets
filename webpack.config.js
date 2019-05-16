@@ -5,7 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
-
 module.exports = {
   context: __dirname,
   mode: 'development',
@@ -14,22 +13,22 @@ module.exports = {
   },
   watch: true,
   output: {
-    path: path.resolve(__dirname, "build"),
-		filename: "bundle.js",
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
   },
   devServer: {
-		contentBase: path.resolve(__dirname, "build"),
-		port: 8080,
-		historyApiFallback: true,
+    contentBase: path.resolve(__dirname, 'build'),
+    port: 8080,
+    historyApiFallback: true,
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].[hash].css',
       chunkFilename: 'styles/[id].[hash].css',
-  }),
+    }),
     new HtmlWebpackPlugin({
-      template: 'public/index.html',
+      template: './public/index.html',
       filename: 'index.html',
       inject: 'head'
     }),
@@ -47,21 +46,24 @@ module.exports = {
         path.resolve(__dirname, 'node_modules')
       ],
       options: {
-        presets: ['env', 'react']
+        presets: ['env', 'react'],
+        plugins: [
+          "transform-class-properties"
+        ]
       },
       loader: 'babel-loader',
     },
     {
       test: /\.scss$/,
       use: [
-          {
-              loader: MiniCssExtractPlugin.loader
-          },
-          'css-loader',
-          'sass-loader'
+        {
+          loader: MiniCssExtractPlugin.loader
+        },
+        'css-loader',
+        'sass-loader'
       ]
-  },
-  ]
+    },
+    ]
   },
   resolve: {
     extensions: ['.json', '.js', '.jsx']

@@ -1,19 +1,22 @@
-
 @import './variables';
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-// $maxBodyWidth: 2560px;
+
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    background: #616161;
-    #react-root {
-        display: flex;
-        width: 100%;
-        max-width: $maxBodyWidth;
-        flex-direction: column;
-        margin: auto;
-        .wraper {
-            width: 100%;
-        }
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  background: $thirdColor;
+
+  #react-root {
+    display: flex;
+    width: 100%;
+    max-width: $maxBodyWidth;
+    flex-direction: column;
+    margin: auto;
+
+    .wrapper {
+      width: 100%;
     }
+
+  }
+
 }
