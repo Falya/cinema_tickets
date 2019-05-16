@@ -1,6 +1,6 @@
 import { Component } from "react";
 import NavGroup from "./NavGroup/NavGroup";
-import Searchfield from "./Searchfield/Searchfield";
+import SearchField from "./SearchField/SearchField";
 import "./header.scss";
 
 class Header extends Component {
@@ -22,7 +22,7 @@ class Header extends Component {
           </div>
         </div>
         <div className="bottom-header">
-          <Searchfield className="search-field" />
+          <SearchField className="search-field" />
         </div>
       </header>
     );

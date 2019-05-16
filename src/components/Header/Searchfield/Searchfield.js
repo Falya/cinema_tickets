@@ -1,53 +1,49 @@
 import { Component } from "react";
 
-class Searchfield extends Component {
+class SearchField extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputText: "",
-      equalText: []
+      searchTerm: "",
+      matches: []
     };
   }
 
-  getQuertyData() {
+  search() {
     fetch("/dbImitation/films.json")
       .then(res => {
         return res.json();
       })
       .then(res => {
-        let current = res.films.reduce((acc, film) => {
-          let { inputText } = this.state,
+        let current = res.films.filter(film => {
+          let { searchTerm } = this.state,
             { name } = film;
 
-          if (
-            name.toLowerCase().indexOf(inputText.toLowerCase()) !== -1 &&
-            inputText
-          ) {
-            acc.push(name);
+          if (searchTerm && name.toLowerCase().includes(searchTerm.toLowerCase())) {
+           return true;
           }
 
-          return acc;
-        }, []);
+        });
 
-        this.setState({ equalText: current });
+        this.setState({ matches: current });
       });
   }
 
-  inputHandler = (e) => {
-    this.setState({ inputText: e.target.value });
-    this.getQuertyData();
+  onSearch = (e) => {
+    this.setState({ searchTerm: e.target.value });
+    this.search();
   };
 
-  showEqualText = () => {
-    let { equalText } = this.state;
+  showMatches = () => {
+    let { matches } = this.state;
 
-    return equalText.map(item => (
-      <div onClick={this.equalTextHandler}>{item}</div>
+    return matches.map(item => (
+      <div onClick={this.selectMatch}>{item.name}</div>
     ));
   };
 
-  equalTextHandler = e => {
-    this.setState({ inputText: e.target.textContent, equalText: [] });
+  selectMatch = e => {
+    this.setState({ searchTerm: e.target.textContent, matches: [] });
   };
 
   render() {
@@ -58,12 +54,12 @@ class Searchfield extends Component {
           <input
             type="text"
             id="search-field"
-            onChange={this.inputHandler}
-            value={this.state.inputText}
+            onChange={this.onSearch}
+            value={this.state.searchTerm}
           />
-          {this.state.equalText.length > 0 && (
+          {this.state.matches.length > 0 && (
             <div>
-              <div className="equal-text">{this.showEqualText()}</div>
+              <div className="matches">{this.showMatches()}</div>
             </div>
           )}
         </div>
@@ -73,4 +69,4 @@ class Searchfield extends Component {
   }
 }
 
-export default Searchfield;
+export default SearchField;

@@ -84,6 +84,8 @@ header {
     margin: auto;
     padding: 3px 0;
     background: $mainColor;
+    margin-bottom: -20px;
+    box-shadow: $boxShadow;
 
     .search-field {
       display: flex;
@@ -108,7 +110,7 @@ header {
           color: $secondColorText;
         }
 
-        .equal-text {
+        .matches {
           position: absolute;
           width: 100%;
 
