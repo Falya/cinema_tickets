@@ -1,13 +1,13 @@
 import { Component } from 'react';
-import './reg-form.scss';
+import './registartion-form.scss';
 
-class RegForm extends Component {
+class RegistrationForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isPostedData: false,
-      isPswdConfirmed: true
+      isPasswordConfirmed: true
     };
   }
   /**
@@ -22,16 +22,16 @@ class RegForm extends Component {
       input[1] ? (isAllInputsFilled = true) : (isAllInputsFilled = false);
     }
 
-    const pswd = formData.get('pswd'),
-      confirmPswd = formData.get('confirmPswd');
+    const password = formData.get('password'),
+      confirmPassword = formData.get('confirmPassword');
 
-    if (pswd !== confirmPswd) {
-      this.setState({ isPswdConfirmed: false });
+    if (password !== confirmPassword) {
+      this.setState({ isPasswordConfirmed: false });
     } else {
-      !this.state.isPswdConfirmed && this.setState({ isPswdConfirmed: true });
+      !this.state.isPasswordConfirmed && this.setState({ isPasswordConfirmed: true });
     }
 
-    if (isAllInputsFilled && this.state.isPswdConfirmed) {
+    if (isAllInputsFilled && this.state.isPasswordConfirmed) {
       fetch('/dbImitation/films.json', {
         method: 'POST',
         body: formData
@@ -42,10 +42,10 @@ class RegForm extends Component {
   };
 
   render() {
-    let { isPswdConfirmed } = this.state;
+    let { isPasswordConfirmed } = this.state;
     return (
-      <div className="reg-form">
-        <div className="reg-form-header">Registration</div>
+      <div className="registration-form">
+        <div className="registration-form-header">Registration</div>
         <form onSubmit={this.onSubmit} autoComplete="on">
           <div className="form-group">
             <label htmlFor="user-name">Username:</label>
@@ -60,32 +60,32 @@ class RegForm extends Component {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="pswd">Password:</label>
+            <label htmlFor="password">Password:</label>
             <div className="input-group">
-              <input type="password" name="pswd" id="pswd" placeholder="password" required />
+              <input type="password" name="password" id="password" placeholder="password" required />
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="confirm-pswd">Confirm password:</label>
+            <label htmlFor="confirm-password">Confirm password:</label>
             <div className="input-group">
               <input
                 type="password"
-                name="confirmPswd"
-                id="confirm-pswd"
-                className={isPswdConfirmed ? '' : 'wrong-input'}
+                name="confirmPassword"
+                id="confirm-password"
+                className={isPasswordConfirmed ? '' : 'wrong-input'}
                 placeholder="confirm password"
                 required
               />
             </div>
           </div>
-          <div className="form-group reg-form-btn">
+          <div className="form-group registration-form-btn">
             <button type="submit">Registration</button>
           </div>
-          {!isPswdConfirmed && <span className="reg-form-confirm-tip">Please confirm your password</span>}
+          {!isPasswordConfirmed && <span className="registration-form-confirm-tip">Please confirm your password</span>}
         </form>
       </div>
     );
   }
 }
 
-export default RegForm;
+export default RegistrationForm;

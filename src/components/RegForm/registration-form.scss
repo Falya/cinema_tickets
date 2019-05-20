@@ -1,6 +1,6 @@
 @import '../../style/variables';
 
-.reg-form {
+.registration-form {
   width: 30vw;
   background: $mainColor;
   color: $mainColorText;
@@ -34,7 +34,7 @@
     left: 2vw;
   }
 
-  .reg-form-header {
+  .registration-form-header {
     background: $gradientColor;
     padding: 10px;
     text-align: center;
@@ -74,12 +74,10 @@
           caret-color: $thirdColorText;
           color: $thirdColorText;
           width: 100%;
-
           &::placeholder {
             color: $thirdColorText;
             font-size: 0.9em;
           }
-
           &:focus {
             outline-color: $lineColorLight;
             outline-style: solid;
@@ -97,7 +95,7 @@
 
     }
 
-    .reg-form-btn {
+    .registration-form-btn {
       justify-content: center;
 
       button {
@@ -106,12 +104,10 @@
         background: none;
         color: $mainColorText;
         border: 1px solid $mainColorText;
-
         &:hover {
           border-color: $lineColorLight;
           color: $lineColorLight;
         }
-
         &:active {
           border-color: $lineColor;
           color: $lineColor;
@@ -123,11 +119,10 @@
 
   }
 
-  .reg-form-confirm-tip {
+  .registration-form-confirm-tip {
     font-size: 0.9em;
     margin-left: 10px;
     color: $exceptionColor;
-
     &::before {
       content: '*';
       margin-right: 3px;
