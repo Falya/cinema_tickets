@@ -12,7 +12,7 @@ export default class LoginForm extends Component {
       disabledBtn: false,
       isPostedData: false,
       isUserNameEntried: true,
-      isPswdEntried: true,
+      isPasswordEntried: true,
       wrongMessage: ''
     };
   }
@@ -24,12 +24,12 @@ export default class LoginForm extends Component {
     e.preventDefault();
     const formData = new FormData(e.target);
     const userName = formData.get('userName'),
-      password = formData.get('userPswd');
+      password = formData.get('userPassword');
 
     if (!userName && !password) {
       this.setState({
         isUserNameEntried: false,
-        isPswdEntried: false,
+        isPasswordEntried: false,
         wrongMessage: 'Please fill in the fields'
       });
     } else if (!userName) {
@@ -39,7 +39,7 @@ export default class LoginForm extends Component {
       });
     } else if (!password) {
       this.setState({
-        isPswdEntried: false,
+        isPasswordEntried: false,
         wrongMessage: 'Please fill in the password'
       });
     } else {
@@ -60,7 +60,7 @@ export default class LoginForm extends Component {
         loading: true,
         disabledBtn: true,
         isUserNameEntried: true,
-        isPswdEntried: true,
+        isPasswordEntried: true,
         wrongMessage: ''
       });
     }
@@ -85,15 +85,15 @@ export default class LoginForm extends Component {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="user-pswd">Password:</label>
+            <label htmlFor="user-password">Password:</label>
             <div className="input-group">
               <input
                 type="password"
-                name="userPswd"
+                name="userPassword"
                 id="user-pswd"
                 required
                 placeholder="password"
-                className={this.state.isPswdEntried ? '' : 'wrong-input'}
+                className={this.state.isPasswordEntried ? '' : 'wrong-input'}
               />
             </div>
           </div>
