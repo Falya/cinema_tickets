@@ -16,7 +16,7 @@ class Header extends Component {
           <div className="menu-group">
             <NavGroup className="nav-group" />
             <div className="reg-log-group">
-              <div>Sign In</div>
+              <div onClick={this.props.onLogin}>Sign In</div>
               <div>Sign Up</div>
             </div>
           </div>
