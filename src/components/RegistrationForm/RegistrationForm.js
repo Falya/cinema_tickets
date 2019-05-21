@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import './registartion-form.scss';
+import './registration-form.scss';
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -16,22 +16,16 @@ class RegistrationForm extends Component {
   onSubmit = e => {
     e.preventDefault();
     let formData = new FormData(e.target);
-    let isAllInputsFilled = false;
-
-    for (let input of formData.entries()) {
-      input[1] ? (isAllInputsFilled = true) : (isAllInputsFilled = false);
-    }
+    let areAllInputsFilled = [...formData.values()].every(value => !!value);
 
     const password = formData.get('password'),
-      confirmPassword = formData.get('confirmPassword');
+      confirmPassword = formData.get('confirmPassword'),
+      isPasswordConfirmed = password === confirmPassword;
 
-    if (password !== confirmPassword) {
-      this.setState({ isPasswordConfirmed: false });
-    } else {
-      !this.state.isPasswordConfirmed && this.setState({ isPasswordConfirmed: true });
-    }
+    if (this.state.isPasswordConfirmed !== confirmPassword) {
+      this.setState({ isPasswordConfirmed });
 
-    if (isAllInputsFilled && this.state.isPasswordConfirmed) {
+    if (areAllInputsFilled && this.state.isPasswordConfirmed) {
       fetch('/dbImitation/films.json', {
         method: 'POST',
         body: formData
@@ -39,7 +33,8 @@ class RegistrationForm extends Component {
         .then(res => this.setState({ isPostedData: true }))
         .catch(err => console.log(err));
     }
-  };
+  }
+}
 
   render() {
     let { isPasswordConfirmed } = this.state;
