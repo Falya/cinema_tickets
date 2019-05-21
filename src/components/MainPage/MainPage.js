@@ -12,7 +12,17 @@ class MainPage extends Component {
   render() {
     return (
       <section>
+      <div className="heading">
+        <div className="heading-header">
+          <h2>Now in the cinema</h2>
+        </div>
+        <div className="heading-body">
+          <div className="card"></div>
+        </div>
+      </div>
+      <div className="heading">
 
+      </div>
       </section>
     );
   }
