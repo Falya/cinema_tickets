@@ -11,8 +11,8 @@ export default class LoginForm extends Component {
       iconLoading: false,
       disabledBtn: false,
       isPostedData: false,
-      isUserNameEntried: true,
-      isPasswordEntried: true,
+      isUserNameEntered: true,
+      isPasswordEntered: true,
       wrongMessage: ''
     };
   }
@@ -28,18 +28,18 @@ export default class LoginForm extends Component {
 
     if (!userName && !password) {
       this.setState({
-        isUserNameEntried: false,
-        isPasswordEntried: false,
+        isUserNameEntered: false,
+        isPasswordEntered: false,
         wrongMessage: 'Please fill in the fields'
       });
     } else if (!userName) {
       this.setState({
-        isUserNameEntried: false,
+        isUserNameEntered: false,
         wrongMessage: 'Please fill in the nickname'
       });
     } else if (!password) {
       this.setState({
-        isPasswordEntried: false,
+        isPasswordEntered: false,
         wrongMessage: 'Please fill in the password'
       });
     } else {
@@ -59,8 +59,8 @@ export default class LoginForm extends Component {
         iconLoading: true,
         loading: true,
         disabledBtn: true,
-        isUserNameEntried: true,
-        isPasswordEntried: true,
+        isUserNameEntered: true,
+        isPasswordEntered: true,
         wrongMessage: ''
       });
     }
@@ -80,7 +80,7 @@ export default class LoginForm extends Component {
                 id="user-name"
                 required
                 placeholder="nickname"
-                className={this.state.isUserNameEntried ? '' : 'wrong-input'}
+                className={this.state.isUserNameEntered ? '' : 'wrong-input'}
               />
             </div>
           </div>
@@ -93,7 +93,7 @@ export default class LoginForm extends Component {
                 id="user-pswd"
                 required
                 placeholder="password"
-                className={this.state.isPasswordEntried ? '' : 'wrong-input'}
+                className={this.state.isPasswordEntered ? '' : 'wrong-input'}
               />
             </div>
           </div>
