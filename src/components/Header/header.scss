@@ -14,21 +14,27 @@ header {
     max-width: $maxHeaderWidth;
     display: flex;
     align-items: baseline;
+    justify-content: space-between;
     padding: 15px;
     box-sizing: border-box;
     color: $secondColorText;
     margin: auto;
 
     .brand {
-      flex-basis: 15%;
+      padding: 10px 0;
       text-align: left;
       cursor: default;
+      box-sizing: border-box;
     }
 
     .menu-group {
       display: flex;
       flex-basis: 85%;
-      justify-content: space-around;
+      justify-content: space-between;
+
+      @media (max-width: 840px) {
+        display: none;
+      }
 
       li {
         list-style: none;
@@ -38,6 +44,14 @@ header {
         display: flex;
         flex-basis: 80%;
         justify-content: space-between;
+
+        @media (max-width: 1200px) {
+          flex-basis: auto;
+
+          div {
+            margin: 0 20px;
+          }
+        }
 
         div {
           text-align: center;
@@ -51,11 +65,12 @@ header {
             color: $thirdColorText;
           }
         }
+
       }
 
       .reg-log-group {
         display: flex;
-        flex-basis: 20%;
+        margin-left: 3%;
         text-align: right;
         justify-content: flex-end;
 
