@@ -21,7 +21,7 @@ class Header extends Component {
               <div>Sign Up</div>
             </div>
           </div>
-          <SandwichButton/>
+          <SandwichButton onLogin={this.props.onLogin} onRegistration={this.props.onRegistration}/>
         </div>
         <div className="bottom-header">
           <SearchField className="search-field" />
