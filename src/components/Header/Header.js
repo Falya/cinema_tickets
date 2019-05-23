@@ -1,7 +1,8 @@
-import { Component } from "react";
-import NavGroup from "./NavGroup/NavGroup";
-import SearchField from "./SearchField/SearchField";
-import "./header.scss";
+import { Component } from 'react';
+import NavGroup from './NavGroup/NavGroup';
+import SearchField from './SearchField/SearchField';
+import './header.scss';
+import SandwichButton from './SandwichButton/SandwichButton';
 
 class Header extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class Header extends Component {
               <div>Sign Up</div>
             </div>
           </div>
+          <SandwichButton onLogin={this.props.onLogin} onRegistration={this.props.onRegistration} />
         </div>
         <div className="bottom-header">
           <SearchField className="search-field" />

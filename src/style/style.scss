@@ -1,11 +1,14 @@
 @import './variables';
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import '~antd/dist/antd';
 
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
+  padding: 0;
   background: $thirdColor;
   font-size: 18px;
+  overflow-x: hidden;
 
   #react-root {
     display: flex;
