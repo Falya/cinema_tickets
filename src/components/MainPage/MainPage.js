@@ -7,10 +7,18 @@ class MainPage extends Component {
     super(props);
   }
 
+  cardMethod = (id, method) => {
+    if (method === 'showBookingPage') {
+      console.log(`Open boking page for ${id}`);
+    } else if (method === 'showMoviePage') {
+      console.log(`Open movie page for ${id}`);
+    }
+  };
+
   render() {
     return (
       <section>
-        <Heading/>
+        <Heading cardMethod={this.cardMethod} />
       </section>
     );
   }
