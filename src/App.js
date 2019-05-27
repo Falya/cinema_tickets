@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
+import MainPage from './components/MainPage/MainPage';
 
 class App extends Component {
 
@@ -26,6 +27,7 @@ class App extends Component {
         <Header onLogin={this.openLoginForm} onRegistration={this.openRegistrationForm}/>
         {this.state.loginForm && <LoginForm/>}
         {this.state.registrationForm && <RegistrationForm/>}
+        <MainPage />
       </div>
     );
   }

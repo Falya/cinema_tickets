@@ -5,7 +5,6 @@ $mainColor: #8e8e8e;
 $secondColor: #373737;
 $thirdColor: #616161;
 $gradientColor: linear-gradient(to right, $secondColor, #4f5255);
-
 $lineColor: #90caf9;
 $lineColorLight: #c3fdff;
 $lineColorDark: #5d99c6;
@@ -13,7 +12,7 @@ $lineColorGray: rgba(
   $color: #fff,
   $alpha: 0.3
 );
-
+$gradientColorLine: linear-gradient(to right, $lineColorDark, $lineColor);
 $mainColorText: rgba(
   $color: #fff,
   $alpha: 0.95
@@ -38,6 +37,10 @@ $lineColorLightText: rgba(
 $lineColorDarkText: rgba(
   $color: #000,
   $alpha: 0.75
+);
+$lineColorDarkTextWhite: rgba(
+  $color: #fff,
+  $alpha: 0.98
 );
 
 $exceptionColor: #ff867c;
