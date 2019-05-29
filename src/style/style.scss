@@ -9,13 +9,18 @@ body {
 
   #react-root {
     display: flex;
+    position: relative;
     width: 100%;
+    min-height: 100vh;
     max-width: $maxBodyWidth;
     flex-direction: column;
     margin: auto;
 
     .wrapper {
       width: 100%;
+    }
+    .for-blur {
+      filter: blur(5px);
     }
 
   }

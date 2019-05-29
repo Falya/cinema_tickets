@@ -14,7 +14,7 @@ header {
     max-width: $maxHeaderWidth;
     display: flex;
     align-items: baseline;
-    padding: 15px;
+    padding: 5px 15px;
     box-sizing: border-box;
     color: $secondColorText;
     margin: auto;
@@ -84,7 +84,6 @@ header {
     margin: auto;
     padding: 3px 0;
     background: $mainColor;
-    margin-bottom: -20px;
     box-shadow: $boxShadow;
 
     .search-field {

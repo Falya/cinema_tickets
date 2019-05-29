@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "node node_modules/webpack/bin/webpack -w",
-    "server": "node node_modules/webpack-dev-server/bin/webpack-dev-server"
+    "build": "webpack -w",
+    "server": "webpack-dev-server --devtool source-map"
   },
   "author": "Maksim Falei",
   "license": "ISC",

@@ -16,6 +16,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
     port: 8080,
@@ -68,5 +69,4 @@ module.exports = {
   resolve: {
     extensions: ['.json', '.js', '.jsx']
   },
-  devtool: 'source-map',
 };
