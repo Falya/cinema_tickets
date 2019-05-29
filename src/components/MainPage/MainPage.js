@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './main-page.scss';
-import Heading from './Heading/Heading';
+import MovieList from './MovieList/MovieList';
 
 class MainPage extends Component {
   constructor(props) {
@@ -8,9 +8,12 @@ class MainPage extends Component {
   }
 
   cardMethod = (id, method) => {
-    if (method === 'showBookingPage') {
+    const showBookingPage = 'showBookingPage',
+          showMoviePage = 'showMoviePage';
+
+    if (method === showBookingPage) {
       console.log(`Open boking page for ${id}`);
-    } else if (method === 'showMoviePage') {
+    } else if (method === showMoviePage) {
       console.log(`Open movie page for ${id}`);
     }
   };
@@ -18,7 +21,7 @@ class MainPage extends Component {
   render() {
     return (
       <section>
-        <Heading cardMethod={this.cardMethod} />
+        <MovieList cardMethod={this.cardMethod} />
       </section>
     );
   }

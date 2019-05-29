@@ -1,8 +1,8 @@
-const DOMAIN_URL = `http://localhost:5000/api`;
+import { BASE_URL } from './config/config';
 
 export function getMovies() {
   const options = {
     method: 'GET'
   };
-  return fetch(`${DOMAIN_URL}/movies`, options).then(res => res.json());
+  return fetch(`${BASE_URL}/movies`, options).then(res => res.json());
 }
