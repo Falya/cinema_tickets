@@ -9,31 +9,31 @@ class SearchField extends Component {
     };
   }
 
-  search() {
-    fetch("/dbImitation/films.json")
-      .then(res => res.json())
-      .then(res => {
-        const matches = res.films.filter(film => this.state.searchTerm && film.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()));
-        this.setState({ matches });
-      });
-  }
+  // search() {
+  //   fetch("/dbImitation/films.json")
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       const matches = res.films.filter(film => this.state.searchTerm && film.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()));
+  //       this.setState({ matches });
+  //     });
+  // }
 
-  onSearch = (e) => {
-    this.setState({ searchTerm: e.target.value });
-    this.search();
-  };
+  // onSearch = (e) => {
+  //   this.setState({ searchTerm: e.target.value });
+  //   this.search();
+  // };
 
-  showMatches = () => {
-    let { matches } = this.state;
+  // showMatches = () => {
+  //   let { matches } = this.state;
 
-    return matches.map(item => (
-      <div onClick={this.selectMatch}>{item.name}</div>
-    ));
-  };
+  //   return matches.map(item => (
+  //     <div onClick={this.selectMatch}>{item.name}</div>
+  //   ));
+  // };
 
-  selectMatch = e => {
-    this.setState({ searchTerm: e.target.textContent, matches: [] });
-  };
+  // selectMatch = e => {
+  //   this.setState({ searchTerm: e.target.textContent, matches: [] });
+  // };
 
   render() {
     return (
@@ -44,14 +44,14 @@ class SearchField extends Component {
             type="text"
             id="search-field"
             autoComplete='off'
-            onChange={this.onSearch}
+            // onChange={this.onSearch}
             value={this.state.searchTerm}
           />
-          {this.state.matches.length > 0 && (
+          {/* {this.state.matches.length > 0 && (
             <div>
               <div className="matches">{this.showMatches()}</div>
             </div>
-          )}
+          )} */}
         </div>
         <button>Search</button>
       </form>
