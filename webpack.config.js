@@ -7,11 +7,11 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   context: __dirname,
-  mode: 'development',
+  // mode: 'development',
   entry: {
     app: path.join(__dirname, 'src', 'index')
   },
-  watch: true,
+  // watch: true,
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
