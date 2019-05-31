@@ -9,7 +9,7 @@ class MainPage extends Component {
 
   cardMethod = (id, method) => {
     if (method === 'showBookingPage') {
-      console.log(`Open boking page for ${id}`);
+      this.props.showBookingPage(id);
     } else if (method === 'showMoviePage') {
       console.log(`Open movie page for ${id}`);
     }

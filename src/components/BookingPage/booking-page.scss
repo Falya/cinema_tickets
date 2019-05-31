@@ -1,37 +1,43 @@
 @import '../../style/variables';
 
-.movie-page {
+$mediaWidthMedium: 800px;
+$mediaWidthSmall: 460px;
+
+.booking-page {
+  flex-basis: 100%;
   position: absolute;
+  display: flex;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  padding: auto;
   box-sizing: border-box;
   margin: auto;
   top: 0;
   background: rgba($color: $secondColor, $alpha: 0.9);
 
-  .movie-page--wrapper {
-    margin: auto;
-    display: flex;
+  .booking-page--wrapper {
     width: 100%;
+    margin: 0 auto;
+    display: flex;
     max-width: $maxHeaderWidth;
     flex-direction: column;
 
-    .movie-page--header {
+    .booking-page--header {
       display: flex;
       position: -webkit-sticky;
       position: sticky;
       top: 0;
       flex-direction: column;
-      background: rgba($color: $secondColor, $alpha: 0.7);
+      background: rgba($color: $secondColor, $alpha: 0.8);
       color: $mainColorText;
       padding: 10px 15px;
-      z-index: 15;
+      z-index: 2;
 
       .header--nav-bar {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        padding-bottom: 15px;
+        padding: 15px 0;
 
         .nav-bar--close-btn,
         .nav-bar--back-btn {
@@ -42,7 +48,6 @@
           transition: color, opacity, transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
           &:hover {
             color: $lineColor;
-            // transform: scale(1.1);
             opacity: 1;
           }
 
@@ -59,23 +64,33 @@
           font-size: 1.2em;
         }
       }
-
     }
 
     .header--filter-bar {
       background: transparent;
       display: flex;
       border-top: 1px solid $lineColorGray;
-      border-bottom: 1px solid $lineColorGray;
       box-sizing: border-box;
+      flex-wrap: wrap;
 
       .filter--item {
         flex-basis: 25%;
         padding: 10px;
         border-right: 1px solid $lineColorGray;
+        border-bottom: 1px solid $lineColorGray;
         box-sizing: border-box;
         color: $mainColorText;
         &:last-child {
+          border-right: none;
+        }
+        @media screen and (max-width: $mediaWidthMedium) {
+          flex-basis: 50%;
+          &:nth-child(2n) {
+            border-right: none;
+          }
+        }
+        @media screen and (max-width: $mediaWidthSmall) {
+          flex-basis: 100%;
           border-right: none;
         }
 
@@ -94,8 +109,9 @@
       }
     }
 
-    .movie-page--body {
+    .booking-page--body {
       display: flex;
+      flex-wrap: wrap;
 
       .body-left-container {
         flex-basis: 75%;
@@ -141,21 +157,20 @@
             flex-direction: column;
             justify-content: center;
 
-              h1 {
-                font-size: 3em;
-                color: $mainColorText;
-                font-weight: bolder;
-              }
+            h1 {
+              font-size: 3em;
+              color: $mainColorText;
+              font-weight: bolder;
+            }
 
-              span {
-                color: $secondColorText;
-                font-weight: 500;
-              }
+            span {
+              color: $secondColorText;
+              font-weight: 500;
+            }
           }
         }
 
         .movie-seances {
-          margin-top: 10px;
           margin-bottom: 10px;
           display: flex;
           flex-direction: column;
@@ -185,15 +200,17 @@
             .seances {
               flex-basis: 82%;
               display: flex;
-              padding: 10px 5px;
+              padding: 5px 5px;
               flex-wrap: wrap;
 
               .seance-card {
                 width: 20%;
+                padding: 5px;
+                box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
                 border: 1px solid $lineColorGray;
-                margin: 0 5px;
+                margin: 5px;
                 justify-content: space-around;
                 cursor: pointer;
                 border-radius: $borderRadius;
@@ -222,7 +239,94 @@
               }
             }
           }
+        }
 
+        @media screen and (max-width: $mediaWidthMedium) {
+          flex-basis: 100%;
+          .movie-about {
+            .movie-poster {
+              flex-basis: 40%;
+            }
+
+            .movie-info {
+              flex-basis: 60%;
+
+              h1 {
+                font-size: 2em;
+                color: $mainColorText;
+                font-weight: bolder;
+              }
+              @media screen and (max-width: $mediaWidthSmall) {
+                h1 {
+                  font-size: 1.5em;
+                }
+                span {
+                  font-size: 0.9em;
+                }
+              }
+            }
+          }
+
+          .movie-seances {
+            border-top: 2px solid $lineColorGray;
+            border-bottom: 2px solid $lineColorGray;
+
+            .movie-seance-card {
+              border-bottom: 2px solid $lineColorGray;
+
+              .cinema-info {
+                flex-basis: 30%;
+                padding-left: 15px;
+              }
+
+              .seances {
+                flex-basis: 70%;
+
+                .seance-card {
+                  width: 30%;
+
+                  .time {
+                    font-size: 1em;
+                  }
+
+                  .format {
+                    font-size: 0.9em;
+                  }
+
+                  .hall {
+                    font-size: 0.8em;
+                  }
+                }
+              }
+            }
+            @media screen and (max-width: $mediaWidthSmall) {
+              .movie-seance-card {
+                .cinema-info {
+                  flex-basis: 35%;
+                }
+
+                .seances {
+                  flex-basis: 65%;
+
+                  .seance-card {
+                    width: 45%;
+
+                    .time {
+                      font-size: 1em;
+                    }
+
+                    .format {
+                      font-size: 0.9em;
+                    }
+
+                    .hall {
+                      font-size: 0.8em;
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
 
@@ -304,7 +408,28 @@
             font-size: 1.3em;
             text-decoration: underline;
             margin-bottom: 15px;
+          }
+        }
+      }
+      @media screen and (max-width: $mediaWidthMedium) {
+        .body-right-container {
+          flex-basis: 100%;
 
+          .movie-trailer-preview {
+            width: 70%;
+
+            .trailer-overlay {
+              z-index: 3;
+
+              svg {
+                z-index: 2;
+              }
+            }
+          }
+
+          .description {
+            width: 90%;
+            margin-bottom: 20px;
           }
         }
       }
