@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node herokuServer.js",
     "heroku-postbuild": "webpack -p",
+    "build": "webpack -p"
   },
   "author": "Maksim Falei",
   "license": "ISC",
