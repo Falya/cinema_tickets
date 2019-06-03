@@ -13,21 +13,21 @@ class App extends Component {
   }
 
   onBookingPageCrossClick = () => {
-    this.setState({isBookingPageOpen: false});
-  }
+    this.setState({ isBookingPageOpen: false });
+  };
 
-  showBookingPage = (id) => {
-    this.setState({isBookingPageOpen: true, movieId: id});
-  }
+  showBookingPage = id => {
+    this.setState({ isBookingPageOpen: true, movieId: id });
+  };
 
   render() {
     return (
-      <div className='wrapper'>
+      <div className="wrapper">
         <div className={this.state.isBookingPageOpen ? 'for-blur' : ''}>
-        <Header />
-        <MainPage showBookingPage={this.showBookingPage}/>
+          <Header />
+          <MainPage showBookingPage={this.showBookingPage} />
         </div>
-        {this.state.isBookingPageOpen && <BookinPage movieId={this.state.movieId} onCrossClick={this.onBookingPageCrossClick}/>}
+        {this.state.isBookingPageOpen && <BookinPage movieId={this.state.movieId} onCrossClick={this.onBookingPageCrossClick} />}
       </div>
     );
   }
