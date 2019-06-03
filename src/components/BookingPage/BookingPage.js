@@ -1,29 +1,48 @@
 import React, { Component } from 'react';
-import './movie-page.scss';
+import './booking-page.scss';
 import FilterComponent from './FilterComponent';
-import CinemaSeance from './CinemaSeance';
+import MovieTheaterSeances from './MovieTheaterSeances';
+import { getSeancesByMovieId } from '../../webAPI';
 
-class MoviePage extends Component {
+
+class BookingPage extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      isDataLoaded: false,
+     };
+
+     getSeancesByMovieId(this.props.movieId)
+      .then(res => {
+        this.setState({movieObject: res, isDataLoaded: true});
+      });
   }
 
+  renderMovieTheaters = (theaters) => {
+    return theaters.map(theater => {
+      return <MovieTheaterSeances movieTheater={theater} key={theater._id}/>;
+    });
+  }
 
   render() {
+    const {isDataLoaded} = this.state;
+    let movie;
+    isDataLoaded && ({movie} = this.state.movieObject);
+
     return (
-      <section className='movie-page'>
-        <div className="movie-page--wrapper">
-          <div className="movie-page--header">
+      <section className='booking-page'>
+        <div className="booking-page--wrapper">
+          <div className="booking-page--header">
             <div className="header--nav-bar">
               <div className="nav-bar--back-btn">
                 <span>🡨</span>
               </div>
               <div className="nav-bar--title">
-                <h3>Avengers</h3>
+                <h3>{isDataLoaded && movie.name}</h3>
               </div>
               <div className="nav-bar--close-btn">
-                <span>🞬</span>
+                <span onClick={this.props.onCrossClick}>🞬</span>
               </div>
             </div>
           </div>
@@ -33,24 +52,21 @@ class MoviePage extends Component {
               <FilterComponent type='city'/>
               <FilterComponent type='city'/>
             </div>
-          <div className="movie-page--body">
+          <div className="booking-page--body">
             <div className="body-left-container">
               <div className="movie-about">
                 <div className="movie-poster">
                   <div className="poster-image">
-                    <img src="http://cdn.collider.com/wp-content/uploads/2018/03/avengers-infinity-war-poster.jpg" alt=""/>
+                    <img src={isDataLoaded ? movie.poster : undefined} alt=""/>
                   </div>
                 </div>
                 <div className="movie-info">
-                  <h1>Avengers: Endgame</h1>
-                    <span>fantasy, action / 6+ / 2h 20min</span>
+                  <h1>{isDataLoaded && movie.name}</h1>
+                    {isDataLoaded && <span>{movie.genre.join(', ')} / {movie.age}+ / {movie.duration}min</span>}
                 </div>
               </div>
               <div className="movie-seances">
-                  <CinemaSeance />
-                  <CinemaSeance />
-                  <CinemaSeance />
-                  <CinemaSeance />
+                  {isDataLoaded && this.renderMovieTheaters(this.state.movieObject.theaters)}
               </div>
             </div>
             <div className="body-right-container">
@@ -62,11 +78,11 @@ class MoviePage extends Component {
                         <polygon points="70, 55 70, 145 145, 100" fill="#fff"/>
                     </svg>
                   </div>
-                  <img src="https://i.ytimg.com/vi/TXuuWMDqBak/maxresdefault.jpg" alt=""/>
+                  {<img src="https://i.ytimg.com/vi/TXuuWMDqBak/maxresdefault.jpg" alt=""/>}
                 </div>
                 <div className="description">
-                  <h3>Avengers: Endgame</h3>
-                  <span> After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to undo Thanos' actions and restore order to the universe.</span>
+                  <h3>{isDataLoaded && movie.name}</h3>
+                  <span>{isDataLoaded && movie.description}</span>
                 </div>
               </div>
             </div>
@@ -78,4 +94,4 @@ class MoviePage extends Component {
 }
 
 
-export default MoviePage;
+export default BookingPage;
