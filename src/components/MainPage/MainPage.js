@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './main-page.scss';
 import MovieList from './MovieList/MovieList';
+const SHOW_BOOKING_PAGE = 'showBookingPage',
+      SHOW_MOVIE_PAGE = 'showMoviePage';
 
 class MainPage extends Component {
   constructor(props) {
@@ -8,12 +10,10 @@ class MainPage extends Component {
   }
 
   cardMethod = (id, method) => {
-    const showBookingPage = 'showBookingPage',
-          showMoviePage = 'showMoviePage';
 
-    if (method === showBookingPage) {
-      console.log(`Open boking page for ${id}`);
-    } else if (method === showMoviePage) {
+    if (method === SHOW_BOOKING_PAGE) {
+      console.log(`Open booking page for ${id}`);
+    } else if (method === SHOW_MOVIE_PAGE) {
       console.log(`Open movie page for ${id}`);
     }
   };
