@@ -1,6 +1,6 @@
 import { Component } from "react";
 import NavGroup from "./NavGroup/NavGroup";
-import SearchField from "./SearchField/SearchField";
+import SearchField from "./Searchfield/Searchfield";
 import "./header.scss";
 
 class Header extends Component {
