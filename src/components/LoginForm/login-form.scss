@@ -1,5 +1,6 @@
 @import '../../style/variables';
 
+
 @keyframes modalAppear {
   0% {
     opacity: 0;
@@ -31,8 +32,8 @@
   animation: modalAppear 0.5s linear;
 
   @media (min-width: 1540px) {
-    width: 462px;
-    left: calc(50% - 231px);
+      width: 462px;
+      left: calc(50% - 231px);
   }
 
   @media (max-width: 1200px) {
@@ -46,7 +47,7 @@
   }
 
   @media (max-width: 520px) {
-    width: 98vw;
+    width:98vw;
     left: 1vw;
   }
 
@@ -56,7 +57,7 @@
     text-align: center;
     color: $mainColorText;
     font-size: 1.1em;
-    align-self: stretch;
+    align-self: stretch
   }
 
   form {

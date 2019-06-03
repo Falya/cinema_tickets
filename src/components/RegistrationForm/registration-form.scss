@@ -30,7 +30,7 @@
   }
 
   @media (max-width: 520px) {
-    width: 98vw;
+    width:98vw;
     left: 2vw;
   }
 
@@ -89,8 +89,10 @@
             outline-style: solid;
             outline-width: thin;
           }
+
         }
       }
+
     }
 
     .registration-form-btn {
@@ -110,8 +112,11 @@
           border-color: $lineColor;
           color: $lineColor;
         }
+
       }
+
     }
+
   }
 
   .registration-form-confirm-tip {
@@ -122,5 +127,7 @@
       content: '*';
       margin-right: 3px;
     }
+
   }
+
 }

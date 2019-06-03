@@ -31,7 +31,7 @@ class RegistrationForm extends Component {
           method: 'POST',
           body: formData
         })
-          .then(res => this.setState({ isPostedData: true }))
+          .then(() => this.setState({ isPostedData: true }))
           .catch(err => console.log(err));
       }
     }

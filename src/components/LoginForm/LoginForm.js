@@ -47,14 +47,12 @@ export default class LoginForm extends Component {
         method: 'POST',
         body: formData
       })
-        .then(() =>
-          this.setState({
-            isPostedData: true,
-            iconLoading: false,
-            loading: false,
-            disabledBtn: false
-          })
-        )
+        .then(() => this.setState({
+          isPostedData: true,
+          iconLoading: false,
+          loading: false,
+          disabledBtn: false
+        }))
         .catch(err => console.log(err));
 
       this.setState({
