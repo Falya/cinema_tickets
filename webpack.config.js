@@ -9,7 +9,7 @@ module.exports = {
   context: __dirname,
   // mode: 'development',
   entry: {
-    app: path.join(__dirname, 'src', 'index')
+    app: path.join(__dirname, 'src', 'index.js')
   },
   // watch: true,
   output: {

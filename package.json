@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node herokuServer.js",
-    "build": "webpack -p"
+    "build": "webpack",
+    "heroku-postbuild": "webpack -p"
 
   },
   "engines": {
