@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
+import LoginForm from './components/LoginForm/LoginForm';
+import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import MainPage from './components/MainPage/MainPage';
 import BookinPage from './components/BookingPage/BookingPage';
 
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      loginForm: false,
+      registrationForm: false,
       isBookingPageOpen: false,
       movieId: ''
     };
   }
+
+  openLoginForm = () => {
+    this.setState({ loginForm: true });
+  };
+
+  openRegistrationForm = () => {
+    this.setState({ registrationForm: true });
+  };
 
   onBookingPageCrossClick = () => {
     this.setState({ isBookingPageOpen: false });
@@ -23,10 +36,10 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <div className={this.state.isBookingPageOpen ? 'for-blur' : ''}>
-          <Header />
-          <MainPage showBookingPage={this.showBookingPage} />
-        </div>
+        <Header onLogin={this.openLoginForm} onRegistration={this.openRegistrationForm} showBookingPage={this.showBookingPage} />
+        {this.state.loginForm && <LoginForm />}
+        {this.state.registrationForm && <RegistrationForm />}
+        <MainPage />
         {this.state.isBookingPageOpen && <BookinPage movieId={this.state.movieId} onCrossClick={this.onBookingPageCrossClick} />}
       </div>
     );
