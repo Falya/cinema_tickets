@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node herokuServer.js",
     "build": "webpack -p"
+
   },
   "engines": {
     "node": "10.15.3",
