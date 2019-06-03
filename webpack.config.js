@@ -39,6 +39,7 @@ module.exports = {
   ],
   module: {
     rules: [{
+
       test: /.jsx?$/,
       include: [
         path.resolve(__dirname, 'src')
@@ -53,6 +54,15 @@ module.exports = {
         ]
       },
       loader: 'babel-loader',
+    },
+    {
+      test: /\.css$/,
+      use: [{
+        loader: 'style-loader',
+      }, {
+        loader: 'css-loader', // translates CSS into CommonJS
+      }],
+
     },
     {
       test: /\.scss$/,

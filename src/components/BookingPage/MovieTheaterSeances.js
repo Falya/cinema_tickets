@@ -6,23 +6,21 @@ class MovieTheaterSeances extends Component {
     super(props);
   }
 
-  renderSeances = (seances) => {
+  renderSeances = seances => {
     return seances.map(seance => {
-      return <SeanceCard seance={seance} key={seance._id}/>;
+      return <SeanceCard seance={seance} key={seance._id} />;
     });
-  }
+  };
 
   render() {
     const { movieTheater } = this.props;
     return (
-      <div className="movie-seance-card">
-        <div className="cinema-info">
-          <h3>{movieTheater.cinema_name}</h3>
+      <div className="seances__card">
+        <div className="card__cinema_info">
+          <h3>{movieTheater.cinemaName}</h3>
           <span>{movieTheater.adress}</span>
         </div>
-        <div className="seances">
-          {this.renderSeances(movieTheater.seances)}
-        </div>
+        <div className="seance">{this.renderSeances(movieTheater.seances)}</div>
       </div>
     );
   }

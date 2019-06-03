@@ -1,33 +1,51 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
+import LoginForm from './components/LoginForm/LoginForm';
+import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import MainPage from './components/MainPage/MainPage';
 import BookinPage from './components/BookingPage/BookingPage';
 
 class App extends Component {
+
   constructor(props) {
     super(props);
+
     this.state = {
+      loginForm: false,
+      registrationForm: false,
       isBookingPageOpen: false,
       movieId: ''
     };
   }
 
-  onBookingPageCrossClick = () => {
-    this.setState({isBookingPageOpen: false});
-  }
+  openLoginForm = () => {
+    this.setState({ loginForm: true });
+  };
 
-  showBookingPage = (id) => {
+  openRegistrationForm = () => {
+    this.setState({ registrationForm: true });
+  };
+
+
+  onBookingPageCrossClick = () => {
+    this.setState({ isBookingPageOpen: false });
+  };
+
+  showBookingPage = id => {
     this.setState({isBookingPageOpen: true, movieId: id});
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className='wrapper'>
-        <div className={this.state.isBookingPageOpen ? 'for-blur' : ''}>
-        <Header />
+       <div className={this.state.isBookingPageOpen ? "for-blur" : ''}>
+       <Header onLogin={this.openLoginForm} onRegistration={this.openRegistrationForm}/>
+        {this.state.loginForm && <LoginForm/>}
+        {this.state.registrationForm && <RegistrationForm/>}
         <MainPage showBookingPage={this.showBookingPage}/>
-        </div>
-        {this.state.isBookingPageOpen && <BookinPage movieId={this.state.movieId} onCrossClick={this.onBookingPageCrossClick}/>}
+       </div>
+       {this.state.isBookingPageOpen && <BookinPage movieId={this.state.movieId} onCrossClick={this.onBookingPageCrossClick}/>}
       </div>
     );
   }
