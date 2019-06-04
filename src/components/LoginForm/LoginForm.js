@@ -98,9 +98,9 @@ export default class LoginForm extends Component {
             </div>
           </div>
           <div className="form-group login-form-btn">
-            <Button htmlType='submit' loading={this.state.loading} disabled={this.state.disabledBtn}>
-          Log In
-        </Button>
+            <Button htmlType="submit" loading={this.state.loading} disabled={this.state.disabledBtn}>
+              Log In
+            </Button>
           </div>
           {this.state.wrongMessage && <span className="login-form-confirm-tip">{this.state.wrongMessage}</span>}
         </form>

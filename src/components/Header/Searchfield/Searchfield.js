@@ -37,12 +37,13 @@ class SearchField extends Component {
 
   render() {
     return (
-      <div className={this.props.className}>
+      <form className={this.props.className}>
         <label htmlFor="search-field">Search</label>
         <div>
           <input
             type="text"
             id="search-field"
+            autoComplete='off'
             onChange={this.onSearch}
             value={this.state.searchTerm}
           />
@@ -53,7 +54,7 @@ class SearchField extends Component {
           )}
         </div>
         <button>Search</button>
-      </div>
+      </form>
     );
   }
 }

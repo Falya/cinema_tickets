@@ -1,6 +1,7 @@
 @import './variables';
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import '~antd/dist/antd.css';
+@import '~./icomoon.css';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -9,18 +10,22 @@ body {
   background: $thirdColor;
   font-size: 18px;
   overflow-x: hidden;
+  display: flex;
 
   #react-root {
+    position: relative;
     display: flex;
-    width: 100%;
     max-width: $maxBodyWidth;
     flex-direction: column;
-    margin: auto;
+    margin: 0 auto;
+    width: 100%;
 
     .wrapper {
-      width: 100%;
+      position: relative;
     }
 
+    .for-blur {
+      filter: blur(5px);
+    }
   }
-
 }

@@ -15,8 +15,8 @@
   font-size: 0.9em;
 
   @media (min-width: 1540px) {
-      width: 462px;
-      left: calc(50% - 231px);
+    width: 462px;
+    left: calc(50% - 231px);
   }
 
   @media (max-width: 1200px) {
@@ -40,7 +40,7 @@
     text-align: center;
     color: $mainColorText;
     font-size: 1.1em;
-    align-self: stretch
+    align-self: stretch;
   }
 
   form {

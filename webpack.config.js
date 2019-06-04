@@ -16,6 +16,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
     port: 8080,
@@ -55,6 +56,14 @@ module.exports = {
       loader: 'babel-loader',
     },
     {
+      test: /\.woff(2)?(\?[a-z0-9]+)?$/,
+      loader: "url-loader?limit=10000&mimetype=application/font-woff"
+    },
+    {
+      test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
+      loader: "file-loader"
+    },
+    {
       test: /\.css$/,
       use: [{
         loader: 'style-loader',
@@ -73,10 +82,10 @@ module.exports = {
         'sass-loader'
       ]
     },
+
     ]
   },
   resolve: {
     extensions: ['.json', '.js', '.jsx']
   },
-  devtool: 'source-map',
 };

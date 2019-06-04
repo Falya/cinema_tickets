@@ -35,10 +35,10 @@ class MovieCard extends Component {
             </div>
             <figcaption>
               <p>
-                {this.props.movie.language}/{this.props.movie.age}+
+                {this.props.movie.language.toUpperCase()} / {this.props.movie.age}+
               </p>
               <h3>{this.props.movie.name}</h3>
-              <span>{this.props.movie.genre}</span>
+              <span>{this.props.movie.genre.join(', ')}</span>
             </figcaption>
           </figure>
           <Button size="normal" ghost onClick={this.onBooking}>

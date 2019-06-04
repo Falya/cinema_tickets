@@ -10,6 +10,7 @@ class RegistrationForm extends Component {
       isPasswordConfirmed: true
     };
   }
+
   /**
    * @param {Event} e
    */
@@ -25,16 +26,16 @@ class RegistrationForm extends Component {
     if (this.state.isPasswordConfirmed !== confirmPassword) {
       this.setState({ isPasswordConfirmed });
 
-    if (areAllInputsFilled && this.state.isPasswordConfirmed) {
-      fetch('/dbImitation/films.json', {
-        method: 'POST',
-        body: formData
-      })
-        .then(res => this.setState({ isPostedData: true }))
-        .catch(err => console.log(err));
+      if (areAllInputsFilled && this.state.isPasswordConfirmed) {
+        fetch('/dbImitation/films.json', {
+          method: 'POST',
+          body: formData
+        })
+          .then(() => this.setState({ isPostedData: true }))
+          .catch(err => console.log(err));
+      }
     }
-  }
-}
+  };
 
   render() {
     let { isPasswordConfirmed } = this.state;

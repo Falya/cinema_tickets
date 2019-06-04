@@ -1,6 +1,7 @@
 @import '../../style/variables';
 
-@keyframes  modalAppear {
+
+@keyframes modalAppear {
   0% {
     opacity: 0;
     transform: scale(0) translateX(-30vw);
@@ -111,17 +112,16 @@
             outline-width: thin;
           }
 
-          &:-webkit-autofill, &:-webkit-autofill:hover,
-          &:-webkit-autofill:focus{
+          &:-webkit-autofill,
+          &:-webkit-autofill:hover,
+          &:-webkit-autofill:focus {
             box-sizing: border-box;
             border: none;
             -webkit-text-fill-color: $thirdColorText;
             box-shadow: 0 0 0px 1000px $lineColorDark inset;
           }
-
         }
       }
-
     }
 
     .login-form-btn {
@@ -142,11 +142,8 @@
           border-color: $lineColor;
           color: $lineColor;
         }
-
       }
-
     }
-
   }
 
   .login-form-confirm-tip {
@@ -157,7 +154,5 @@
       content: '*';
       margin-right: 3px;
     }
-
   }
-
 }
