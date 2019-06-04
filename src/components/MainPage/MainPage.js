@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './main-page.scss';
-import Heading from './Heading/Heading';
-const SHOW_BOOKING_PAGE = 'showBookingPage';
-const SHOW_MOVIE_PAGE = 'showMoviePage';
+import MovieList from './MovieList/MovieList';
+const SHOW_BOOKING_PAGE = 'showBookingPage',
+      SHOW_MOVIE_PAGE = 'showMoviePage';
 
 class MainPage extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class MainPage extends Component {
   render() {
     return (
       <section>
-        <Heading cardMethod={this.cardMethod} />
+        <MovieList cardMethod={this.cardMethod} />
       </section>
     );
   }
