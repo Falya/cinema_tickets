@@ -4,6 +4,8 @@ import FilterComponent from './FilterComponent';
 import MovieTheaterSeances from './MovieTheaterSeances';
 import { getSeancesByMovieId } from '../../webAPI';
 
+const FILTERS_ARRAY = ['cities', 'movieTheaters', 'movies', 'features', 'date'];
+
 class BookingPage extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,12 @@ class BookingPage extends Component {
       return <MovieTheaterSeances movieTheater={theater} key={theater._id} />;
     });
   };
+
+  renderFilters = () => {
+    return FILTERS_ARRAY.map((filter, index) => {
+      return (<FilterComponent filterName={filter} key={index}/>);
+    });
+  }
 
   render() {
     const { loading } = this.state;
@@ -46,10 +54,7 @@ class BookingPage extends Component {
             </div>
           </div>
           <div className="header__filter_bar">
-            <FilterComponent type="city" />
-            <FilterComponent type="city" />
-            <FilterComponent type="city" />
-            <FilterComponent type="city" />
+            {this.renderFilters()}
           </div>
           <div className="booking_page__body">
             <div className="body_left_container">

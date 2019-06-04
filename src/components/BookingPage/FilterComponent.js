@@ -1,16 +1,35 @@
 import React, { Component } from 'react';
+import { Select } from 'antd';
+
+const { Option } = Select;
 
 class FilterComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filterName: this.props.filterName,
+      filterOptions: [],
+    };
+  }
+
+  handleChange = value => {
+    console.log(`selected ${value}`);
+  };
+
+  createOtions = () => {
+    return this.filterOptions.map((option, index) => {
+      return (<Option value={option.id} key={index}>{option.name}</Option>);
+    });
+  }
+
 
   render() {
     return (
-      <div className='filter__item'>
-        <div className="filter__btn">
-          <div className="filter__btn_text">Все города</div>
-          <div className="filter__btn_arrow">
-          <svg className="svg-icon-round-arrow" viewBox="0 0 22 22" width="20px" length="20px;"> <circle fill="none" stroke="currentColor" strokeWidth="2" vectorEffect="non-scaling-stroke" cx="11" cy="11" r="10"></circle> <path fill="none" stroke="currentColor" strokeWidth="2" vectorEffect="non-scaling-stroke" d="M6,9 L11,14 L16,9"></path> </svg>
-          </div>
-        </div>
+      <div className="filter__item">
+        <Select defaultValue="lucy" dropdownClassName="filter__dropdown_menu" className='filter__select' onChange={this.handleChange}>
+          {this.createOtions()}
+        </Select>
       </div>
     );
   }

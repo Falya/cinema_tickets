@@ -16,7 +16,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
     port: 8080,
@@ -60,7 +60,7 @@ module.exports = {
       use: [{
         loader: 'style-loader',
       }, {
-        loader: 'css-loader', // translates CSS into CommonJS
+        loader: 'css-loader',
       }],
 
     },

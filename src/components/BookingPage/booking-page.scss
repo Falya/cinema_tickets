@@ -15,6 +15,7 @@ $mediaWidthSmall: 460px;
   margin: auto;
   top: 0;
   background: rgba($color: $secondColor, $alpha: 0.9);
+  z-index: 1;
 
   .booking_page__wrapper {
     width: 100%;
@@ -75,14 +76,26 @@ $mediaWidthSmall: 460px;
       flex-wrap: wrap;
 
       .filter__item {
-        flex-basis: 25%;
-        padding: 10px;
+        display: flex;
+        flex-basis: 20%;
+        padding: 10px 0 5px 0;
         border-right: 1px solid $lineColorGray;
         border-bottom: 1px solid $lineColorGray;
         box-sizing: border-box;
         color: $mainColorText;
         &:last-child {
           border-right: none;
+        }
+
+        .filter__select {
+          width: 100%;
+          padding-bottom: 5px;
+        }
+        * {
+          background: transparent;
+          color: $mainColorText;
+          box-shadow: none;
+          border: transparent;
         }
         @media screen and (max-width: $mediaWidthMedium) {
           flex-basis: 50%;
@@ -437,6 +450,26 @@ $mediaWidthSmall: 460px;
           }
         }
       }
+    }
+  }
+}
+
+.filter__dropdown_menu {
+  border-radius: $borderRadius;
+
+  * {
+    background: none;
+  }
+
+  ul {
+    background: $secondColorText;
+    border-radius: 0 0 $borderRadius $borderRadius;
+    border-top: solid 2px $lineColor;
+    max-height: 40%;
+    box-shadow: $boxShadow;
+
+    li:active {
+      background: $lineColorDark;
     }
   }
 }
