@@ -3,6 +3,11 @@
 $mediaWidthMedium: 800px;
 $mediaWidthSmall: 460px;
 
+@keyframes spin {
+from {transform: rotate(0deg)}
+to {transform: rotate(360deg)}
+}
+
 .booking_page {
   flex-basis: 100%;
   position: absolute;
@@ -14,6 +19,16 @@ $mediaWidthSmall: 460px;
   margin: auto;
   top: 0;
   background: rgba($color: $secondColor, $alpha: 0.9);
+  z-index: 2;
+
+  .page_spiner {
+    position: fixed;
+    top: calc(50% - 7.5vh);
+    left: calc(50% - 7.5vh);
+    font-size: 15vh;
+    color: $lineColor;
+    animation: spin 1s linear infinite;
+  }
 
   .booking_page__wrapper {
     width: 100%;
@@ -62,6 +77,13 @@ $mediaWidthSmall: 460px;
           margin: 0;
           z-index: 1;
           font-size: 1.2em;
+        }
+      }
+      @media screen and (max-width: $mediaWidthMedium) {
+        padding: 0 5px;
+
+        .header__nav_bar {
+          padding: 0;
         }
       }
     }
@@ -354,7 +376,7 @@ $mediaWidthSmall: 460px;
             top: 0;
             box-sizing: border-box;
             transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-            z-index: 2;
+            z-index: 1;
             border-radius: 5px;
             cursor: pointer;
             &:hover {
@@ -364,22 +386,18 @@ $mediaWidthSmall: 460px;
                 box-shadow: 0px 1px 5px rgba($color: $lineColorLight, $alpha: 0.4);
               }
 
-              svg {
-                opacity: 0.9;
+              span {
+                opacity: 1;
               }
+
             }
 
-            svg {
-              opacity: 0.6;
+            span {
               margin: auto;
-
-              circle {
-                stroke: $lineColorLight;
-              }
-
-              polygon {
-                fill: $lineColorLight;
-              }
+              font-size: 50px;
+              color: white;
+              opacity: 0.8;
+              z-index: 1;
             }
           }
 
@@ -390,7 +408,6 @@ $mediaWidthSmall: 460px;
             max-width: 100%;
             box-shadow: $boxShadow;
             box-sizing: border-box;
-            z-index: 1;
             border-radius: 5px;
           }
         }
@@ -418,13 +435,6 @@ $mediaWidthSmall: 460px;
           .movie_trailer_preview {
             width: 70%;
 
-            .movie_trailer_preview__overlay {
-              z-index: 3;
-
-              svg {
-                z-index: 2;
-              }
-            }
           }
 
           .movie_description {
