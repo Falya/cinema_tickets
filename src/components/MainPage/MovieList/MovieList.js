@@ -1,53 +1,33 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { getMovies } from '../../../webAPI';
+import MovieCard from './MovieCard';
 
-class MovieCard extends Component {
+class MovieList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      id: this.props.movie._id
+      loadedMovies: []
     };
   }
-  /**
-   * @param {Event} e;
-   */
-  onBooking = e => {
-    e.stopPropagation();
-    this.props.cardMethod(this.state.id, 'showBookingPage');
-  };
 
-  /**
-   * @param {Event} e;
-   */
-  onCardClick = e => {
-    this.props.cardMethod(this.state.id, 'showMoviePage');
-  };
+  componentWillMount() {
+    getMovies().then(res => {
+      let loadedMovies = res.map(movie => <MovieCard movie={movie} cardMethod={this.props.cardMethod} />);
+      this.setState({ loadedMovies });
+    });
+  }
 
   render() {
     return (
-      <div className="card" key={this.props.movie._id} onClick={this.onCardClick}>
-        <div className="card-body">
-          <figure>
-            <div className="image-wrapper">
-              <div className="card-overlay" />
-              <img src={this.props.movie.poster} alt="" />
-            </div>
-            <figcaption>
-              <p>
-                {this.props.movie.language}/{this.props.movie.age}+
-              </p>
-              <h3>{this.props.movie.name}</h3>
-              <span>{this.props.movie.genre}</span>
-            </figcaption>
-          </figure>
-          <Button size="normal" ghost onClick={this.onBooking}>
-            booking
-          </Button>
+      <div className="heading">
+        <div className="heading-header">
+          <h2>Now in the cinema</h2>
         </div>
+        <div className="heading-body">{this.state.loadedMovies}</div>
       </div>
     );
   }
 }
 
-export default MovieCard;
+export default MovieList;
