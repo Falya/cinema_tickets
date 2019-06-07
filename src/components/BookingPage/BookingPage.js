@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './booking-page.scss';
-import FilterComponent from './FilterComponent';
 import MovieTheaterSeances from './MovieTheaterSeances';
-import { getSeancesByMovieId } from '../../webAPI';
-
-const FILTERS_ARRAY = ['cities', 'movieTheaters', 'movies', 'features', 'date'];
+import { getSeancesByMovieId, getMovieById } from '../../webAPI';
+import FilterNavBar from './FilterNavBar';
 
 class BookingPage extends Component {
   constructor(props) {
@@ -13,13 +11,34 @@ class BookingPage extends Component {
     this.state = {
       loading: true,
       movie: null,
-      movieTheaters: null
+      movieTheaters: null,
+      filterParameters: {
+        city: '5cee54941c9d44000002fca6',
+        movieTheaterId: 'All cinemas',
+        movieId: this.props.movieId,
+        features: null,
+        date: (new Date()).toISOString(),
+      }
     };
 
-    getSeancesByMovieId(this.props.movieId).then(res => {
-      this.setState({ movie: res.movie, movieTheaters: res.theaters, loading: false });
+    this.getMovie(this.props.movieId);
+    this.getSeances(this.state.filterParameters);
+
+  }
+
+  getMovie = (movieId) => {
+    getMovieById(movieId).then(movie=> {
+      this.setState({ movie: movie, loading: false });
     });
   }
+
+  getSeances = (parameters) => {
+    getSeancesByMovieId(parameters).then(theaters => {
+      console.log(theaters);
+      this.setState({movieTheaters: theaters});
+    });
+  }
+
 
   renderMovieTheaters = theaters => {
     return theaters.map(theater => {
@@ -27,36 +46,46 @@ class BookingPage extends Component {
     });
   };
 
-  renderFilters = () => {
-    return FILTERS_ARRAY.map((filter, index) => {
-      return (<FilterComponent filterName={filter} key={index}/>);
-    });
+  getFilterParametrs = (filterParameters) => {
+    this.setState({filterParameters});
+  };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextState.filterParameters.movieId !== this.state.filterParameters.movieId) {
+      console.log('updated');
+      this.setState({loading: true});
+      this.getMovie(nextState.filterParameters.movieId);
+      this.getSeances(nextState.filterParameters);
+      return true;
+    }
+
+    return nextState !== this.state;
   }
+
+
 
   render() {
     const { loading, movie,  movieTheaters } = this.state;
-
+    console.log(this.state.filterParameters);
     return (
       <section className="booking_page">
         {loading && <span className="icon-spinner2 page_spiner"></span>}
-        {movie && <div className="booking_page__wrapper">
+        <div className="booking_page__wrapper">
           <div className="booking_page__header">
             <div className="header__nav_bar">
               <div className="nav_bar__back_btn">
                 <span className="icon-arrow-left"></span>
               </div>
               <div className="nav_bar__title">
-                <h3>{movie.name}</h3>
+                <h3>{movie && movie.name}</h3>
               </div>
               <div className="nav_bar__close_btn">
                 <span className="icon-cross" onClick={this.props.onCrossClick}></span>
               </div>
             </div>
           </div>
-          <div className="header__filter_bar">
-            {this.renderFilters()}
-          </div>
-          <div className="booking_page__body">
+          <FilterNavBar parameters={this.state.filterParameters} onChangeMethod={this.getFilterParametrs}/>
+          {movie && <div className="booking_page__body">
             <div className="body_left_container">
               <div className="movie">
                 <div className="movie__poster">
@@ -87,8 +116,8 @@ class BookingPage extends Component {
                 </div>
               </div>
             </div>
-          </div>
-        </div>}
+          </div>}
+        </div>
       </section>
     );
   }

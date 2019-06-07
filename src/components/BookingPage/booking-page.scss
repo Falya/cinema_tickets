@@ -13,7 +13,7 @@ to {transform: rotate(360deg)}
   position: absolute;
   display: flex;
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   padding: auto;
   box-sizing: border-box;
   margin: auto;
@@ -97,6 +97,7 @@ to {transform: rotate(360deg)}
 
       .filter__item {
         display: flex;
+        align-items: flex-end;
         flex-basis: 20%;
         padding: 10px 0 5px 0;
         border-right: 1px solid $lineColorGray;
@@ -116,12 +117,18 @@ to {transform: rotate(360deg)}
           color: $mainColorText;
           box-shadow: none;
           border: transparent;
+          cursor: pointer;
         }
         @media screen and (max-width: $mediaWidthMedium) {
           flex-basis: 50%;
           &:nth-child(2n) {
             border-right: none;
           }
+
+          &.features {
+
+              flex-basis: 100%;
+            }
         }
         @media screen and (max-width: $mediaWidthSmall) {
           flex-basis: 100%;

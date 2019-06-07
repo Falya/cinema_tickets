@@ -44,7 +44,7 @@ class App extends Component {
           <MainPage showBookingPage={this.showBookingPage} />
         </div>
         {this.state.isBookingPageOpen && <BookingPage movieId={this.state.movieId} onCrossClick={this.onBookingPageCrossClick} />}
-        <BookinPage movieId='5ce7dccd1c9d440000c6722a' onCrossClick={this.onBookingPageCrossClick}/>
+        <BookingPage movieId='5ce7dccd1c9d440000c6722a' onCrossClick={this.onBookingPageCrossClick}/>
       </div>
     );
   }
