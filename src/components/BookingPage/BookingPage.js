@@ -48,13 +48,9 @@ class BookingPage extends Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.filterParameters.movieId !== this.state.filterParameters.movieId) {
+    if (nextState.filterParameters !== this.state.filterParameters) {
       this.setState({ loading: true });
       this.getMovie(nextState.filterParameters.movieId);
-      this.getSeances(nextState.filterParameters);
-      return true;
-    } else if (nextState.filterParameters !== this.state.filterParameters) {
-      this.setState({ loading: true });
       this.getSeances(nextState.filterParameters);
       return true;
     }
@@ -107,7 +103,7 @@ class BookingPage extends Component {
                     <div className="movie_trailer_preview__overlay">
                       <span className="icon-play2" />
                     </div>
-                    {<img src="https://i.ytimg.com/vi/TXuuWMDqBak/maxresdefault.jpg" alt="" />}
+                    <img src="https://i.ytimg.com/vi/TXuuWMDqBak/maxresdefault.jpg" alt="" />
                   </div>
                   <div className="movie_description">
                     <h3>{movie.name}</h3>

@@ -67,16 +67,15 @@ class FilterNavBar extends Component {
     return (
       options && (
         <div className="header__filter_bar">
-          <FilterComponent options={options.cities} key="1" defaultValue={this.state.parameters.city} setMethod={this.setCity} />
+          <FilterComponent options={options.cities} defaultValue={this.state.parameters.city} setMethod={this.setCity} />
           <FilterComponent
             options={options.movieTheaters}
-            key="2"
             defaultValue={this.state.parameters.movieTheaterId}
             setMethod={this.setMovieTheater}
             name="cinemas"
           />
-          <FilterComponent options={options.movies} key="3" defaultValue={this.state.parameters.movieId} setMethod={this.setMovie} />
-          <FilterComponent options={options.dates} key="4" defaultValue={this.formatDate()} setMethod={this.setDate} />
+          <FilterComponent options={options.movies} defaultValue={this.state.parameters.movieId} setMethod={this.setMovie} />
+          <FilterComponent options={options.dates} defaultValue={this.formatDate()} setMethod={this.setDate} />
           <FilterFeaturesComponent setMethod={this.setFeatures} />
         </div>
       )
