@@ -42,7 +42,7 @@ class App extends Component {
             <Header onLogin={this.openLoginForm} onRegistration={this.openRegistrationForm} />
             {this.state.loginForm && <LoginForm />}
             {this.state.registrationForm && <RegistrationForm />}
-            <Route exact path='/' component={MainPage} />
+            <Route path='/' component={MainPage} />
             {/* <MainPage showBookingPage={this.showBookingPage} /> */}
           </div>
           <Route path='/affiche/movie/:movieId' component={BookingPage}/>

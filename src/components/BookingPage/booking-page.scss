@@ -23,7 +23,6 @@ $mediaWidthSmall: 460px;
   box-sizing: border-box;
   margin: auto;
   top: 0;
-  background: rgba($color: $secondColor, $alpha: 0.9);
   z-index: 2;
 
   .page_spiner {
@@ -37,6 +36,7 @@ $mediaWidthSmall: 460px;
 
   .booking_page__wrapper {
     width: 100%;
+    background: rgba($color: $secondColor, $alpha: 0.9);
     margin: 0 auto;
     display: flex;
     max-width: $maxHeaderWidth;
