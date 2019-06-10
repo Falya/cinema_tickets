@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
 class MovieCard extends Component {
@@ -41,9 +42,12 @@ class MovieCard extends Component {
               <span>{this.props.movie.genre.join(', ')}</span>
             </figcaption>
           </figure>
-          <Button size="normal" ghost onClick={this.onBooking}>
+          <Link to={`/affiche/movie/${this.props.movie._id}`}>
+          <Button size="normal" ghost>
             booking
           </Button>
+          </Link>
+
         </div>
       </div>
     );

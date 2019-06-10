@@ -15,13 +15,13 @@ class BookingPage extends Component {
       filterParameters: {
         city: '5cee54941c9d44000002fca6',
         movieTheaterId: 'All cinemas',
-        movieId: this.props.movieId,
+        movieId: this.props.match.params.movieId,
         features: null,
         date: new Date().toISOString()
       }
     };
 
-    this.getMovie(this.props.movieId);
+    this.getMovie(this.props.match.params.movieId);
     this.getSeances(this.state.filterParameters);
   }
 
