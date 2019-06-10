@@ -13,7 +13,7 @@ class BookingPage extends Component {
       movie: null,
       movieTheaters: null,
       filterParameters: {
-        city: '5cee54941c9d44000002fca6',
+        city: null,
         movieTheaterId: 'All cinemas',
         movieId: this.props.movieId,
         features: null,
@@ -22,7 +22,7 @@ class BookingPage extends Component {
     };
 
     this.getMovie(this.props.movieId);
-    this.getSeances(this.state.filterParameters);
+    // this.getSeances(this.state.filterParameters);
   }
 
   getMovie = movieId => {
@@ -33,6 +33,7 @@ class BookingPage extends Component {
 
   getSeances = parameters => {
     getSeancesByMovieId(parameters).then(theaters => {
+      console.log(theaters);
       this.setState({ movieTheaters: theaters, loading: false });
     });
   };

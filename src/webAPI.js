@@ -16,22 +16,32 @@ export function getMovieById(movieId) {
 }
 
 export function getSeancesByMovieId(params) {
+  const { movieTheaterId } = params;
   const options = {
     method: 'GET'
   };
+
+  let customParams = {...params};
+
+  if ( movieTheaterId === 'All cinemas' ) {
+   customParams.movieTheaterId = '';
+  }
+
   const url = new URL(`${BASE_URL}/movies/movie/seances/`);
 
-  url.search = new URLSearchParams(params);
+  url.search = new URLSearchParams(customParams);
 
   return fetch(url, options).then(res => res.json());
 }
 
 export function getFilters(cityId, movieId, movieTheaterId) {
   const params = {
-    cityId,
     movieId,
-    movieTheaterId
   };
+  cityId && (params.cityId = cityId);
+  if (movieTheaterId !== 'All cinemas') {
+    params.movieTheaterId = movieTheaterId;
+  }
   const options = {
     method: 'GET'
   };
