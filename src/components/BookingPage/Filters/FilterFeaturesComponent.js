@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Select, Slider, InputNumber, Row, Col } from 'antd';
+import { Select } from 'antd';
 
 const { Option } = Select;
 
@@ -32,31 +32,41 @@ class FilterFeaturesComponent extends Component {
         {
           name: '3D',
           flag: '3D'
-        },
+        }
       ],
-      selectedFeatures: [],
+      selectedFeatures: []
     };
-
   }
 
   handleChange = selectedFeatures => {
     this.props.setMethod(selectedFeatures);
-    this.setState({selectedFeatures});
-
+    this.setState({ selectedFeatures });
   };
 
   createOtions = () => {
     return this.state.options.map((option, index) => {
       const optionValues = Object.values(option);
-      return (<Option value={optionValues[1]} key={index}>{optionValues[0]}</Option>);
+      return (
+        <Option value={optionValues[1]} key={index}>
+          {optionValues[0]}
+        </Option>
+      );
     });
-  }
-
+  };
 
   render() {
     return (
       <div className="filter__item features">
-        <Select mode="multiple" placeholder='Select features' showArrow={true} value={this.state.selectedFeatures} dropdownClassName="filter__dropdown_menu" className='filter__select' onChange={this.handleChange} maxTagTextLength={4} maxTagCount={3}>
+        <Select
+          mode="multiple"
+          placeholder="Select features"
+          showArrow={true}
+          value={this.state.selectedFeatures}
+          dropdownClassName="filter__dropdown_menu"
+          className="filter__select"
+          onChange={this.handleChange}
+          maxTagTextLength={4}
+          maxTagCount={3}>
           {this.createOtions()}
         </Select>
       </div>

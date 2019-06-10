@@ -20,7 +20,12 @@ export function getSeancesByMovieId(params) {
     method: 'GET'
   };
 
-  return fetch(`${BASE_URL}/movies/movie/seances/?movieId=${params.movieId}&cityId=${params.city}&movieTheaterId=${params.movieTheaterId}&date=${params.date}&features=${params.features}`, options).then(res => res.json());
+  return fetch(
+    `${BASE_URL}/movies/movie/seances/?movieId=${params.movieId}&cityId=${params.city}&movieTheaterId=${params.movieTheaterId}&date=${
+      params.date
+    }&features=${params.features}`,
+    options
+  ).then(res => res.json());
 }
 
 export function getFilters(cityId, movieId, movieTheaterId) {
