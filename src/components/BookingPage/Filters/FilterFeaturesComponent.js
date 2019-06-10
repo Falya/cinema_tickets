@@ -43,7 +43,7 @@ class FilterFeaturesComponent extends Component {
     this.setState({ selectedFeatures });
   };
 
-  createOtions = () => {
+  createOptions = () => {
     return this.state.options.map((option, index) => {
       const optionValues = Object.values(option);
       return (
@@ -67,7 +67,7 @@ class FilterFeaturesComponent extends Component {
           onChange={this.handleChange}
           maxTagTextLength={4}
           maxTagCount={3}>
-          {this.createOtions()}
+          {this.createOptions()}
         </Select>
       </div>
     );

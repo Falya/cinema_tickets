@@ -16,7 +16,7 @@ class FilterComponent extends Component {
     this.props.setMethod(value);
   };
 
-  createOtions = () => {
+  createOptions = () => {
     const additionalOption = this.props.name === 'cinemas' && (
       <Option value="All cinemas" key="cinema">
         All cinemas
@@ -47,7 +47,7 @@ class FilterComponent extends Component {
     return (
       <div className="filter__item">
         <Select value={this.props.defaultValue} dropdownClassName="filter__dropdown_menu" className="filter__select" onChange={this.handleChange}>
-          {this.createOtions()}
+          {this.createOptions()}
         </Select>
       </div>
     );

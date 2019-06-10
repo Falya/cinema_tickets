@@ -19,18 +19,25 @@ export function getSeancesByMovieId(params) {
   const options = {
     method: 'GET'
   };
+  const url = new URL(`${BASE_URL}/movies/movie/seances/`);
 
-  return fetch(
-    `${BASE_URL}/movies/movie/seances/?movieId=${params.movieId}&cityId=${params.city}&movieTheaterId=${params.movieTheaterId}&date=${
-      params.date
-    }&features=${params.features}`,
-    options
-  ).then(res => res.json());
+  url.search = new URLSearchParams(params);
+
+  return fetch(url, options).then(res => res.json());
 }
 
 export function getFilters(cityId, movieId, movieTheaterId) {
+  const params = {
+    cityId,
+    movieId,
+    movieTheaterId
+  };
   const options = {
     method: 'GET'
   };
-  return fetch(`${BASE_URL}/movies/filters/?cityId=${cityId}&movieId=${movieId}&movieTheaterId=${movieTheaterId}`, options).then(res => res.json());
+  const url = new URL(`${BASE_URL}/movies/filters/`);
+
+  url.search = new URLSearchParams(params);
+
+  return fetch(url, options).then(res => res.json());
 }
