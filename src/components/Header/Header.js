@@ -1,7 +1,7 @@
 
 import { Component } from 'react';
 import NavGroup from './NavGroup/NavGroup';
-import SearchField from './SearchField/SearchField';
+import SearchField from './Searchfield/Searchfield';
 import './header.scss';
 import SandwichButton from './SandwichButton/SandwichButton';
 
