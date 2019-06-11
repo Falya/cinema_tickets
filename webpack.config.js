@@ -15,10 +15,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
+    publicPath: '/'
   },
   devtool: 'cheap-module-eval-source-map',
   devServer: {
-    contentBase: path.resolve(__dirname, 'build'),
+    overlay: true,
     port: 8080,
     historyApiFallback: true,
   },

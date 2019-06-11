@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './booking-page.scss';
 import MovieTheaterSeances from './MovieTheaterSeances';
 import { getSeancesByMovieId, getMovieById } from '../../webAPI';
@@ -21,13 +22,13 @@ class BookingPage extends Component {
       }
     };
 
-    this.getMovie(this.props.match.params.movieId);
+
 
   }
 
   getMovie = movieId => {
     getMovieById(movieId).then(movie => {
-      this.setState({ movie: movie, loading: false });
+      this.setState({ movie: movie});
     });
   };
 
@@ -43,14 +44,31 @@ class BookingPage extends Component {
     });
   };
 
-  getFilterParameters = filterParameters => {
+  setFilterParameters = filterParameters => {
+    this.props.history.push(`/affiche/movie/id/${filterParameters.movieId}`);
     this.setState({ filterParameters });
   };
 
+  onCloseButton = () => {
+    this.props.history.push('/');
+  }
+
+  onBackButton = () => {
+    this.props.history.go(-1);
+  }
+
+  componentDidMount() {
+    this.getMovie(this.props.match.params.movieId);
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.filterParameters !== this.state.filterParameters) {
+    const isFilterParameterChanged = nextState.filterParameters !== this.state.filterParameters;
+    // const isMovieIdChanged = nextState.filterParameters.movieId !== this.state.filterParameters.movieId;
+    const isLocationChanged = nextProps.location !== this.props.location;
+
+    if (isFilterParameterChanged || isLocationChanged) {
       this.setState({ loading: true });
-      if (nextState.filterParameters.movieId !== this.state.filterParameters.movieId) {
+      if (isLocationChanged) {
         this.getMovie(nextState.filterParameters.movieId);
       }
       this.getSeances(nextState.filterParameters);
@@ -59,6 +77,7 @@ class BookingPage extends Component {
 
     return nextState !== this.state;
   }
+
 
   render() {
     const { loading, movie, movieTheaters } = this.state;
@@ -69,18 +88,18 @@ class BookingPage extends Component {
         <div className="booking_page__wrapper">
           <div className="booking_page__header">
             <div className="header__nav_bar">
-              <div className="nav_bar__back_btn">
+              <div className="nav_bar__back_btn" onClick={this.onBackButton}>
                 <span className="icon-arrow-left" />
               </div>
               <div className="nav_bar__title">
                 <h3>{movie && movie.name}</h3>
               </div>
               <div className="nav_bar__close_btn">
-                <span className="icon-cross" onClick={this.props.onCrossClick} />
+                <span className="icon-cross" onClick={this.onCloseButton} />
               </div>
             </div>
           </div>
-          <FilterNavBar parameters={this.state.filterParameters} onChangeMethod={this.getFilterParameters} />
+          <FilterNavBar parameters={this.state.filterParameters} onChangeMethod={this.setFilterParameters} />
           {movie && (
             <div className="booking_page__body">
               <div className="body_left_container">
@@ -121,4 +140,4 @@ class BookingPage extends Component {
   }
 }
 
-export default BookingPage;
+export default withRouter(BookingPage);

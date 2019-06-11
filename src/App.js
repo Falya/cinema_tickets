@@ -43,10 +43,8 @@ class App extends Component {
             {this.state.loginForm && <LoginForm />}
             {this.state.registrationForm && <RegistrationForm />}
             <Route path='/' component={MainPage} />
-            {/* <MainPage showBookingPage={this.showBookingPage} /> */}
           </div>
-          <Route path='/affiche/movie/:movieId' component={BookingPage}/>
-          {/* {this.state.isBookingPageOpen && <BookingPage movieId={this.state.movieId} onCrossClick={this.onBookingPageCrossClick} />} */}
+          <Route path='/affiche/movie/id/:movieId' component={BookingPage}/>
         </Router>
       </div>
     );

@@ -133,6 +133,14 @@ section {
               }
             }
           }
+          .button-link {
+            display: flex;
+            justify-content: center;
+
+            button {
+              flex-basis: 90%;
+            }
+          }
         }
       }
     }
