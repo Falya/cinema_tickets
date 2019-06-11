@@ -1,33 +1,51 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
+import LoginForm from './components/LoginForm/LoginForm';
+import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import MainPage from './components/MainPage/MainPage';
-import BookinPage from './components/BookingPage/BookingPage';
+import BookingPage from './components/BookingPage/BookingPage';
 
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      loginForm: false,
+      registrationForm: false,
       isBookingPageOpen: false,
       movieId: ''
     };
   }
 
-  onBookingPageCrossClick = () => {
-    this.setState({isBookingPageOpen: false});
-  }
+  openLoginForm = () => {
+    this.setState({ loginForm: true });
+  };
 
-  showBookingPage = (id) => {
-    this.setState({isBookingPageOpen: true, movieId: id});
-  }
+  openRegistrationForm = () => {
+    this.setState({ registrationForm: true });
+  };
+
+  onBookingPageCrossClick = () => {
+    this.setState({ isBookingPageOpen: false });
+  };
+
+  showBookingPage = id => {
+    this.setState({ isBookingPageOpen: true, movieId: id });
+  };
 
   render() {
     return (
-      <div className='wrapper'>
-        <div className={this.state.isBookingPageOpen ? 'for-blur' : ''}>
-        <Header />
-        <MainPage showBookingPage={this.showBookingPage}/>
-        </div>
-        {this.state.isBookingPageOpen && <BookinPage movieId={this.state.movieId} onCrossClick={this.onBookingPageCrossClick}/>}
+      <div className="wrapper">
+        <Router>
+          <div className={this.state.isBookingPageOpen ? 'for-blur' : ''}>
+            <Header onLogin={this.openLoginForm} onRegistration={this.openRegistrationForm} />
+            {this.state.loginForm && <LoginForm />}
+            {this.state.registrationForm && <RegistrationForm />}
+            <Route path='/' component={MainPage} />
+          </div>
+          <Route path='/affiche/movie/id/:movieId' component={BookingPage}/>
+        </Router>
       </div>
     );
   }

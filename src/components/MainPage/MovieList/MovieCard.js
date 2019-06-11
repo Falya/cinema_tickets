@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
 class MovieCard extends Component {
@@ -9,28 +10,17 @@ class MovieCard extends Component {
       id: this.props.movie._id
     };
   }
-  /**
-   * @param {Event} e;
-   */
-  onBooking = e => {
-    e.stopPropagation();
-    this.props.cardMethod(this.state.id, 'showBookingPage');
-  };
 
-  /**
-   * @param {Event} e;
-   */
-  onCardClick = e => {
-    this.props.cardMethod(this.state.id, 'showMoviePage');
-  };
 
   render() {
     return (
-      <div className="card" key={this.props.movie._id} onClick={this.onCardClick}>
+      <div className="card" key={this.props.movie._id}>
         <div className="card-body">
           <figure>
             <div className="image-wrapper">
+              <Link to={`/affiche/movie/id/${this.props.movie._id}`}>
               <div className="card-overlay" />
+              </Link>
               <img src={this.props.movie.poster} alt="" />
             </div>
             <figcaption>
@@ -41,9 +31,12 @@ class MovieCard extends Component {
               <span>{this.props.movie.genre.join(', ')}</span>
             </figcaption>
           </figure>
-          <Button size="normal" ghost onClick={this.onBooking}>
+          <Link className='button-link' to={`/affiche/movie/id/${this.props.movie._id}`}>
+          <Button size="normal" ghost>
             booking
           </Button>
+          </Link>
+
         </div>
       </div>
     );

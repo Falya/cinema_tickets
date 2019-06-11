@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getMovies } from '../../../webAPI';
 import MovieCard from './MovieCard';
 
-class Heading extends Component {
+class MovieList extends Component {
   constructor(props) {
     super(props);
 
@@ -30,4 +30,4 @@ class Heading extends Component {
   }
 }
 
-export default Heading;
+export default MovieList;
