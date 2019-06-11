@@ -14,6 +14,7 @@ class MovieTheaterSeances extends Component {
 
   render() {
     const { movieTheater } = this.props;
+
     return (
       <div className="seances__card">
         <div className="card__cinema_info">

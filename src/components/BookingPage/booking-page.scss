@@ -4,8 +4,12 @@ $mediaWidthMedium: 800px;
 $mediaWidthSmall: 460px;
 
 @keyframes spin {
-from {transform: rotate(0deg)}
-to {transform: rotate(360deg)}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .booking_page {
@@ -13,7 +17,8 @@ to {transform: rotate(360deg)}
   position: absolute;
   display: flex;
   width: 100%;
-  min-height: 100%;
+  // height: 100%;
+  min-height: 100vh;
   padding: auto;
   box-sizing: border-box;
   margin: auto;
@@ -96,8 +101,10 @@ to {transform: rotate(360deg)}
       flex-wrap: wrap;
 
       .filter__item {
-        flex-basis: 25%;
-        padding: 10px;
+        display: flex;
+        align-items: flex-end;
+        flex-basis: 20%;
+        padding: 10px 0 5px 0;
         border-right: 1px solid $lineColorGray;
         border-bottom: 1px solid $lineColorGray;
         box-sizing: border-box;
@@ -105,10 +112,26 @@ to {transform: rotate(360deg)}
         &:last-child {
           border-right: none;
         }
+
+        .filter__select {
+          width: 100%;
+          padding-bottom: 5px;
+        }
+        .ant-select-selection, .ant-select-arrow {
+          background: transparent;
+          color: $mainColorText;
+          box-shadow: none;
+          border: transparent;
+          cursor: pointer;
+        }
         @media screen and (max-width: $mediaWidthMedium) {
           flex-basis: 50%;
           &:nth-child(2n) {
             border-right: none;
+          }
+
+          &.features {
+            flex-basis: 100%;
           }
         }
         @media screen and (max-width: $mediaWidthSmall) {
@@ -265,6 +288,7 @@ to {transform: rotate(360deg)}
 
         @media screen and (max-width: $mediaWidthMedium) {
           flex-basis: 100%;
+
           .movie {
             .movie__poster {
               flex-basis: 40%;
@@ -389,7 +413,6 @@ to {transform: rotate(360deg)}
               span {
                 opacity: 1;
               }
-
             }
 
             span {
@@ -434,7 +457,6 @@ to {transform: rotate(360deg)}
 
           .movie_trailer_preview {
             width: 70%;
-
           }
 
           .movie_description {
@@ -443,6 +465,22 @@ to {transform: rotate(360deg)}
           }
         }
       }
+    }
+  }
+}
+
+.filter__dropdown_menu {
+  border-radius: $borderRadius;
+
+  ul {
+    background: $secondColorText;
+    border-radius: 0 0 $borderRadius $borderRadius;
+    border-top: solid 2px $lineColor;
+    max-height: 40%;
+    box-shadow: $boxShadow;
+
+    li:active {
+      background: $lineColorDark;
     }
   }
 }
