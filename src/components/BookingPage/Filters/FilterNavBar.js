@@ -13,7 +13,8 @@ class FilterNavBar extends Component {
     };
 
     getFilters(this.state.parameters.city, this.state.parameters.movieId, this.state.parameters.movieTheaterId).then(options => {
-      this.setState({ options });
+      const [city] = options.cities.filter(({ city }) => city === 'Minsk');
+      this.setState({ options, parameters: { ...this.state.parameters, city: city._id } });
     });
   }
 

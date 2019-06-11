@@ -17,7 +17,7 @@ $mediaWidthSmall: 460px;
   position: absolute;
   display: flex;
   width: 100%;
-  height: 100%;
+  // height: 100%;
   min-height: 100vh;
   padding: auto;
   box-sizing: border-box;
@@ -117,7 +117,7 @@ $mediaWidthSmall: 460px;
           width: 100%;
           padding-bottom: 5px;
         }
-        * {
+        .ant-select-selection, .ant-select-arrow {
           background: transparent;
           color: $mainColorText;
           box-shadow: none;
@@ -471,10 +471,6 @@ $mediaWidthSmall: 460px;
 
 .filter__dropdown_menu {
   border-radius: $borderRadius;
-
-  * {
-    background: none;
-  }
 
   ul {
     background: $secondColorText;
