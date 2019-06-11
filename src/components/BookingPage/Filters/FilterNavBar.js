@@ -9,12 +9,12 @@ class FilterNavBar extends Component {
 
     this.state = {
       parameters: this.props.parameters,
-      options: null,
+      options: null
     };
 
     getFilters(this.state.parameters.city, this.state.parameters.movieId, this.state.parameters.movieTheaterId).then(options => {
-      const [city] = options.cities.filter(({city}) => city === 'Minsk');
-      this.setState({ options, parameters: {...this.state.parameters, city: city._id}});
+      const [city] = options.cities.filter(({ city }) => city === 'Minsk');
+      this.setState({ options, parameters: { ...this.state.parameters, city: city._id } });
     });
   }
 

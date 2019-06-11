@@ -22,7 +22,6 @@ class BookingPage extends Component {
     };
 
     this.getMovie(this.props.movieId);
-    // this.getSeances(this.state.filterParameters);
   }
 
   getMovie = movieId => {
@@ -33,7 +32,6 @@ class BookingPage extends Component {
 
   getSeances = parameters => {
     getSeancesByMovieId(parameters).then(theaters => {
-      console.log(theaters);
       this.setState({ movieTheaters: theaters, loading: false });
     });
   };
@@ -44,14 +42,16 @@ class BookingPage extends Component {
     });
   };
 
-  getFilterParametrs = filterParameters => {
+  getFilterParameters = filterParameters => {
     this.setState({ filterParameters });
   };
 
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState.filterParameters !== this.state.filterParameters) {
       this.setState({ loading: true });
-      this.getMovie(nextState.filterParameters.movieId);
+      if (nextState.filterParameters.movieId !== this.state.filterParameters.movieId) {
+        this.getMovie(nextState.filterParameters.movieId);
+      }
       this.getSeances(nextState.filterParameters);
       return true;
     }
@@ -79,7 +79,7 @@ class BookingPage extends Component {
               </div>
             </div>
           </div>
-          <FilterNavBar parameters={this.state.filterParameters} onChangeMethod={this.getFilterParametrs} />
+          <FilterNavBar parameters={this.state.filterParameters} onChangeMethod={this.getFilterParameters} />
           {movie && (
             <div className="booking_page__body">
               <div className="body_left_container">
