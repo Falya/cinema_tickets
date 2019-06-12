@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { Router, Link, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import Header from './components/Header/Header';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
@@ -11,40 +12,26 @@ class App extends Component {
     super(props);
 
     this.state = {
-      loginForm: false,
-      registrationForm: false,
-      isBookingPageOpen: false,
-      movieId: ''
+      isBookingPageOpen: false
     };
   }
-
-  openLoginForm = () => {
-    this.setState({ loginForm: true });
-  };
-
-  openRegistrationForm = () => {
-    this.setState({ registrationForm: true });
-  };
-
-  onBookingPageCrossClick = () => {
-    this.setState({ isBookingPageOpen: false });
-  };
 
   showBookingPage = id => {
     this.setState({ isBookingPageOpen: true, movieId: id });
   };
 
   render() {
+    const history = createBrowserHistory();
     return (
       <div className="wrapper">
-        <Router>
+        <Router history={history}>
           <div className={this.state.isBookingPageOpen ? 'for-blur' : ''}>
-            <Header onLogin={this.openLoginForm} onRegistration={this.openRegistrationForm} />
-            {this.state.loginForm && <LoginForm />}
-            {this.state.registrationForm && <RegistrationForm />}
-            <Route path='/' component={MainPage} />
+            <Header onLogin={this.openLoginForm} />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/registration" component={RegistrationForm} />
+            <Route path="/" component={MainPage} />
           </div>
-          <Route path='/affiche/movie/id/:movieId' component={BookingPage}/>
+          <Route path="/schedule/movie/id/:movieId" component={BookingPage} />
         </Router>
       </div>
     );

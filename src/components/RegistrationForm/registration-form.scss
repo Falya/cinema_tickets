@@ -1,5 +1,20 @@
 @import '../../style/variables';
 
+@keyframes modalAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(-50vh);
+  }
+  90% {
+    opacity: 0.9;
+    transform: scale(1.1) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .registration-form {
   width: 30vw;
   background: $mainColor;
@@ -13,6 +28,8 @@
   left: 35vw;
   box-shadow: $boxShadow;
   font-size: 0.9em;
+  animation: modalAppear 0.5s linear;
+  z-index: 2;
 
   @media (min-width: 1540px) {
     width: 462px;
@@ -31,7 +48,11 @@
 
   @media (max-width: 520px) {
     width:98vw;
-    left: 2vw;
+    left: 1vw;
+  }
+
+  @media (max-height: 460px) {
+    top: 2%;
   }
 
   .registration-form-header {
@@ -41,6 +62,18 @@
     color: $mainColorText;
     font-size: 1.1em;
     align-self: stretch;
+
+    .close-btn {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      &:hover {
+        color: $lineColorLight;
+      }
+      &:active {
+        color: $lineColor;
+      }
+    }
   }
 
   form {
@@ -104,6 +137,7 @@
         background: none;
         color: $mainColorText;
         border: 1px solid $mainColorText;
+        cursor: pointer;
         &:hover {
           border-color: $lineColorLight;
           color: $lineColorLight;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './sandwich-button.scss';
 import NavGroup from '../NavGroup/NavGroup';
 class SandwichButton extends Component {
@@ -38,8 +39,8 @@ class SandwichButton extends Component {
         <span />
         <div className="menu" onClick={this.onMenuClick}>
           <div className="reg-log-group">
-            <div onClick={this.onLoginClick}>Sign In</div>
-            <div onClick={this.props.onRegistration}>Sign Up</div>
+            <Link className='reg-log-link' to='/login'>Sign In</Link>
+            <Link className='reg-log-link' to='/registration'>Sign Up</Link>
           </div>
           <NavGroup className="nav-group" />
         </div>

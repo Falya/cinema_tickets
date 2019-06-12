@@ -21,10 +21,10 @@ export function getSeancesByMovieId(params) {
     method: 'GET'
   };
 
-  let customParams = {...params};
+  let customParams = { ...params };
 
-  if ( movieTheaterId === 'All cinemas' ) {
-   customParams.movieTheaterId = '';
+  if (movieTheaterId === 'All cinemas') {
+    customParams.movieTheaterId = '';
   }
 
   const url = new URL(`${BASE_URL}/movies/movie/seances/`);
@@ -34,14 +34,7 @@ export function getSeancesByMovieId(params) {
   return fetch(url, options).then(res => res.json());
 }
 
-export function getFilters(cityId, movieId, movieTheaterId) {
-  const params = {
-    movieId,
-  };
-  cityId && (params.cityId = cityId);
-  if (movieTheaterId !== 'All cinemas') {
-    params.movieTheaterId = movieTheaterId;
-  }
+export function getFilters(params) {
   const options = {
     method: 'GET'
   };

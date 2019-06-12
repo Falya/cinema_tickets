@@ -4,11 +4,11 @@
 @keyframes modalAppear {
   0% {
     opacity: 0;
-    transform: scale(0) translateX(-30vw);
+    transform: scale(0) translateY(-30vh);
   }
   90% {
     opacity: 0.9;
-    transform: scale(1.1) translateX(0);
+    transform: scale(1.1) translateY(0);
   }
   100% {
     opacity: 1;
@@ -58,7 +58,19 @@
     text-align: center;
     color: $mainColorText;
     font-size: 1.1em;
-    align-self: stretch
+    align-self: stretch;
+
+    .close-btn {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      &:hover {
+        color: $lineColorLight;
+      }
+      &:active {
+        color: $lineColor;
+      }
+    }
   }
 
   form {

@@ -1,6 +1,6 @@
 import { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import './registration-form.scss';
-
 class RegistrationForm extends Component {
   constructor(props) {
     super(props);
@@ -37,11 +37,16 @@ class RegistrationForm extends Component {
     }
   };
 
+  onCloseButton = () => this.props.history.replace('/');
+
   render() {
     let { isPasswordConfirmed } = this.state;
     return (
       <div className="registration-form">
-        <div className="registration-form-header">Registration</div>
+        <div className="registration-form-header">
+        Registration
+        <span className="close-btn icon-cross" onClick={this.onCloseButton}></span>
+        </div>
         <form onSubmit={this.onSubmit} autoComplete="on">
           <div className="form-group">
             <label htmlFor="user-name">Username:</label>
@@ -84,4 +89,4 @@ class RegistrationForm extends Component {
   }
 }
 
-export default RegistrationForm;
+export default withRouter(RegistrationForm);

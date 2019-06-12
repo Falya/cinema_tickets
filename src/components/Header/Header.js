@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import {Link} from 'react-router-dom';
 import NavGroup from './NavGroup/NavGroup';
 import SearchField from './SearchField/SearchField';
 import './header.scss';
@@ -17,8 +18,12 @@ class Header extends Component {
           <div className="menu-group">
             <NavGroup className="nav-group" />
             <div className="reg-log-group">
-              <div onClick={this.props.onLogin}>Sign In</div>
-              <div>Sign Up</div>
+              <Link to='/login' className='reg-log-link'>
+                Sign In
+              </Link>
+              <Link to='/registration' className='reg-log-link'>
+               Sign Up
+              </Link>
             </div>
           </div>
           <SandwichButton onLogin={this.props.onLogin} onRegistration={this.props.onRegistration} />
