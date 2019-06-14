@@ -28,7 +28,6 @@ export function getSeancesByMovieId(params) {
   }
 
   const url = new URL(`${BASE_URL}/movies/movie/seances/`);
-
   url.search = new URLSearchParams(customParams);
 
   return fetch(url, options).then(res => res.json());
@@ -39,7 +38,6 @@ export function getFilters(params) {
     method: 'GET'
   };
   const url = new URL(`${BASE_URL}/movies/filters/`);
-
   url.search = new URLSearchParams(params);
 
   return fetch(url, options).then(res => res.json());
