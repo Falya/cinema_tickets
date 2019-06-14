@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './registration-form.scss';
 class RegistrationForm extends Component {
   constructor(props) {
@@ -44,8 +44,8 @@ class RegistrationForm extends Component {
     return (
       <div className="registration-form">
         <div className="registration-form-header">
-        Registration
-        <span className="close-btn icon-cross" onClick={this.onCloseButton}></span>
+          Registration
+          <span className="close-btn icon-cross" onClick={this.onCloseButton} />
         </div>
         <form onSubmit={this.onSubmit} autoComplete="on">
           <div className="form-group">

@@ -21,14 +21,11 @@ class BookingPage extends Component {
         date: new Date().toISOString()
       }
     };
-
-
-
   }
 
   getMovie = movieId => {
     getMovieById(movieId).then(movie => {
-      this.setState({ movie: movie});
+      this.setState({ movie: movie });
     });
   };
 
@@ -50,11 +47,11 @@ class BookingPage extends Component {
 
   onCloseButton = () => {
     this.props.history.replace('/');
-  }
+  };
 
   onBackButton = () => {
     this.props.history.goBack();
-  }
+  };
 
   componentDidMount() {
     this.getMovie(this.props.match.params.movieId);
@@ -72,7 +69,6 @@ class BookingPage extends Component {
       if (isLocationChanged) {
         nextState.filterParameters.movieId = nextProps.match.params.movieId;
         this.getMovie(nextProps.match.params.movieId);
-
       }
       this.getSeances(nextState.filterParameters);
       return true;
@@ -80,7 +76,6 @@ class BookingPage extends Component {
 
     return nextState !== this.state;
   }
-
 
   render() {
     const { loading, movie, movieTheaters } = this.state;
