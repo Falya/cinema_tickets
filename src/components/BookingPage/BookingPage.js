@@ -52,7 +52,7 @@ class ConnectedBookingPage extends Component {
     const isMovieIdChanged = nextProps.movieId !== this.props.movieId;
     const isLocationChanged = nextProps.location !== this.props.location;
     if (isMovieIdChanged) {
-      this.props.history.push(`/schedule/movie/id/${nextProps.movieId}`);
+      this.props.history.push(`/schedule/movie/${nextProps.movieId}`);
     }
 
     if (isLocationChanged) {

@@ -65,7 +65,7 @@ class ConnectedFilterNavBar extends Component {
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.options && !this.props.parameters.city) {
-      const [city] = nextProps.options.cities.filter(({ city }) => city === 'Minsk');
+      const [ city ] = nextProps.options.cities.filter(({ city }) => city === 'Minsk');
       this.props.setFilterParams({ ...this.props.parameters, city: city._id });
     }
 
@@ -87,7 +87,12 @@ class ConnectedFilterNavBar extends Component {
     return (
       options && (
         <div className="header__filter_bar">
-          <FilterComponent options={options.cities} defaultValue={this.props.parameters.city} setMethod={this.setCity} icon="icon-location" />
+          <FilterComponent
+            options={options.cities}
+            defaultValue={this.props.parameters.city}
+            setMethod={this.setCity}
+            icon="icon-location"
+          />
           <FilterComponent
             options={options.movieTheaters}
             defaultValue={this.props.parameters.movieTheaterId}
@@ -95,8 +100,18 @@ class ConnectedFilterNavBar extends Component {
             name="cinemas"
             icon="icon-home"
           />
-          <FilterComponent options={options.movies} defaultValue={this.props.parameters.movieId} setMethod={this.setMovie} icon="icon-film" />
-          <FilterComponent options={options.dates} defaultValue={this.formatDate()} setMethod={this.setDate} icon="icon-calendar" />
+          <FilterComponent
+            options={options.movies}
+            defaultValue={this.props.parameters.movieId}
+            setMethod={this.setMovie}
+            icon="icon-film"
+          />
+          <FilterComponent
+            options={options.dates}
+            defaultValue={this.formatDate()}
+            setMethod={this.setDate}
+            icon="icon-calendar"
+          />
           <FilterFeaturesComponent setMethod={this.setFeatures} icon="icon-filter" />
         </div>
       )
