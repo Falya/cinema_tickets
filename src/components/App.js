@@ -26,7 +26,7 @@ class ConnectedApp extends Component {
             <Route path="/registration" component={RegistrationForm} />
             <Route path="/" component={MainPage} />
           </div>
-          <Route path="/schedule/movie/id/:movieId" component={BookingPage} />
+          <Route path="/schedule/movie/:movieId" component={BookingPage} />
         </Router>
       </div>
     );
