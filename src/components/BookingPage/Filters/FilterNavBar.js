@@ -67,7 +67,7 @@ class FilterNavBar extends Component {
       movieId: this.state.parameters.movieId
     };
     getFilters(params).then(options => {
-      const [city] = options.cities.filter(({ city }) => city === 'Minsk');
+      const [ city ] = options.cities.filter(({ city }) => city === 'Minsk');
       this.setState({ options, parameters: { ...this.state.parameters, city: city._id } });
     });
   }
@@ -90,7 +90,12 @@ class FilterNavBar extends Component {
     return (
       options && (
         <div className="header__filter_bar">
-          <FilterComponent options={options.cities} defaultValue={this.state.parameters.city} setMethod={this.setCity} icon="icon-location" />
+          <FilterComponent
+            options={options.cities}
+            defaultValue={this.state.parameters.city}
+            setMethod={this.setCity}
+            icon="icon-location"
+          />
           <FilterComponent
             options={options.movieTheaters}
             defaultValue={this.state.parameters.movieTheaterId}
@@ -98,8 +103,18 @@ class FilterNavBar extends Component {
             name="cinemas"
             icon="icon-home"
           />
-          <FilterComponent options={options.movies} defaultValue={this.state.parameters.movieId} setMethod={this.setMovie} icon="icon-film" />
-          <FilterComponent options={options.dates} defaultValue={this.formatDate()} setMethod={this.setDate} icon="icon-calendar" />
+          <FilterComponent
+            options={options.movies}
+            defaultValue={this.state.parameters.movieId}
+            setMethod={this.setMovie}
+            icon="icon-film"
+          />
+          <FilterComponent
+            options={options.dates}
+            defaultValue={this.formatDate()}
+            setMethod={this.setDate}
+            icon="icon-calendar"
+          />
           <FilterFeaturesComponent setMethod={this.setFeatures} icon="icon-filter" />
         </div>
       )

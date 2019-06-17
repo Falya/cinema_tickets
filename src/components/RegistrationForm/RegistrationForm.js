@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './registration-form.scss';
+
 class RegistrationForm extends Component {
   constructor(props) {
     super(props);

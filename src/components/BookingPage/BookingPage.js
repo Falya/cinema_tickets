@@ -62,7 +62,7 @@ class BookingPage extends Component {
     const isMovieIdChanged = nextState.filterParameters.movieId !== this.state.filterParameters.movieId;
     const isLocationChanged = nextProps.location !== this.props.location;
     if (isMovieIdChanged) {
-      this.props.history.push(`/schedule/movie/id/${nextState.filterParameters.movieId}`);
+      this.props.history.push(`/schedule/movie/${nextState.filterParameters.movieId}`);
     }
     if (isFilterParameterChanged || isLocationChanged) {
       this.setState({ loading: true });

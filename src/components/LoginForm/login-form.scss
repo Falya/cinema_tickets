@@ -26,7 +26,7 @@
   align-items: center;
   top: 20%;
   box-sizing: border-box;
-  left: 35vw;
+  margin: 0 35vw;
   box-shadow: $boxShadow;
   font-size: 0.9em;
   z-index: 2;
@@ -34,22 +34,22 @@
 
   @media (min-width: 1540px) {
       width: 462px;
-      left: calc(50% - 231px);
+      margin: 0 calc(50% - 231px);
   }
 
   @media (max-width: 1200px) {
     width: 40vw;
-    left: 30vw;
+    margin: 0 30vw;
   }
 
   @media (max-width: 860px) {
     width: 70vw;
-    left: 15vw;
+    margin: 0 15vw;
   }
 
   @media (max-width: 520px) {
     width:98vw;
-    left: 1vw;
+    margin: 0 1vw;
   }
 
   .login-form-header {
