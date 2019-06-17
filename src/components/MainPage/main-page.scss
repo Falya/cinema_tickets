@@ -77,7 +77,6 @@ section {
                 margin: auto;
                 width: 100%;
                 max-width: 100%;
-                box-shadow: $boxShadow;
                 box-sizing: border-box;
                 z-index: 1;
                 border-radius: 5px;
@@ -96,10 +95,12 @@ section {
                 cursor: pointer;
                 &:hover {
                   background-color: rgba($color: $thirdColor, $alpha: 0);
+                }
+              }
 
-                  + img {
-                    box-shadow: 0px 1px 5px rgba($color: $lineColorLight, $alpha: 0.4);
-                  }
+              a:hover {
+                + img {
+                  box-shadow: 0px 1px 5px rgba($color: $lineColorLight, $alpha: 0.4);
                 }
               }
             }
@@ -113,14 +114,17 @@ section {
               p {
                 margin: 0;
                 font-size: small;
+                font-weight: lighter;
                 color: $thirdColorText;
               }
 
               h3 {
                 margin: 10px 0;
-                font-size: large;
+                font-size: larger;
                 color: $mainColorText;
                 cursor: pointer;
+                font-weight: 600;
+                letter-spacing: 0.1em;
                 transition: color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
                 &:hover {
                   color: $lineColorLight;
