@@ -5,7 +5,11 @@
     "node": true
   },
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "prettier/react",
+    "prettier/recommended"
+
+
   ],
   "globals": {
     "Atomics": "readonly",
@@ -20,12 +24,34 @@
     "sourceType": "module"
   },
   "plugins": [
-    "react"
+    "react",
+    "prettier"
+
   ],
   "rules": {
+    "prettier/prettier": ["error", {
+      "singleQuote": true,
+      "parser": "babylon",
+      "trailingComma": "es5",
+      "jsxSingleQuote": false,
+      "printWidth": 120,
+      "jsxBracketSameLine": true,
+      "stylelintIntegration": true,
+      "tabWidth": 2
+      }],
+    "jsx-quotes": [
+      1,
+      "prefer-double"
+    ],
     "prefer-destructuring": ["error", {
-      "array": true,
-      "object": true
+      "VariableDeclarator": {
+        "array": true,
+        "object": true
+      },
+      "AssignmentExpression": {
+        "array": false,
+        "object": true
+      }
     }, {
       "enforceForRenamedProperties": false
     }],

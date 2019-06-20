@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './booking-page.scss';
-import MovieTheaterSeances from './MovieTheaterSeances';
-import FilterNavBar from './Filters/FilterNavBar';
-import { getMovieApi, setMovieId, setBlur } from '../../redux/actions/actions';
+import '../components/BookingPage/booking-page.scss';
+import MovieTheaterSeances from '../components/BookingPage/MovieTheaterSeances';
+import FilterNavBar from '../components/BookingPage/Filters/FilterNavBar';
+import { getMovieApi, setMovieId, setBlur } from '../redux/actions/actions';
 
 const mapStateToProps = state => {
   return {
     loading: state.loadingStateReducer.loading,
     movie: state.movieReducer.movie,
     movieTheaters: state.seancesReducer.movieTheaters,
-    movieId: state.filterParamsReducer.filterParameters.movieId
+    movieId: state.filterParamsReducer.filterParameters.movieId,
   };
 };
 
@@ -65,7 +65,6 @@ class ConnectedBookingPage extends Component {
 
   render() {
     const { loading, movie, movieTheaters } = this.props;
-
     return (
       <section className="booking_page">
         {loading && <span className="icon-spinner2 page_spiner" />}
@@ -126,7 +125,7 @@ class ConnectedBookingPage extends Component {
 
 const BookingPage = connect(
   mapStateToProps,
-  { getMovieApi, setMovieId, setBlur }
+  { getMovieApi, setMovieId, setBlur },
 )(ConnectedBookingPage);
 
 export default withRouter(BookingPage);

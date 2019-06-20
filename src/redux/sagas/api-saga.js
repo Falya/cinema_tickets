@@ -4,12 +4,8 @@ import getFiltersWatcher from './getFiltersSaga';
 import getMovieWatcher from './getMovieSaga';
 import getMoviesWatcher from './getMoviesSaga';
 import getSeancesWatcher from './getSeancesSaga';
+import getSeanceWatcher from './getSeanceSaga';
 
 export default function*() {
-  yield all([
-    getFiltersWatcher(),
-    getMovieWatcher(),
-    getMoviesWatcher(),
-    getSeancesWatcher()
-      ]);
+  yield all([getFiltersWatcher(), getMovieWatcher(), getMoviesWatcher(), getSeancesWatcher(), getSeanceWatcher()]);
 }

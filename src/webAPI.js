@@ -2,14 +2,14 @@ import { BASE_URL } from './config/config';
 
 export function getMovies() {
   const options = {
-    method: 'GET'
+    method: 'GET',
   };
   return fetch(`${BASE_URL}/movies`, options).then(res => res.json());
 }
 
 export function getMovieById(movieId) {
   const options = {
-    method: 'GET'
+    method: 'GET',
   };
 
   return fetch(`${BASE_URL}/movies/movie/?id=${movieId}`, options).then(res => res.json());
@@ -18,7 +18,7 @@ export function getMovieById(movieId) {
 export function getSeancesByMovieId(params) {
   const { movieTheaterId } = params;
   const options = {
-    method: 'GET'
+    method: 'GET',
   };
 
   let customParams = { ...params };
@@ -35,10 +35,16 @@ export function getSeancesByMovieId(params) {
 
 export function getFilters(params) {
   const options = {
-    method: 'GET'
+    method: 'GET',
   };
   const url = new URL(`${BASE_URL}/movies/filters/`);
   url.search = new URLSearchParams(params);
 
   return fetch(url, options).then(res => res.json());
+}
+
+export function getSeance(params) {
+  const url = new URL(`${BASE_URL}/seance/`);
+  url.search = new URLSearchParams(params);
+  return fetch(url).then(res => res.json());
 }
