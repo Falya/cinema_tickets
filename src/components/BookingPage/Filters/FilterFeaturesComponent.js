@@ -57,6 +57,7 @@ class FilterFeaturesComponent extends Component {
   render() {
     return (
       <div className="filter__item features">
+        <span className={`filter__icon ${this.props.icon}`} />
         <Select
           mode="multiple"
           placeholder="Select features"

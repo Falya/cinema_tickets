@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './login-form.scss';
 import { Button } from 'antd';
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props);
 
@@ -47,12 +48,14 @@ export default class LoginForm extends Component {
         method: 'POST',
         body: formData
       })
-        .then(() => this.setState({
-          isPostedData: true,
-          iconLoading: false,
-          loading: false,
-          disabledBtn: false
-        }))
+        .then(() =>
+          this.setState({
+            isPostedData: true,
+            iconLoading: false,
+            loading: false,
+            disabledBtn: false
+          })
+        )
         .catch(err => console.log(err));
 
       this.setState({
@@ -66,10 +69,15 @@ export default class LoginForm extends Component {
     }
   };
 
+  onCloseButton = () => this.props.history.replace('/');
+
   render() {
     return (
       <div className="login-form">
-        <div className="login-form-header">Authorization</div>
+        <div className="login-form-header">
+          Authorization
+          <span className="close-btn icon-cross" onClick={this.onCloseButton} />
+        </div>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label htmlFor="user-name">Nickname:</label>
@@ -108,3 +116,5 @@ export default class LoginForm extends Component {
     );
   }
 }
+
+export default withRouter(LoginForm);

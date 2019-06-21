@@ -1,5 +1,20 @@
 @import '../../style/variables';
 
+@keyframes modalAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(-50vh);
+  }
+  90% {
+    opacity: 0.9;
+    transform: scale(1.1) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .registration-form {
   width: 30vw;
   background: $mainColor;
@@ -10,28 +25,34 @@
   align-items: center;
   top: 20%;
   box-sizing: border-box;
-  left: 35vw;
+  margin: 0 35vw;
   box-shadow: $boxShadow;
   font-size: 0.9em;
+  animation: modalAppear 0.5s linear;
+  z-index: 2;
 
   @media (min-width: 1540px) {
     width: 462px;
-    left: calc(50% - 231px);
+    margin: 0 calc(50% - 231px);
   }
 
   @media (max-width: 1200px) {
     width: 40vw;
-    left: 30vw;
+    margin: 0 30vw;
   }
 
   @media (max-width: 860px) {
     width: 70vw;
-    left: 15vw;
+    margin: 0 15vw;
   }
 
   @media (max-width: 520px) {
-    width:98vw;
-    left: 2vw;
+    width: 98vw;
+    margin: 0 1vw;
+  }
+
+  @media (max-height: 460px) {
+    top: 2%;
   }
 
   .registration-form-header {
@@ -41,6 +62,18 @@
     color: $mainColorText;
     font-size: 1.1em;
     align-self: stretch;
+
+    .close-btn {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      &:hover {
+        color: $lineColorLight;
+      }
+      &:active {
+        color: $lineColor;
+      }
+    }
   }
 
   form {
@@ -54,7 +87,7 @@
       justify-content: flex-start;
       padding: 10px;
       box-sizing: border-box;
-      align-items: baseline;
+      align-items: center;
 
       label {
         flex-basis: 44%;
@@ -89,10 +122,8 @@
             outline-style: solid;
             outline-width: thin;
           }
-
         }
       }
-
     }
 
     .registration-form-btn {
@@ -104,6 +135,7 @@
         background: none;
         color: $mainColorText;
         border: 1px solid $mainColorText;
+        cursor: pointer;
         &:hover {
           border-color: $lineColorLight;
           color: $lineColorLight;
@@ -112,11 +144,8 @@
           border-color: $lineColor;
           color: $lineColor;
         }
-
       }
-
     }
-
   }
 
   .registration-form-confirm-tip {
@@ -127,7 +156,5 @@
       content: '*';
       margin-right: 3px;
     }
-
   }
-
 }

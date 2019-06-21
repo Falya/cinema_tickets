@@ -13,7 +13,7 @@ class MovieList extends Component {
 
   componentWillMount() {
     getMovies().then(res => {
-      let loadedMovies = res.map(movie => <MovieCard movie={movie} cardMethod={this.props.cardMethod} />);
+      let loadedMovies = res.map(movie => <MovieCard movie={movie} />);
       this.setState({ loadedMovies });
     });
   }

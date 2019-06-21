@@ -74,11 +74,12 @@ header {
         text-align: right;
         justify-content: flex-end;
 
-        div {
+        .reg-log-link {
           margin: 0 10px;
           padding: 10px 0;
           box-sizing: border-box;
           border-bottom: 2px solid transparent;
+          color: $secondColorText;
           cursor: pointer;
 
           &:hover {
