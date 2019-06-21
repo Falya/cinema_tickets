@@ -7,7 +7,7 @@ import { getFiltersApi, setFilterParams, getSeancesApi } from '../../../redux/ac
 const mapStateToProps = ({ filterParamsReducer, filtersReducer }) => {
   return {
     parameters: filterParamsReducer.filterParameters,
-    options: filtersReducer.filterOptions
+    options: filtersReducer.filterOptions,
   };
 };
 
@@ -19,7 +19,7 @@ class ConnectedFilterNavBar extends Component {
   setCity = city => {
     const params = {
       cityId: city,
-      movieId: this.props.parameters.movieId
+      movieId: this.props.parameters.movieId,
     };
 
     this.props.getFiltersApi(params);
@@ -34,7 +34,7 @@ class ConnectedFilterNavBar extends Component {
   setMovieTheater = movieTheaterId => {
     const params = {
       movieId: this.props.parameters.movieId,
-      cityId: this.props.parameters.city
+      cityId: this.props.parameters.city,
     };
     if (movieTheaterId !== 'All cinemas') {
       params.movieTheaterId = movieTheaterId;
@@ -48,7 +48,7 @@ class ConnectedFilterNavBar extends Component {
   setMovie = movieId => {
     const params = {
       movieId,
-      cityId: this.props.parameters.city
+      cityId: this.props.parameters.city,
     };
 
     this.props.getFiltersApi(params);
@@ -65,7 +65,7 @@ class ConnectedFilterNavBar extends Component {
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.options && !this.props.parameters.city) {
-      const [ city ] = nextProps.options.cities.filter(({ city }) => city === 'Minsk');
+      const [city] = nextProps.options.cities.filter(({ city }) => city === 'Minsk');
       this.props.setFilterParams({ ...this.props.parameters, city: city._id });
     }
 
