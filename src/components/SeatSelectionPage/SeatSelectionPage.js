@@ -32,7 +32,7 @@ class ConnectedSeatSelectionPage extends Component {
   };
 
   formatDate = () => {
-    const date = this.props.seanceInfo.seance.date;
+    const { date } = this.props.seanceInfo.seance;
     const dateObj = new Date(date);
     const formatedDate = dateObj.toLocaleDateString('en', {
       month: 'long',
@@ -128,6 +128,7 @@ class ConnectedSeatSelectionPage extends Component {
                   </div>
                 </div>
               </div>
+
               <div className="body__seats">
                 <SeatMap />
                 <div className="seats__seats_info">

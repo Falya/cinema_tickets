@@ -9,10 +9,9 @@ class StopWatch extends Component {
   }
 
   componentDidMount() {
-    console.log('mounted');
     const startTime = new Date(this.props.time);
     startTime.setMinutes(startTime.getMinutes() + 15);
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       const time = startTime.getTime() - Date.now();
       this.setState({ time });
     }, 1000);
@@ -22,11 +21,20 @@ class StopWatch extends Component {
     let minutes = parseInt(this.state.time / 60 / 1000, 10);
     let seconds = parseInt((this.state.time / 1000) % 60, 10);
 
+    if (minutes <= 0 && seconds <= 0) {
+      clearInterval(this.intervalId);
+      return '00:00';
+    }
+
     minutes = minutes < 10 ? `0${minutes}` : minutes;
     seconds = seconds < 10 ? `0${seconds}` : seconds;
 
     return `${minutes}:${seconds}`;
   };
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
 
   render() {
     return (

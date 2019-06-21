@@ -9,7 +9,6 @@ const mapStateToProps = state => {
 };
 
 function ConnectedBookingStage(props) {
-  console.log(props);
   let options = {
     gridColumnEnd: `span ${props.bookingStage}`,
   };

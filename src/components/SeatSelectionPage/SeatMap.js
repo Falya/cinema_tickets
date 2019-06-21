@@ -22,7 +22,7 @@ class ConnectedSeatMap extends Component {
 
     return {
       gridTemplateColumns: `repeat(${this.state.maxLength}, minmax(15px, 1fr))`,
-      gridTemplateRows: `repeat(${hall.rows.length}, 1fr)`,
+      gridTemplateRows: `repeat(${hall.rows.length}, 40px)`,
     };
   };
 
@@ -38,26 +38,27 @@ class ConnectedSeatMap extends Component {
         let pos = i;
         if (row.rowType === 'double') {
           style = {
-            gridRow: row.rowNumber.toString(),
+            gridRow: `${row.rowNumber.toString()} / span 1`,
             gridColumnEnd: 'span 2',
           };
           size = 2;
           pos = i * size - 1;
         } else {
           style = {
-            gridRow: row.rowNumber.toString(),
+            gridRow: `${row.rowNumber.toString()} / span 1`,
           };
         }
 
-        if (i < row.rowLength / 2) {
+        const halfOfRowLength = Math.round(row.rowLength / 2);
+        if (i <= halfOfRowLength) {
           style = {
             ...style,
-            gridColumnStart: (middle - (row.rowLength / 2) * size + pos).toString(),
+            gridColumnStart: (middle - halfOfRowLength * size + pos).toString(),
           };
         } else {
           style = {
             ...style,
-            gridColumnStart: (middle + (pos - (row.rowLength / 2) * size)).toString(),
+            gridColumnStart: (middle + (pos - halfOfRowLength * size)).toString(),
           };
         }
         const seat = (
@@ -66,16 +67,19 @@ class ConnectedSeatMap extends Component {
             rowNumber={row.rowNumber}
             seatNumber={i}
             seatType={row.rowType}
-            isBlocked={false}
+            seatState="free"
             seatPrice={row.price}
           />
         );
         seats.push(seat);
       }
-      seats.push(<span style={{ gridRow: row.rowNumber.toString() }}>{row.rowNumber}</span>);
+      seats.push(
+        <span className="row_end" style={{ gridRow: row.rowNumber.toString() }}>
+          {row.rowNumber}
+        </span>
+      );
       return seats;
     });
-    console.log(seat);
     return seat;
   };
 
@@ -89,13 +93,19 @@ class ConnectedSeatMap extends Component {
   }
 
   render() {
-    const [hall] = this.props.seanceInfo.cinemaInfo.halls;
-    console.log(hall);
     return (
       <div className="seats__seats_selection">
         <div className="screen">Screen</div>
         <div className="seat_map" style={this.mapSize()}>
           {this.renderRows()}
+        </div>
+        <div className="seat_state_information">
+          <div className="free_state"></div>
+          <span>Free seat</span>
+          <div className="blocked_state"></div>
+          <span>Blocked seat</span>
+          <div className="sold_state"></div>
+          <span>Sold seat</span>
         </div>
       </div>
     );

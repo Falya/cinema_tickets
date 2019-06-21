@@ -12,7 +12,7 @@ class SeatComponent extends Component {
   }
 
   makeContent = () => {
-    if (this.props.isBlocked) {
+    if (this.props.seatState === 'sold') {
       return <p>Sold place</p>;
     }
     return [
@@ -22,6 +22,19 @@ class SeatComponent extends Component {
     ];
   };
 
+  setSeatState = () => {
+    switch (this.props.seatState) {
+      case 'blocked':
+        return 'seat_blocked';
+
+      case 'sold':
+        return 'seat_sold';
+
+      default:
+        return '';
+    }
+  };
+
   render() {
     return (
       <Popover
@@ -29,7 +42,7 @@ class SeatComponent extends Component {
         overlayClassName="tooltip_overlay"
         content={this.makeContent()}
         mouseEnterDelay={0.2}>
-        <div className={`seat ${this.props.isBlocked ? 'seat_blocked' : ''}`} style={this.props.style}>
+        <div className={`seat ${this.setSeatState()}`} style={this.props.style}>
           {this.state.seatNumber}
         </div>
       </Popover>
