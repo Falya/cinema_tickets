@@ -28,6 +28,7 @@ class ConnectedSeatMap extends Component {
 
   renderRows = () => {
     const [hall] = this.props.seanceInfo.cinemaInfo.halls;
+    const { soldSeats, blockedSeats } = this.props.seanceInfo.seance;
     const seat = hall.rows.map(row => {
       const seats = [<span style={{ gridRow: row.rowNumber.toString() }}>{row.rowNumber}</span>];
       const middle = this.state.maxLength / 2;
@@ -35,7 +36,23 @@ class ConnectedSeatMap extends Component {
       let style = {};
 
       for (let i = 1; i <= row.rowLength; i++) {
+        let seatState = 'free';
         let pos = i;
+
+        if (
+          soldSeats.length &&
+          soldSeats.some(({ rowNumber, seatNumber }) => rowNumber === row.rowNumber && seatNumber === i)
+        ) {
+          seatState = 'sold';
+        }
+
+        if (
+          blockedSeats.length &&
+          blockedSeats.some(({ rowNumber, seatNumber }) => rowNumber === row.rowNumber && seatNumber === i)
+        ) {
+          seatState = 'blocked';
+        }
+
         if (row.rowType === 'double') {
           style = {
             gridRow: `${row.rowNumber.toString()} / span 1`,
@@ -67,7 +84,7 @@ class ConnectedSeatMap extends Component {
             rowNumber={row.rowNumber}
             seatNumber={i}
             seatType={row.rowType}
-            seatState="free"
+            seatState={seatState}
             seatPrice={row.price}
           />
         );
