@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './registration-form.scss';
+import { signUp } from '../../webAPI';
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class RegistrationForm extends Component {
 
     this.state = {
       isPostedData: false,
-      isPasswordConfirmed: true
+      isPasswordConfirmed: true,
+      message: null,
     };
   }
 
@@ -19,7 +21,6 @@ class RegistrationForm extends Component {
     e.preventDefault();
     let formData = new FormData(e.target);
     let areAllInputsFilled = [...formData.values()].every(value => !!value);
-
     const password = formData.get('password'),
       confirmPassword = formData.get('confirmPassword'),
       isPasswordConfirmed = password === confirmPassword;
@@ -28,12 +29,25 @@ class RegistrationForm extends Component {
       this.setState({ isPasswordConfirmed });
 
       if (areAllInputsFilled && this.state.isPasswordConfirmed) {
-        fetch('/dbImitation/films.json', {
-          method: 'POST',
-          body: formData
-        })
-          .then(() => this.setState({ isPostedData: true }))
-          .catch(err => console.log(err));
+        const data = {
+          nickName: formData.get('userName'),
+          email: formData.get('email'),
+          password: formData.get('password'),
+        };
+        signUp(data).then(res => {
+          if (res.message) {
+            this.setState({ message: res.message });
+          } else {
+            this.setState({ message: 'success' });
+          }
+          setTimeout(() => {
+            const { message } = this.state;
+            this.setState({ message: null });
+            if (message === 'success') {
+              this.onCloseButton();
+            }
+          }, 2000);
+        });
       }
     }
   };
@@ -44,6 +58,7 @@ class RegistrationForm extends Component {
     let { isPasswordConfirmed } = this.state;
     return (
       <div className="registration-form">
+        {this.state.message && <div className="result-message">{this.state.message}</div>}
         <div className="registration-form-header">
           Registration
           <span className="close-btn icon-cross" onClick={this.onCloseButton} />

@@ -7,6 +7,7 @@ import movieReducer from './movieReducer';
 import moviesReducer from './moviesReducer';
 import seancesReducer from './seancesReducer';
 import seanceReducer from './seanceReducer';
+import userNameReducer from './userNameReducer';
 
 export default combineReducers({
   blurReducer,
@@ -17,4 +18,5 @@ export default combineReducers({
   moviesReducer,
   seancesReducer,
   seanceReducer,
+  userNameReducer,
 });

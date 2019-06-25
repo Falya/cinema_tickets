@@ -61,3 +61,16 @@ export function setBookingStage(payload) {
     payload,
   };
 }
+
+export function getUserName() {
+  return {
+    type: actionTypes.USER_NAME_REQUESTED,
+  };
+}
+
+export function resetUserName() {
+  return {
+    type: actionTypes.USER_NAME_LOADED,
+    payload: null,
+  };
+}

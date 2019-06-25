@@ -5,7 +5,15 @@ import getMovieWatcher from './getMovieSaga';
 import getMoviesWatcher from './getMoviesSaga';
 import getSeancesWatcher from './getSeancesSaga';
 import getSeanceWatcher from './getSeanceSaga';
+import getUserNameWatcher from './getUserNameSaga';
 
 export default function*() {
-  yield all([getFiltersWatcher(), getMovieWatcher(), getMoviesWatcher(), getSeancesWatcher(), getSeanceWatcher()]);
+  yield all([
+    getFiltersWatcher(),
+    getMovieWatcher(),
+    getMoviesWatcher(),
+    getSeancesWatcher(),
+    getSeanceWatcher(),
+    getUserNameWatcher(),
+  ]);
 }

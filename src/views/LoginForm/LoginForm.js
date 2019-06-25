@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './login-form.scss';
 import { Button } from 'antd';
+import { logIn } from '../../webAPI';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -9,12 +10,11 @@ class LoginForm extends Component {
 
     this.state = {
       loading: false,
-      iconLoading: false,
+      message: null,
       disabledBtn: false,
-      isPostedData: false,
       isUserNameEntered: true,
       isPasswordEntered: true,
-      wrongMessage: ''
+      wrongMessage: '',
     };
   }
 
@@ -31,41 +31,56 @@ class LoginForm extends Component {
       this.setState({
         isUserNameEntered: false,
         isPasswordEntered: false,
-        wrongMessage: 'Please fill in the fields'
+        wrongMessage: 'Please fill in the fields',
       });
     } else if (!userName) {
       this.setState({
         isUserNameEntered: false,
-        wrongMessage: 'Please fill in the nickname'
+        wrongMessage: 'Please fill in the nickname',
       });
     } else if (!password) {
       this.setState({
         isPasswordEntered: false,
-        wrongMessage: 'Please fill in the password'
+        wrongMessage: 'Please fill in the password',
       });
     } else {
-      fetch('/dbImitation/films.json', {
-        method: 'POST',
-        body: formData
-      })
-        .then(() =>
-          this.setState({
-            isPostedData: true,
-            iconLoading: false,
-            loading: false,
-            disabledBtn: false
-          })
-        )
-        .catch(err => console.log(err));
-
       this.setState({
-        iconLoading: true,
         loading: true,
         disabledBtn: true,
         isUserNameEntered: true,
         isPasswordEntered: true,
-        wrongMessage: ''
+        wrongMessage: '',
       });
+
+      const data = {
+        nickName: userName,
+        password,
+      };
+      logIn(data)
+        .then(res => {
+          if (res.message) {
+            this.setState({
+              loading: false,
+              disabledBtn: false,
+              message: res.message,
+            });
+          } else {
+            this.setState({
+              loading: false,
+              disabledBtn: false,
+              message: 'success',
+            });
+          }
+
+          setTimeout(() => {
+            const { message } = this.state;
+            this.setState({ message: null });
+            if (message === 'success') {
+              this.onCloseButton();
+            }
+          }, 2000);
+        })
+        .catch(err => console.log(err));
     }
   };
 
@@ -74,6 +89,7 @@ class LoginForm extends Component {
   render() {
     return (
       <div className="login-form">
+        {this.state.message && <div className="result-message">{this.state.message}</div>}
         <div className="login-form-header">
           Authorization
           <span className="close-btn icon-cross" onClick={this.onCloseButton} />

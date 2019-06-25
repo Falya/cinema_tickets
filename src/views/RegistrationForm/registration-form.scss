@@ -55,6 +55,19 @@
     top: 2%;
   }
 
+  .result-message {
+    position: absolute;
+    background: rgba($color: $lineColor, $alpha: 0.9);
+    box-shadow: $boxShadow;
+    height: 80%;
+    width: 80%;
+    margin-top: 10%;
+    color: $mainColorText;
+    font-size: 2em;
+    text-align: center;
+    padding-top: 10%;
+  }
+
   .registration-form-header {
     background: $gradientColor;
     padding: 10px;

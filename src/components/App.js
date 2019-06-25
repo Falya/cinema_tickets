@@ -7,14 +7,30 @@ import RegistrationForm from '../views/RegistrationForm/RegistrationForm';
 import MainPage from '../views/MainPage';
 import BookingPage from '../views/BookingPage';
 import SeatSelectionPage from './SeatSelectionPage/SeatSelectionPage';
+import { getUserName } from '../redux/actions/actions';
 
 const mapStateToProps = state => {
-  return { isBlur: state.blurReducer.isBlur };
+  return { isBlur: state.blurReducer.isBlur, userName: state.userNameReducer.userName };
 };
 
 class ConnectedApp extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const { token } = localStorage;
+    if (token) {
+      this.props.getUserName();
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { token } = localStorage;
+    if (token && !nextProps.userName) {
+      this.props.getUserName();
+    }
+    return nextProps !== this.props;
   }
 
   render() {
@@ -37,5 +53,8 @@ class ConnectedApp extends Component {
   }
 }
 
-const App = connect(mapStateToProps)(ConnectedApp);
+const App = connect(
+  mapStateToProps,
+  { getUserName }
+)(ConnectedApp);
 export default App;
