@@ -7,6 +7,7 @@ import SeatMap from './SeatMap';
 import SeatTypeCard from './SeatTypeCard';
 import BookingStage from '../BookingStage/BookingStage';
 import StopWatch from './StopWatch';
+import UserOrder from './UserOrder';
 
 const mapStateToProps = state => {
   return {
@@ -131,12 +132,16 @@ class ConnectedSeatSelectionPage extends Component {
 
               <div className="body__seats">
                 <SeatMap />
-                <div className="seats__seats_info">
-                  <h2>Types of seats</h2>
-                  {this.mapSeatTypes()}
-                </div>
+                {!seanceInfo.blockedSeatsByUser[0] ? (
+                  <div className="seats__seats_info">
+                    <h2>Types of seats</h2>
+                    {this.mapSeatTypes()}
+                  </div>
+                ) : (
+                  <UserOrder />
+                )}
               </div>
-              <StopWatch time={Date.now()} />
+              {seanceInfo.blockedSeatsByUser[0] && <StopWatch />}
               <BookingStage />
             </div>
           )}

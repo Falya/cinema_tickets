@@ -5,6 +5,8 @@ const initialState = {
     seanceId: null,
     seance: null,
     cinemaInfo: null,
+    blockedSeats: [],
+    blockedSeatsByUser: [],
   },
   bookingStage: 1,
 };

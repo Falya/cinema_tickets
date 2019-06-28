@@ -27,6 +27,13 @@ export function getSeancesApi(payload) {
   };
 }
 
+export function getSeanceApi(payload) {
+  return {
+    type: actionTypes.SEANCE_REQUESTED,
+    payload: { seanceId: payload },
+  };
+}
+
 export function setMovieId(payload) {
   return {
     type: actionTypes.SET_MOVIE_ID,

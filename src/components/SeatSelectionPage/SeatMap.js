@@ -28,7 +28,9 @@ class ConnectedSeatMap extends Component {
 
   renderRows = () => {
     const [hall] = this.props.seanceInfo.cinemaInfo.halls;
-    const { soldSeats, blockedSeats } = this.props.seanceInfo.seance;
+    const { blockedSeatsByUser, blockedSeats } = this.props.seanceInfo;
+    const { soldSeats } = this.props.seanceInfo.seance;
+
     const seat = hall.rows.map(row => {
       const seats = [<span style={{ gridRow: row.rowNumber.toString() }}>{row.rowNumber}</span>];
       const middle = this.state.maxLength / 2;
@@ -36,20 +38,25 @@ class ConnectedSeatMap extends Component {
       let style = {};
 
       for (let i = 1; i <= row.rowLength; i++) {
-        let seatState = 'free';
+        let seatState = null;
         let pos = i;
 
-        if (
+        const isSold =
           soldSeats.length &&
-          soldSeats.some(({ rowNumber, seatNumber }) => rowNumber === row.rowNumber && seatNumber === i)
-        ) {
+          soldSeats.some(({ rowNumber, seatNumber }) => rowNumber === row.rowNumber && seatNumber === i);
+
+        const isLocked =
+          blockedSeats.length && blockedSeats.some(blocked => blocked.row == row.rowNumber && blocked.seat == i);
+
+        const isLockedByUser =
+          blockedSeatsByUser.length &&
+          blockedSeatsByUser.some(blocked => blocked.row == row.rowNumber && blocked.seat == i);
+
+        if (isSold || isLocked) {
           seatState = 'sold';
         }
 
-        if (
-          blockedSeats.length &&
-          blockedSeats.some(({ rowNumber, seatNumber }) => rowNumber === row.rowNumber && seatNumber === i)
-        ) {
+        if (isLockedByUser) {
           seatState = 'blocked';
         }
 

@@ -34,19 +34,22 @@ class ConnectedApp extends Component {
   }
 
   render() {
+    const log = /^[a-z0-9/]*\/login$/gi;
+    const reg = /^[a-z0-9/]*\/registration$/gi;
     return (
       <div className="wrapper">
         <Router>
           <div className={this.props.isBlur ? 'for-blur' : ''}>
             <Header />
-            <Route path="/login" component={LoginForm} />
-            <Route path="/registration" component={RegistrationForm} />
             <Route path="/" component={MainPage} />
           </div>
           <Switch>
             <Route exact path="/schedule/movie/:movieId" component={BookingPage} />
             <Route path="/schedule/movie/:movieId/seance/:seanceId" component={SeatSelectionPage} />
+            <Route path="/schedule/movie/:movieId/seance/:seanceId/authorize" component={SeatSelectionPage} />
           </Switch>
+          <Route path={log} component={LoginForm} />
+          <Route path={reg} component={RegistrationForm} />
         </Router>
       </div>
     );

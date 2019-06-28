@@ -17,13 +17,23 @@ $mediaWidthSmall: 460px;
   position: absolute;
   display: flex;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   padding: auto;
   box-sizing: border-box;
   margin: auto;
   top: 0;
   z-index: 2;
   background: rgba($color: $secondColor, $alpha: 0.9);
+
+  @media (max-width: 1400px) {
+    font-size: 0.8em;
+  }
+  @media (max-width: 1170px) {
+    font-size: 0.6em;
+  }
+  @media (max-width: 800px) {
+    font-size: 1em;
+  }
 
   .page_spiner {
     position: fixed;
@@ -376,8 +386,13 @@ $mediaWidthSmall: 460px;
         align-items: center;
         padding: 0 5%;
 
+        @media (max-width: 970px) {
+          font-size: 0.9em;
+        }
+
         @media (max-width: $mediaWidthMedium) {
           margin-top: 50px;
+          font-size: 1em;
         }
 
         h2 {
@@ -397,12 +412,14 @@ $mediaWidthSmall: 460px;
             width: 80px;
             padding: 5px 10px 5px 0;
             color: $lineColorGray;
+            align-items: center;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: 1fr;
 
             .seat_size {
               border: $lineColorGray 2px solid;
+              height: 35px;
               box-sizing: border-box;
               border-radius: 2px 2px 10px 10px;
               text-align: center;
@@ -413,10 +430,29 @@ $mediaWidthSmall: 460px;
                 grid-column-start: 1;
                 grid-column-end: span 4;
               }
+
+              &.selected_seat {
+                background-color: rgba($color: $lineColorDark, $alpha: 0.5);
+              }
+            }
+
+            @media (max-width: 970px) {
+              width: 40px;
+
+              .seat_size {
+                height: 15px;
+              }
+            }
+            @media (max-width: $mediaWidthMedium) {
+              width: 80px;
+
+              .seat_size {
+                height: 35px;
+              }
             }
           }
 
-          .seat_type__head {
+          & .seat_type__head {
             flex-basis: 80%;
             display: flex;
             flex-direction: column;
@@ -435,6 +471,14 @@ $mediaWidthSmall: 460px;
               .seat_price {
                 font-weight: bold;
               }
+
+              .order_info {
+                .order_info__seat {
+                  span {
+                    color: $lineColorDark;
+                  }
+                }
+              }
             }
 
             .seat_description {
@@ -442,6 +486,41 @@ $mediaWidthSmall: 460px;
               font-size: small;
               font-weight: lighter;
             }
+          }
+        }
+
+        .total_price {
+          padding: 10px;
+          background: $secondColor;
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+
+          h3 {
+            color: $mainColorText;
+            margin: 0;
+          }
+
+          span {
+            color: $lineColor;
+          }
+        }
+
+        .ant-btn {
+          border-radius: $borderRadius;
+          margin-top: 20px;
+          width: 80%;
+          height: max-content;
+          padding: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1em;
+
+          span {
+            font-size: 1.2em;
+            letter-spacing: 0.1em;
           }
         }
       }
@@ -469,5 +548,10 @@ $mediaWidthSmall: 460px;
   padding: 10px;
   justify-content: center;
   align-items: baseline;
-  color: $mainColorText;
+  color: $lineColorLight;
+
+  .time {
+    margin: 0 5px;
+    color: $lineColor;
+  }
 }

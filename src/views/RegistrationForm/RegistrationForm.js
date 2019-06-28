@@ -52,54 +52,58 @@ class RegistrationForm extends Component {
     }
   };
 
-  onCloseButton = () => this.props.history.replace('/');
+  onCloseButton = () => this.props.history.goBack();
 
   render() {
     let { isPasswordConfirmed } = this.state;
     return (
-      <div className="registration-form">
-        {this.state.message && <div className="result-message">{this.state.message}</div>}
-        <div className="registration-form-header">
-          Registration
-          <span className="close-btn icon-cross" onClick={this.onCloseButton} />
+      <div className="registration-form__wrapper">
+        <div className="registration-form">
+          {this.state.message && <div className="result-message">{this.state.message}</div>}
+          <div className="registration-form-header">
+            Registration
+            <span className="close-btn icon-cross" onClick={this.onCloseButton} />
+          </div>
+          <form onSubmit={this.onSubmit} autoComplete="on">
+            <div className="form-group">
+              <label htmlFor="user-name">Username:</label>
+              <div className="input-group">
+                <input type="text" placeholder="Desired username" name="userName" id="user-name" autoFocus required />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
+              <div className="input-group">
+                <input type="email" name="email" id="email" placeholder="example@example.com" required />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password:</label>
+              <div className="input-group">
+                <input type="password" name="password" id="password" placeholder="password" required />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="confirm-password">Confirm password:</label>
+              <div className="input-group">
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  id="confirm-password"
+                  className={isPasswordConfirmed ? '' : 'wrong-input'}
+                  placeholder="confirm password"
+                  required
+                />
+              </div>
+            </div>
+            <div className="form-group registration-form-btn">
+              <button type="submit">Registration</button>
+            </div>
+            {!isPasswordConfirmed && (
+              <span className="registration-form-confirm-tip">Please confirm your password</span>
+            )}
+          </form>
         </div>
-        <form onSubmit={this.onSubmit} autoComplete="on">
-          <div className="form-group">
-            <label htmlFor="user-name">Username:</label>
-            <div className="input-group">
-              <input type="text" placeholder="Desired username" name="userName" id="user-name" autoFocus required />
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <div className="input-group">
-              <input type="email" name="email" id="email" placeholder="example@example.com" required />
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <div className="input-group">
-              <input type="password" name="password" id="password" placeholder="password" required />
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="confirm-password">Confirm password:</label>
-            <div className="input-group">
-              <input
-                type="password"
-                name="confirmPassword"
-                id="confirm-password"
-                className={isPasswordConfirmed ? '' : 'wrong-input'}
-                placeholder="confirm password"
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group registration-form-btn">
-            <button type="submit">Registration</button>
-          </div>
-          {!isPasswordConfirmed && <span className="registration-form-confirm-tip">Please confirm your password</span>}
-        </form>
       </div>
     );
   }
