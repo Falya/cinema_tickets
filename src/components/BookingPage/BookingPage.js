@@ -11,7 +11,7 @@ const mapStateToProps = state => {
     loading: state.loadingStateReducer.loading,
     movie: state.movieReducer.movie,
     movieTheaters: state.seancesReducer.movieTheaters,
-    movieId: state.filterParamsReducer.filterParameters.movieId
+    movieId: state.filterParamsReducer.filterParameters.movieId,
   };
 };
 
@@ -35,7 +35,7 @@ class ConnectedBookingPage extends Component {
   };
 
   onBackButton = () => {
-    this.props.history.go(-2);
+    this.props.history.goBack();
   };
 
   componentDidMount() {

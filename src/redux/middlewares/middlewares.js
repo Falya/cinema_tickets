@@ -6,12 +6,12 @@ function isLoadingMiddleware({ dispatch }) {
       if (action.type === actionTypes.MOVIE_REQUESTED || action.type === actionTypes.SEANCES_REQUESTED) {
         dispatch({
           type: actionTypes.SET_LOADING_STATE,
-          payload: true
+          payload: true,
         });
       } else if ((action.type === actionTypes.MOVIE_LOADED) | (action.type === actionTypes.SEANCES_LOADED)) {
         dispatch({
           type: actionTypes.SET_LOADING_STATE,
-          payload: false
+          payload: false,
         });
       }
       return next(action);
@@ -19,13 +19,13 @@ function isLoadingMiddleware({ dispatch }) {
   };
 }
 
-function onMovieIdset({ dispatch }) {
+function onMovieIdSet({ dispatch }) {
   return function(next) {
     return function(action) {
       if (action.type === actionTypes.SET_MOVIE_ID) {
         dispatch({
           type: actionTypes.FILTERS_REQUESTED,
-          payload: { movieId: action.payload }
+          payload: { movieId: action.payload },
         });
       }
       return next(action);
@@ -33,4 +33,4 @@ function onMovieIdset({ dispatch }) {
   };
 }
 
-export default [isLoadingMiddleware, onMovieIdset];
+export default [isLoadingMiddleware, onMovieIdSet];
