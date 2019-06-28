@@ -4,8 +4,16 @@ import NavGroup from './NavGroup/NavGroup';
 import SearchField from './Searchfield/Searchfield';
 import './header.scss';
 import SandwichButton from './SandwichButton/SandwichButton';
+import { connect } from 'react-redux';
+import RegLogGroup from './RegLogGroup';
 
-class Header extends Component {
+const mapStateToProps = state => {
+  return {
+    userName: state.userNameReducer.userName,
+  };
+};
+
+class ConnectedHeader extends Component {
   constructor(props) {
     super(props);
   }
@@ -17,10 +25,7 @@ class Header extends Component {
           <div className="brand">Brand</div>
           <div className="menu-group">
             <NavGroup className="nav-group" />
-            <div className="reg-log-group">
-              <div onClick={this.props.onLogin}>Sign In</div>
-              <div>Sign Up</div>
-            </div>
+            <RegLogGroup />
           </div>
           <SandwichButton onLogin={this.props.onLogin} onRegistration={this.props.onRegistration} />
         </div>
@@ -31,5 +36,7 @@ class Header extends Component {
     );
   }
 }
+
+const Header = connect(mapStateToProps)(ConnectedHeader);
 
 export default Header;

@@ -18,7 +18,7 @@ class MovieCard extends Component {
         <div className="card-body">
           <figure>
             <div className="image-wrapper">
-              <Link to={`/affiche/movie/id/${this.props.movie._id}`}>
+              <Link to={`/schedule/movie/${this.props.movie._id}`}>
               <div className="card-overlay" />
               </Link>
               <img src={this.props.movie.poster} alt="" />
@@ -31,7 +31,7 @@ class MovieCard extends Component {
               <span>{this.props.movie.genre.join(', ')}</span>
             </figcaption>
           </figure>
-          <Link className='button-link' to={`/affiche/movie/id/${this.props.movie._id}`}>
+          <Link className='button-link' to={`/schedule/movie/${this.props.movie._id}`}>
           <Button size="normal" ghost>
             booking
           </Button>

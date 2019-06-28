@@ -46,6 +46,7 @@ class FilterComponent extends Component {
   render() {
     return (
       <div className="filter__item">
+        <span className={`filter__icon ${this.props.icon}`} />
         <Select value={this.props.defaultValue} dropdownClassName="filter__dropdown_menu" className="filter__select" onChange={this.handleChange}>
           {this.createOptions()}
         </Select>

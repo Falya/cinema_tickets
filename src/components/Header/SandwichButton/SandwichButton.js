@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './sandwich-button.scss';
 import NavGroup from '../NavGroup/NavGroup';
+import RegLogGroup from '../RegLogGroup';
 class SandwichButton extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isChecked: false
+      isChecked: false,
     };
   }
 
@@ -33,14 +34,11 @@ class SandwichButton extends Component {
     return (
       <div className="menuToggle">
         <input type="checkbox" onChange={this.onCheckBoxChange} checked={this.state.isChecked} />
-        <span />
-        <span />
-        <span />
+        <span className="sandwich-span" />
+        <span className="sandwich-span" />
+        <span className="sandwich-span" />
         <div className="menu" onClick={this.onMenuClick}>
-          <div className="reg-log-group">
-            <div onClick={this.onLoginClick}>Sign In</div>
-            <div onClick={this.props.onRegistration}>Sign Up</div>
-          </div>
+          <RegLogGroup />
           <NavGroup className="nav-group" />
         </div>
       </div>

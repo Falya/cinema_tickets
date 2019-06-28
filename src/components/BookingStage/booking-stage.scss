@@ -1,0 +1,45 @@
+@import '../../style/variables';
+.booking_stage {
+  margin: 20px;
+  padding: 0 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 5px;
+  position: relative;
+  background: $lineColorGray;
+
+  .stage {
+    border: 2px solid $lineColorDark;
+    border-radius: 50px;
+    background: $thirdColor;
+    color: $thirdColorText;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    margin-top: -10px;
+    user-select: none;
+
+    &.stage_2 {
+      margin-left: -12.5px;
+      grid-column-start: 2;
+    }
+
+    &.stage_3 {
+      margin-left: -12.5px;
+      grid-column-start: 3;
+    }
+    &.stage_4 {
+      margin-left: -12.5px;
+      grid-column-start: 4;
+    }
+  }
+
+  .progress {
+    grid-column: 1 / span 1;
+    background: linear-gradient(to right, $lineColorLight, $lineColor);
+  }
+}

@@ -1,87 +1,140 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import FilterComponent from './FilterComponent';
-import { getFilters } from '../../../webAPI';
 import FilterFeaturesComponent from './FilterFeaturesComponent';
+import { getFiltersApi, setFilterParams, getSeancesApi } from '../../../redux/actions/actions';
 
-class FilterNavBar extends Component {
+const mapStateToProps = ({ filterParamsReducer, filtersReducer }) => {
+  return {
+    parameters: filterParamsReducer.filterParameters,
+    options: filtersReducer.filterOptions,
+  };
+};
+
+class ConnectedFilterNavBar extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      parameters: this.props.parameters,
-      options: null
-    };
-
-    getFilters(this.state.parameters.city, this.state.parameters.movieId, this.state.parameters.movieTheaterId).then(options => {
-      const [city] = options.cities.filter(({ city }) => city === 'Minsk');
-      this.setState({ options, parameters: { ...this.state.parameters, city: city._id } });
-    });
   }
 
   setCity = city => {
-    getFilters(city, this.state.parameters.movieId, 'All cinemas').then(options => {
-      const date = this.getCurrentDate();
-      this.setState({ options, parameters: { ...this.state.parameters, city, date, movieTheaterId: 'All cinemas' } });
+    const params = {
+      cityId: city,
+      movieId: this.props.parameters.movieId,
+    };
+
+    this.props.getFiltersApi(params);
+    const date = this.getCurrentDate();
+    this.props.setFilterParams({
+      ...this.props.parameters,
+      city,
+      date,
+      movieTheaterId: 'All cinemas',
     });
   };
 
   setDate = date => {
-    this.setState({ parameters: { ...this.state.parameters, date } });
+    this.props.setFilterParams({ ...this.props.parameters, date });
   };
 
   setMovieTheater = movieTheaterId => {
-    getFilters(this.state.parameters.city, this.state.parameters.movieId, movieTheaterId).then(options => {
-      const date = this.getCurrentDate();
-      this.setState({ options, parameters: { ...this.state.parameters, movieTheaterId, date } });
+    const params = {
+      movieId: this.props.parameters.movieId,
+      cityId: this.props.parameters.city,
+    };
+    if (movieTheaterId !== 'All cinemas') {
+      params.movieTheaterId = movieTheaterId;
+    }
+
+    this.props.getFiltersApi(params);
+    const date = this.getCurrentDate();
+    this.props.setFilterParams({
+      ...this.props.parameters,
+      movieTheaterId,
+      date,
     });
   };
 
   setMovie = movieId => {
-    getFilters(this.state.parameters.city, movieId, this.state.parameters.movieTheaterId).then(options => {
-      this.setState({ options, parameters: { ...this.state.parameters, movieId } });
-    });
+    const params = {
+      movieId,
+      cityId: this.props.parameters.city,
+    };
+
+    this.props.getFiltersApi(params);
+    this.props.setFilterParams({ ...this.props.parameters, movieId });
   };
 
   setFeatures = features => {
-    this.setState({ parameters: { ...this.state.parameters, features } });
+    this.props.setFilterParams({ ...this.props.parameters, features });
   };
 
   getCurrentDate = () => {
     return new Date().toISOString();
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.parameters !== this.state.parameters) {
-      this.props.onChangeMethod(nextState.parameters);
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.options && !this.props.parameters.city) {
+      const [city] = nextProps.options.cities.filter(({ city }) => city === 'Minsk');
+      this.props.setFilterParams({ ...this.props.parameters, city: city._id });
     }
-    return nextState !== this.state;
+
+    if (nextProps.parameters !== this.props.parameters && nextProps.parameters.city) {
+      this.props.getSeancesApi(nextProps.parameters);
+    }
+
+    return nextProps !== this.props;
   }
 
   formatDate = () => {
-    const { date } = this.state.parameters;
+    const { date } = this.props.parameters;
     const dateObj = new Date(date);
-    return dateObj.toLocaleDateString('en', { month: 'long', day: 'numeric', weekday: 'long' });
+    return dateObj.toLocaleDateString('en', {
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+    });
   };
 
   render() {
-    const { options } = this.state;
+    const { options } = this.props;
     return (
       options && (
         <div className="header__filter_bar">
-          <FilterComponent options={options.cities} defaultValue={this.state.parameters.city} setMethod={this.setCity} />
+          <FilterComponent
+            options={options.cities}
+            defaultValue={this.props.parameters.city}
+            setMethod={this.setCity}
+            icon="icon-location"
+          />
           <FilterComponent
             options={options.movieTheaters}
-            defaultValue={this.state.parameters.movieTheaterId}
+            defaultValue={this.props.parameters.movieTheaterId}
             setMethod={this.setMovieTheater}
             name="cinemas"
+            icon="icon-home"
           />
-          <FilterComponent options={options.movies} defaultValue={this.state.parameters.movieId} setMethod={this.setMovie} />
-          <FilterComponent options={options.dates} defaultValue={this.formatDate()} setMethod={this.setDate} />
-          <FilterFeaturesComponent setMethod={this.setFeatures} />
+          <FilterComponent
+            options={options.movies}
+            defaultValue={this.props.parameters.movieId}
+            setMethod={this.setMovie}
+            icon="icon-film"
+          />
+          <FilterComponent
+            options={options.dates}
+            defaultValue={this.formatDate()}
+            setMethod={this.setDate}
+            icon="icon-calendar"
+          />
+          <FilterFeaturesComponent setMethod={this.setFeatures} icon="icon-filter" />
         </div>
       )
     );
   }
 }
+
+const FilterNavBar = connect(
+  mapStateToProps,
+  { getFiltersApi, setFilterParams, getSeancesApi }
+)(ConnectedFilterNavBar);
 
 export default FilterNavBar;
