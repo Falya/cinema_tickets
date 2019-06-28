@@ -81,3 +81,10 @@ export function resetUserName() {
     payload: null,
   };
 }
+
+export function setOrderFeature(payload) {
+  return {
+    type: actionTypes.SET_ORDER_FEATURE,
+    payload,
+  };
+}

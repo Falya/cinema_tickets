@@ -90,7 +90,10 @@ class ConnectedSeatComponent extends Component {
         overlayClassName="tooltip_overlay"
         content={this.makeContent()}
         mouseEnterDelay={0.2}>
-        <div className={`seat ${this.setSeatState()}`} style={this.props.style} onClick={this.onSeatClick}>
+        <div
+          className={`seat ${this.setSeatState()} ${this.props.seatType.toLowerCase()}`}
+          style={this.props.style}
+          onClick={this.onSeatClick}>
           {this.state.seatNumber}
         </div>
       </Popover>

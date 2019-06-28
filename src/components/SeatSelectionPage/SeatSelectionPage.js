@@ -7,7 +7,7 @@ import SeatMap from './SeatMap';
 import SeatTypeCard from './SeatTypeCard';
 import BookingStage from '../BookingStage/BookingStage';
 import StopWatch from './StopWatch';
-import UserOrder from './UserOrder';
+import UserOrder from './UserOrders/UserOrder';
 
 const mapStateToProps = state => {
   return {
