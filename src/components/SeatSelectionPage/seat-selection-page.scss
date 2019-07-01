@@ -17,7 +17,7 @@ $mediaWidthSmall: 460px;
   position: absolute;
   display: flex;
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   padding: auto;
   box-sizing: border-box;
   margin: auto;
@@ -47,7 +47,7 @@ $mediaWidthSmall: 460px;
 
   .seat_selection_page__wrapper {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 
     margin: 0 auto;
     display: flex;
@@ -109,7 +109,7 @@ $mediaWidthSmall: 460px;
       display: flex;
       flex-direction: column;
       flex-basis: 100%;
-      height: 100%;
+      min-height: 100%;
       box-sizing: border-box;
 
       .body__seance_info {
@@ -231,7 +231,7 @@ $mediaWidthSmall: 460px;
         justify-content: center;
         margin: 10px;
         height: max-content;
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
         @media (max-width: $mediaWidthMedium) {
           flex-direction: column;
         }
@@ -295,6 +295,10 @@ $mediaWidthSmall: 460px;
                   content: 'VIP';
                   position: absolute;
                   bottom: 0;
+                }
+
+                @media (max-width: $mediaWidthSmall) {
+                  height: 40%;
                 }
               }
 
@@ -403,6 +407,7 @@ $mediaWidthSmall: 460px;
       .seats__seats_info {
         flex-basis: 30%;
         display: flex;
+        height: max-content;
         flex-direction: column;
         align-items: center;
         padding: 0 5%;
@@ -422,7 +427,7 @@ $mediaWidthSmall: 460px;
         }
 
         .oreder_features {
-          height: 30px;
+          height: 40px;
           width: 100%;
           display: flex;
           flex-direction: column;
@@ -431,7 +436,7 @@ $mediaWidthSmall: 460px;
           .invisible_input {
             display: block;
             width: 100%;
-            height: 30px;
+            height: 40px;
             flex-basis: 100%;
             position: absolute;
             top: 0;
@@ -482,8 +487,9 @@ $mediaWidthSmall: 460px;
             z-index: 1;
             position: absolute;
             display: none;
+            height: max-content;
             flex-direction: column;
-            top: 30px;
+            top: 40px;
             left: 0;
             opacity: 0;
             transition: opacity 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
@@ -522,6 +528,7 @@ $mediaWidthSmall: 460px;
         .seat_type {
           width: 100%;
           display: flex;
+          height: max-content;
           box-sizing: border-box;
           position: relative;
           padding: 10px;

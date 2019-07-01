@@ -44,14 +44,16 @@ class ConnectedUserOrder extends Component {
     return (
       <div className="seats__seats_info">
         <h2>{`${this.props.userName}\`s order`}</h2>
-        <div className="oreder_features">
-          <input type="checkbox" className="invisible_input" />
-          <div className="features_header">
-            <span>Select some features</span>
-            <span className="icon-circle-down"></span>
+        {!!this.props.features.length && (
+          <div className="oreder_features">
+            <input type="checkbox" className="invisible_input" />
+            <div className="features_header">
+              <span>Select some features</span>
+              <span className="icon-circle-down"></span>
+            </div>
+            <div className="features_menu">{this.renderFeatures()}</div>
           </div>
-          <div className="features_menu">{this.renderFeatures()}</div>
-        </div>
+        )}
         {this.renderOreders(this.props.blockedSeats)}
         {this.renderOrderFeatures(this.props.orderFetures)}
         <div className="total_price">
