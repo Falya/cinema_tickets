@@ -22,7 +22,7 @@ class ConnectedRegLogGroup extends Component {
   render() {
     return this.props.userName ? (
       <div className="reg-log-group">
-        <Link to="/profile" className="reg-log-link">
+        <Link to="/user/profile" className="reg-log-link">
           <span className="icon-user"></span>
           {this.props.userName}
         </Link>

@@ -1,8 +1,5 @@
 @import '../../style/variables';
 
-$mediaWidthMedium: 800px;
-$mediaWidthSmall: 460px;
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -18,11 +15,13 @@ $mediaWidthSmall: 460px;
   display: flex;
   width: 100%;
   min-height: 100vh;
+  height: max-content;
   padding: auto;
   box-sizing: border-box;
   margin: auto;
   top: 0;
   z-index: 2;
+  font-weight: 400;
   background: rgba($color: $secondColor, $alpha: 0.9);
 
   @media (max-width: 1400px) {
@@ -47,8 +46,7 @@ $mediaWidthSmall: 460px;
 
   .seat_selection_page__wrapper {
     width: 100%;
-    min-height: 100%;
-
+    min-height: 100vh;
     margin: 0 auto;
     display: flex;
     max-width: $maxHeaderWidth;
@@ -94,6 +92,7 @@ $mediaWidthSmall: 460px;
           margin: 0;
           z-index: 1;
           font-size: 1.2em;
+          font-weight: 700;
         }
       }
       @media screen and (max-width: $mediaWidthMedium) {
@@ -109,8 +108,8 @@ $mediaWidthSmall: 460px;
       display: flex;
       flex-direction: column;
       flex-basis: 100%;
-      min-height: 100%;
       box-sizing: border-box;
+      justify-content: start;
 
       .body__seance_info {
         display: flex;
@@ -175,11 +174,13 @@ $mediaWidthSmall: 460px;
               display: flex;
               align-items: baseline;
               margin-bottom: 10px;
+              font-weight: 300;
             }
 
             .cinema_info__format {
               display: flex;
               align-items: baseline;
+              font-weight: 300;
 
               .movie_age {
                 margin-left: 10px;
@@ -199,6 +200,7 @@ $mediaWidthSmall: 460px;
           align-items: baseline;
           flex-basis: 30%;
           padding: 0 10px;
+          font-weight: 300;
         }
 
         @media (max-width: $mediaWidthMedium) {
@@ -231,7 +233,7 @@ $mediaWidthSmall: 460px;
         justify-content: center;
         margin: 10px;
         height: max-content;
-        // flex-wrap: wrap;
+
         @media (max-width: $mediaWidthMedium) {
           flex-direction: column;
         }
@@ -257,6 +259,7 @@ $mediaWidthSmall: 460px;
             text-align: center;
             padding-bottom: 50px;
             color: $thirdColorText;
+            font-weight: 500;
           }
           .seat_map {
             grid-area: seat_map;
@@ -280,6 +283,7 @@ $mediaWidthSmall: 460px;
               margin: 5px 5%;
               cursor: pointer;
               color: $mainColorText;
+              font-weight: 300;
               user-select: none;
               transition: border-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 
@@ -380,6 +384,7 @@ $mediaWidthSmall: 460px;
             grid-template-columns: repeat(3, 30px 1fr);
             grid-template-rows: 30px;
             user-select: none;
+            font-weight: 300;
 
             span {
               color: $secondColorText;
@@ -424,6 +429,7 @@ $mediaWidthSmall: 460px;
         h2 {
           color: $mainColorText;
           align-self: flex-start;
+          font-weight: 400;
         }
 
         .oreder_features {
@@ -432,6 +438,7 @@ $mediaWidthSmall: 460px;
           display: flex;
           flex-direction: column;
           position: relative;
+          font-weight: 300;
 
           .invisible_input {
             display: block;
@@ -472,6 +479,7 @@ $mediaWidthSmall: 460px;
             padding: 0 5px;
             color: $mainColorText;
             border-radius: $borderRadius;
+            font-weight: 400;
 
             span {
               font-size: 0.8em;
@@ -525,130 +533,6 @@ $mediaWidthSmall: 460px;
           }
         }
 
-        .seat_type {
-          width: 100%;
-          display: flex;
-          height: max-content;
-          box-sizing: border-box;
-          position: relative;
-          padding: 10px;
-          border-top: 1px solid $lineColorGray;
-          border-bottom: 1px solid $lineColorGray;
-
-          .icon-cross {
-            position: absolute;
-            right: 5px;
-            bottom: 5px;
-            color: $lineColorGray;
-            font-size: 0.8em;
-            cursor: pointer;
-
-            &:hover {
-              color: $lineColor;
-            }
-
-            &:active {
-              color: $lineColorDark;
-            }
-          }
-
-          .seat_image {
-            width: 80px;
-            padding: 5px 10px 5px 0;
-            color: $lineColorGray;
-            align-items: center;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: 1fr;
-
-            .seat_size {
-              border: $lineColorGray 2px solid;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 35px;
-              box-sizing: border-box;
-              border-radius: 2px 2px 10px 10px;
-              text-align: center;
-              grid-column-start: 2;
-              grid-column-end: span 2;
-
-              &.double {
-                grid-column-start: 1;
-                grid-column-end: span 4;
-              }
-
-              &.vip {
-                grid-column-start: 1;
-                grid-column-end: span 4;
-                border-color: rgba($color: $exceptionColor, $alpha: 0.8);
-                height: 40px;
-                width: 70%;
-                margin: auto;
-
-                &::after {
-                  content: 'VIP';
-                }
-              }
-
-              &.selected_seat {
-                background-color: rgba($color: $lineColorDark, $alpha: 0.5);
-              }
-            }
-
-            @media (max-width: 970px) {
-              width: 40px;
-
-              .seat_size {
-                height: 15px;
-              }
-            }
-            @media (max-width: $mediaWidthMedium) {
-              width: 80px;
-
-              .seat_size {
-                height: 35px;
-              }
-            }
-          }
-
-          & .seat_type__head {
-            flex-basis: 80%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            color: $secondColorText;
-
-            .seat_head_info {
-              display: flex;
-              justify-content: space-between;
-
-              h3 {
-                color: $thirdColorText;
-                font-size: 1.2em;
-              }
-
-              .seat_price {
-                font-weight: bold;
-              }
-
-              .order_info {
-                .order_info__seat {
-                  span {
-                    color: $lineColorDark;
-                  }
-                }
-              }
-            }
-
-            .seat_description {
-              color: $thirdColorText;
-              font-size: small;
-              font-weight: lighter;
-            }
-          }
-        }
-
         .total_price {
           padding: 10px;
           background: $secondColor;
@@ -660,10 +544,12 @@ $mediaWidthSmall: 460px;
           h3 {
             color: $mainColorText;
             margin: 0;
+            font-weight: 300;
           }
 
           span {
             color: $lineColor;
+            font-weight: 500;
           }
         }
 
@@ -681,8 +567,13 @@ $mediaWidthSmall: 460px;
           span {
             font-size: 1.2em;
             letter-spacing: 0.1em;
+            font-weight: 300;
           }
         }
+      }
+
+      .bottom_element {
+        margin-top: auto;
       }
     }
   }
@@ -696,22 +587,27 @@ $mediaWidthSmall: 460px;
     .ant-popover-title {
       color: $secondColorText;
       font-size: 1.1em;
+      font-weight: 400;
     }
     .ant-popover-inner-content {
       color: $secondColorText;
+      font-weight: 300;
     }
   }
 }
 
 .block_timer {
+  // margin-top: auto;
   display: flex;
   padding: 10px;
   justify-content: center;
   align-items: baseline;
   color: $lineColorLight;
+  font-weight: 300;
 
   .time {
     margin: 0 5px;
     color: $lineColor;
+    font-weight: 400;
   }
 }

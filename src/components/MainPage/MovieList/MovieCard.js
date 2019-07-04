@@ -7,10 +7,9 @@ class MovieCard extends Component {
     super(props);
 
     this.state = {
-      id: this.props.movie._id
+      id: this.props.movie._id,
     };
   }
-
 
   render() {
     return (
@@ -19,7 +18,7 @@ class MovieCard extends Component {
           <figure>
             <div className="image-wrapper">
               <Link to={`/schedule/movie/${this.props.movie._id}`}>
-              <div className="card-overlay" />
+                <div className="card-overlay" />
               </Link>
               <img src={this.props.movie.poster} alt="" />
             </div>
@@ -31,12 +30,11 @@ class MovieCard extends Component {
               <span>{this.props.movie.genre.join(', ')}</span>
             </figcaption>
           </figure>
-          <Link className='button-link' to={`/schedule/movie/${this.props.movie._id}`}>
-          <Button size="normal" ghost>
-            booking
-          </Button>
+          <Link className="button-link" to={`/schedule/movie/${this.props.movie._id}`}>
+            <Button size="normal" ghost>
+              booking
+            </Button>
           </Link>
-
         </div>
       </div>
     );

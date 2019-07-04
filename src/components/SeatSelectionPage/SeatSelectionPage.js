@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 import './seat-selection-page.scss';
 import { setBlur, setSeanceId, getMovieApi, setBookingStage } from '../../redux/actions/actions';
 import SeatMap from './SeatMap';
@@ -8,6 +8,8 @@ import SeatTypeCard from './SeatTypeCard';
 import BookingStage from '../BookingStage/BookingStage';
 import StopWatch from './StopWatch';
 import UserOrder from './UserOrders/UserOrder';
+import PaymentPage from '../PaymentPage/PaymentPage';
+import SuccessPaymentPage from './SuccessPaymentPage/SuccessPaymentPage';
 
 const mapStateToProps = state => {
   return {
@@ -130,19 +132,31 @@ class ConnectedSeatSelectionPage extends Component {
                 </div>
               </div>
 
-              <div className="body__seats">
-                <SeatMap />
-                {!seanceInfo.blockedSeatsByUser[0] ? (
-                  <div className="seats__seats_info">
-                    <h2>Types of seats</h2>
-                    {this.mapSeatTypes()}
-                  </div>
-                ) : (
-                  <UserOrder />
-                )}
+              <Route exact path="/schedule/movie/:movieId/seance/:seanceId/payment" component={PaymentPage} />
+              <Route
+                exact
+                path="/schedule/movie/:movieId/seance/:seanceId"
+                render={() => {
+                  return (
+                    <div className="body__seats">
+                      <SeatMap />
+                      {!seanceInfo.blockedSeatsByUser[0] ? (
+                        <div className="seats__seats_info">
+                          <h2>Types of seats</h2>
+                          {this.mapSeatTypes()}
+                        </div>
+                      ) : (
+                        <UserOrder />
+                      )}
+                    </div>
+                  );
+                }}
+              />
+              <Route path="/schedule/movie/:movieId/seance/:seanceId/payment/accepted" component={SuccessPaymentPage} />
+              <div className="bottom_element">
+                {seanceInfo.blockedSeatsByUser[0] && <StopWatch />}
+                <BookingStage />
               </div>
-              {seanceInfo.blockedSeatsByUser[0] && <StopWatch />}
-              <BookingStage />
             </div>
           )}
         </div>

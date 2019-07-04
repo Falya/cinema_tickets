@@ -11,6 +11,7 @@ const mapStateToProps = state => {
     userName: state.userNameReducer.userName,
     features: state.seanceReducer.seanceInfo.cinemaInfo.features,
     orderFetures: state.orderReducer.order.features,
+    totalPrice: state.orderReducer.order.totalPrice,
   };
 };
 
@@ -33,11 +34,8 @@ class ConnectedUserOrder extends Component {
     return this.props.features.map(feature => <FeaturesSelector feature={feature} />);
   };
 
-  sumPrice = orders => {
-    return orders.reduce((sum, order) => {
-      sum += order.price;
-      return sum;
-    }, 0);
+  onPayClick = () => {
+    this.props.history.push(`${this.props.history.location.pathname}/payment`);
   };
 
   render() {
@@ -58,10 +56,12 @@ class ConnectedUserOrder extends Component {
         {this.renderOrderFeatures(this.props.orderFetures)}
         <div className="total_price">
           <h3>The total price is:</h3>
-          <span>{this.sumPrice(this.props.blockedSeats) + this.sumPrice(this.props.orderFetures)} BYN</span>
+          <span>{this.props.totalPrice} BYN</span>
         </div>
 
-        <Button ghost>Accept and pay</Button>
+        <Button ghost onClick={this.onPayClick}>
+          Accept and pay
+        </Button>
       </div>
     );
   }

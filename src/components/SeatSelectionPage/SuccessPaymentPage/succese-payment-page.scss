@@ -1,0 +1,49 @@
+@import '../../../style/variables';
+
+.success_payment_page__payed_order {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  align-items: center;
+  height: 100%;
+  max-height: 500px;
+  justify-content: space-between;
+
+  .payed_order__header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), $lineColorDark, rgba(0, 0, 0, 0));
+
+    h1 {
+      margin: 0;
+      color: $mainColorText;
+      font-size: 2em;
+      font-weight: 900;
+    }
+  }
+
+  .succes_message {
+    text-align: center;
+    padding: 10px;
+    font-size: 2em;
+    color: $mainColorText;
+  }
+
+  .ant-btn {
+    border-radius: $borderRadius;
+    height: max-content;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+
+    span {
+      font-size: 1.2em;
+      letter-spacing: 0.1em;
+      font-weight: 400;
+    }
+  }
+}

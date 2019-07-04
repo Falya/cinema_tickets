@@ -13,8 +13,12 @@ class ConnectedFeaturesSelector extends Component {
   constructor(props) {
     super(props);
 
+    const [feature] = this.props.features.filter(item => item.product === this.props.feature.product);
+
+    const amount = feature ? feature.amount : 0;
+
     this.state = {
-      inputValue: 0,
+      inputValue: amount,
     };
   }
 
@@ -37,6 +41,7 @@ class ConnectedFeaturesSelector extends Component {
   render() {
     const { inputValue } = this.state;
     const { feature } = this.props;
+
     return (
       <div className="feature_item">
         <div className="feature_name">{feature.product}</div>

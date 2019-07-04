@@ -208,7 +208,7 @@ $mediaWidthSmall: 460px;
 
             span {
               color: $secondColorText;
-              font-weight: 500;
+              font-weight: 300;
             }
           }
         }
@@ -219,12 +219,12 @@ $mediaWidthSmall: 460px;
           display: flex;
           flex-direction: column;
           box-sizing: border-box;
-          border-top: 3px solid $lineColorGray;
-          border-bottom: 3px solid $lineColorGray;
+          border-top: 2px solid $lineColorGray;
+          border-bottom: 2px solid $lineColorGray;
 
           .seances__card {
             display: flex;
-            border-bottom: 3px solid $lineColorGray;
+            border-bottom: 2px solid $lineColorGray;
             &:last-child {
               border-bottom: none;
             }
@@ -235,6 +235,7 @@ $mediaWidthSmall: 460px;
               flex-direction: column;
               padding: 10px;
               color: $secondColorText;
+              font-weight: 300;
 
               h3 {
                 color: $mainColorText;
@@ -273,12 +274,14 @@ $mediaWidthSmall: 460px;
                 .card__format {
                   margin: auto;
                   color: $thirdColorText;
+                  font-weight: 300;
                 }
 
                 .card__hall {
                   margin: auto;
                   color: $secondColorText;
                   font-size: 0.9em;
+                  font-weight: 100;
                 }
               }
             }
@@ -441,6 +444,7 @@ $mediaWidthSmall: 460px;
           display: flex;
           flex-direction: column;
           color: $thirdColorText;
+          font-weight: 400;
 
           h3 {
             color: $thirdColorText;

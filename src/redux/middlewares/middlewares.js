@@ -56,4 +56,34 @@ function onSeanceIdSet({ dispatch }) {
   };
 }
 
-export default [isLoadingMiddleware, onMovieIdset, onSeanceIdSet];
+function setTotalSum({ getState, dispatch }) {
+  return function(next) {
+    return function(action) {
+      if (action.type === actionTypes.SEANCE_LOADED) {
+        const { features } = getState().orderReducer.order;
+        const totalSum = [...features, ...action.payload.blockedSeatsByUser].reduce((sum, order) => {
+          sum += order.price;
+          return sum;
+        }, 0);
+        dispatch({
+          type: actionTypes.SET_TOTAL_PRICE,
+          payload: totalSum,
+        });
+      }
+      if (action.type === actionTypes.SET_ORDER_FEATURE) {
+        const { blockedSeatsByUser } = getState().seanceReducer.seanceInfo;
+        const totalSum = [...blockedSeatsByUser, ...action.payload].reduce((sum, order) => {
+          sum += order.price;
+          return sum;
+        }, 0);
+        dispatch({
+          type: actionTypes.SET_TOTAL_PRICE,
+          payload: totalSum,
+        });
+      }
+      return next(action);
+    };
+  };
+}
+
+export default [isLoadingMiddleware, onMovieIdset, onSeanceIdSet, setTotalSum];
