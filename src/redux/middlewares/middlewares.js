@@ -1,25 +1,32 @@
 import { actionTypes } from '../constants/action-types';
 
-function isLoadingMiddleware({ dispatch }) {
+function isLoadingMiddleware({ getState, dispatch }) {
   return function(next) {
     return function(action) {
+      const { loading } = getState().loadingStateReducer;
       switch (action.type) {
         case actionTypes.MOVIE_REQUESTED:
         case actionTypes.SEANCES_REQUESTED:
         case actionTypes.SEANCE_REQUESTED:
-          dispatch({
-            type: actionTypes.SET_LOADING_STATE,
-            payload: true,
-          });
+        case actionTypes.MOVIES_REQUESTED:
+          if (!loading) {
+            dispatch({
+              type: actionTypes.SET_LOADING_STATE,
+              payload: true,
+            });
+          }
           break;
 
         case actionTypes.MOVIE_LOADED:
         case actionTypes.SEANCES_LOADED:
         case actionTypes.SEANCE_LOADED:
-          dispatch({
-            type: actionTypes.SET_LOADING_STATE,
-            payload: false,
-          });
+        case actionTypes.MOVIES_LOADED:
+          if (loading) {
+            dispatch({
+              type: actionTypes.SET_LOADING_STATE,
+              payload: false,
+            });
+          }
           break;
       }
 

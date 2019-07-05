@@ -30,4 +30,14 @@ body {
       filter: blur(5px);
     }
   }
+
+  .page_spiner {
+    position: fixed;
+    top: calc(50% - 7.5vh);
+    left: calc(50% - 7.5vh);
+    font-size: 15vh;
+    color: $lineColor;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+  }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route } from 'react-router-dom';
 import './seat-selection-page.scss';
-import { setBlur, setSeanceId, getMovieApi, setBookingStage } from '../../redux/actions/actions';
+import { setBlur, setSeanceId, getMovieApi, setBookingStage, getSeanceApi } from '../../redux/actions/actions';
 import SeatMap from './SeatMap';
 import SeatTypeCard from './SeatTypeCard';
 import BookingStage from '../BookingStage/BookingStage';
@@ -16,8 +16,11 @@ const mapStateToProps = state => {
     loading: state.loadingStateReducer.loading,
     movie: state.movieReducer.movie,
     seanceInfo: state.seanceReducer.seanceInfo,
+    userName: state.userNameReducer.userName,
   };
 };
+
+const seanceIdRegexp = /^\/schedule\/movie\/((?:[^\/]+?))\/seance\/((?:[^\/]+?))(?:\/(?=$))?(?:\/login|\/registration)?$/;
 
 class ConnectedSeatSelectionPage extends Component {
   constructor(props) {
@@ -80,6 +83,13 @@ class ConnectedSeatSelectionPage extends Component {
     this.props.setBlur(false);
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.userName !== nextProps.userName) {
+      this.props.getSeanceApi(this.props.match.params.seanceId);
+    }
+    return nextProps !== this.props;
+  }
+
   render() {
     const { movie, loading, seanceInfo } = this.props;
     return (
@@ -135,8 +145,9 @@ class ConnectedSeatSelectionPage extends Component {
               <Route exact path="/schedule/movie/:movieId/seance/:seanceId/payment" component={PaymentPage} />
               <Route
                 exact
-                path="/schedule/movie/:movieId/seance/:seanceId"
-                render={() => {
+                path={seanceIdRegexp}
+                render={props => {
+                  console.log(props);
                   return (
                     <div className="body__seats">
                       <SeatMap />
@@ -167,7 +178,7 @@ class ConnectedSeatSelectionPage extends Component {
 
 const SeatSelectionPage = connect(
   mapStateToProps,
-  { setBlur, setSeanceId, getMovieApi, setBookingStage }
+  { setBlur, setSeanceId, getMovieApi, setBookingStage, getSeanceApi }
 )(ConnectedSeatSelectionPage);
 
 export default withRouter(SeatSelectionPage);

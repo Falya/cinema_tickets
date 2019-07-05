@@ -8,6 +8,7 @@ import MainPage from '../views/MainPage';
 import BookingPage from '../views/BookingPage';
 import SeatSelectionPage from './SeatSelectionPage/SeatSelectionPage';
 import { getUserName } from '../redux/actions/actions';
+import UserProfilePage from '../views/UserProfilePage/UserProfilePage';
 
 const mapStateToProps = state => {
   return { isBlur: state.blurReducer.isBlur, userName: state.userNameReducer.userName };
@@ -46,7 +47,8 @@ class ConnectedApp extends Component {
           <Switch>
             <Route exact path="/schedule/movie/:movieId" component={BookingPage} />
             <Route path="/schedule/movie/:movieId/seance/:seanceId" component={SeatSelectionPage} />
-            <Route path="/schedule/movie/:movieId/seance/:seanceId/authorize" component={SeatSelectionPage} />
+            {/* <Route path="/schedule/movie/:movieId/seance/:seanceId/authorize" component={SeatSelectionPage} /> */}
+            <Route exact path="/user/profile" component={UserProfilePage} />
           </Switch>
           <Route path={log} component={LoginForm} />
           <Route path={reg} component={RegistrationForm} />
