@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import './user-profile-page.scss';
 import { withRouter } from 'react-router-dom';
 import { Avatar, Card, Skeleton, Tabs } from 'antd';
+import TicketList from './TicketList';
+import { getUserProfileApi } from '../../redux/actions/actions';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -10,6 +12,7 @@ const { TabPane } = Tabs;
 const mapStateToProps = state => {
   return {
     loading: state.loadingStateReducer.loading,
+    userProfile: state.userProfileReducer.userProfile,
     userName: state.userNameReducer.userName,
   };
 };
@@ -27,12 +30,22 @@ class ConnectedUserProfilePage extends Component {
     this.props.history.goBack();
   };
 
-  onChange = key => {
-    console.log(key);
+  filterSeances = condition => {
+    return this.props.userProfile.orders.filter(order => {
+      const seanceDate = new Date(order.date);
+      if (condition === 'feature') {
+        return Date.now() < seanceDate.getTime();
+      }
+      return Date.now() > seanceDate.getTime();
+    });
   };
 
+  componentDidMount() {
+    this.props.getUserProfileApi();
+  }
+
   render() {
-    const { loading, userName } = this.props;
+    const { loading, userProfile, userName } = this.props;
     return (
       <section className="user_profile">
         {loading && <span className="icon-spinner2 page_spiner" />}
@@ -51,40 +64,41 @@ class ConnectedUserProfilePage extends Component {
             </div>
           </div>
           <div className="user_profile__body">
-            <Tabs
-              defaultActiveKey="1"
-              className="user_profile__tabs"
-              tabBarStyle={{ display: 'flex', justifyContent: 'center' }}
-              onChange={this.onChange}>
-              <TabPane tab="Future tickets" key="1">
-                <div className="ticket"></div>
-              </TabPane>
-              <TabPane tab="Past tickets" key="2">
-                Content of Tab Pane 2
-              </TabPane>
-              <TabPane tab="All tickets" key="3">
-                Content of Tab Pane 3
-              </TabPane>
-            </Tabs>
             <Card bordered={false} className="user_info">
               <Skeleton loading={loading} avatar active>
                 <Meta avatar={<Avatar shape="circle" size={70} icon="user" />} title={userName} />
-                <div className="user_info_stat">
-                  <span className="user_email">
-                    Email: <strong>ergvgdf@sdf.com</strong>
-                  </span>
-                  <span>
-                    Registred at: <strong>12.12.2018</strong>
-                  </span>
-                  <span>
-                    Bought tickets: <strong>12</strong>
-                  </span>
-                  <span>
-                    Last purchase: <strong>12.12.2019</strong>
-                  </span>
-                </div>
+                {userProfile && (
+                  <div className="user_info_stat">
+                    <span className="user_email">
+                      Email: <strong>{userProfile.email}</strong>
+                    </span>
+                    <span>
+                      Registred at: <strong>{new Date(userProfile.registredAt).toLocaleDateString()}</strong>
+                    </span>
+                    <span>
+                      Bought tickets: <strong>{userProfile.bought}</strong>
+                    </span>
+                    <span>
+                      Last purchase: <strong>{new Date(userProfile.lastPurchase).toLocaleString()}</strong>
+                    </span>
+                  </div>
+                )}
               </Skeleton>
             </Card>
+            <Tabs
+              defaultActiveKey="1"
+              className="user_profile__tabs"
+              tabBarStyle={{ display: 'flex', justifyContent: 'center' }}>
+              <TabPane tab="Future tickets" key="1">
+                {userProfile && <TicketList orders={this.filterSeances('feature')} />}
+              </TabPane>
+              <TabPane tab="Past tickets" key="2">
+                {userProfile && <TicketList orders={this.filterSeances('past')} />}
+              </TabPane>
+              <TabPane tab="All tickets" key="3">
+                {userProfile && <TicketList orders={userProfile.orders} />}
+              </TabPane>
+            </Tabs>
           </div>
         </div>
       </section>
@@ -92,6 +106,9 @@ class ConnectedUserProfilePage extends Component {
   }
 }
 
-const UserProfilePage = connect(mapStateToProps)(ConnectedUserProfilePage);
+const UserProfilePage = connect(
+  mapStateToProps,
+  { getUserProfileApi }
+)(ConnectedUserProfilePage);
 
 export default withRouter(UserProfilePage);

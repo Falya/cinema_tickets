@@ -9,6 +9,7 @@ import seancesReducer from './seancesReducer';
 import seanceReducer from './seanceReducer';
 import userNameReducer from './userNameReducer';
 import orderReducer from './orderReducer';
+import userProfileReducer from './userProfileReducer';
 
 export default combineReducers({
   blurReducer,
@@ -21,4 +22,5 @@ export default combineReducers({
   seanceReducer,
   userNameReducer,
   orderReducer,
+  userProfileReducer,
 });
