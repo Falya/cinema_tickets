@@ -38,7 +38,7 @@ function isLoadingMiddleware({ getState, dispatch }) {
 function onMovieIdset({ dispatch }) {
   return function(next) {
     return function(action) {
-      if (action.type === actionTypes.SET_MOVIE_ID) {
+      if (action.type === actionTypes.SET_MOVIE_ID && action.payload) {
         dispatch({
           type: actionTypes.FILTERS_REQUESTED,
           payload: { movieId: action.payload },
