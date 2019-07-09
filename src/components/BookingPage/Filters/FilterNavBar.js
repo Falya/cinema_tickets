@@ -24,7 +24,12 @@ class ConnectedFilterNavBar extends Component {
 
     this.props.getFiltersApi(params);
     const date = this.getCurrentDate();
-    this.props.setFilterParams({ ...this.props.parameters, city, date, movieTheaterId: 'All cinemas' });
+    this.props.setFilterParams({
+      ...this.props.parameters,
+      city,
+      date,
+      movieTheaterId: 'All cinemas',
+    });
   };
 
   setDate = date => {
@@ -42,7 +47,11 @@ class ConnectedFilterNavBar extends Component {
 
     this.props.getFiltersApi(params);
     const date = this.getCurrentDate();
-    this.props.setFilterParams({ ...this.props.parameters, movieTheaterId, date });
+    this.props.setFilterParams({
+      ...this.props.parameters,
+      movieTheaterId,
+      date,
+    });
   };
 
   setMovie = movieId => {
@@ -79,7 +88,11 @@ class ConnectedFilterNavBar extends Component {
   formatDate = () => {
     const { date } = this.props.parameters;
     const dateObj = new Date(date);
-    return dateObj.toLocaleDateString('en', { month: 'long', day: 'numeric', weekday: 'long' });
+    return dateObj.toLocaleDateString('en', {
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+    });
   };
 
   render() {

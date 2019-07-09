@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './main-page.scss';
-import MovieList from './MovieList/MovieList';
+import '../components/MainPage/main-page.scss';
+import MovieList from '../components/MainPage/MovieList/MovieList';
 
 class MainPage extends Component {
   constructor(props) {

@@ -2,48 +2,62 @@ import { actionTypes } from '../constants/action-types';
 
 export function getMoviesApi() {
   return {
-    type: actionTypes.MOVIES_REQUESTED
+    type: actionTypes.MOVIES_REQUESTED,
   };
 }
 
 export function getMovieApi(payload) {
   return {
     type: actionTypes.MOVIE_REQUESTED,
-    payload
+    payload,
   };
 }
 
 export function getFiltersApi(payload) {
   return {
     type: actionTypes.FILTERS_REQUESTED,
-    payload
+    payload,
   };
 }
 
 export function getSeancesApi(payload) {
   return {
     type: actionTypes.SEANCES_REQUESTED,
-    payload
+    payload,
   };
 }
 
 export function setMovieId(payload) {
   return {
     type: actionTypes.SET_MOVIE_ID,
-    payload
+    payload,
   };
 }
 
 export function setFilterParams(payload) {
   return {
     type: actionTypes.SET_FILTER_PARAMS,
-    payload
+    payload,
   };
 }
 
 export function setBlur(payload) {
   return {
     type: actionTypes.SET_BLUR,
-    payload
+    payload,
+  };
+}
+
+export function setSeanceId(payload) {
+  return {
+    type: actionTypes.SET_SEANCE_ID,
+    payload,
+  };
+}
+
+export function setBookingStage(payload) {
+  return {
+    type: actionTypes.SET_BOOKING_STAGE,
+    payload,
   };
 }

@@ -6,6 +6,7 @@ import loadingStateReducer from './loadingStateReducer';
 import movieReducer from './movieReducer';
 import moviesReducer from './moviesReducer';
 import seancesReducer from './seancesReducer';
+import seanceReducer from './seanceReducer';
 
 export default combineReducers({
   blurReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   loadingStateReducer,
   movieReducer,
   moviesReducer,
-  seancesReducer
+  seancesReducer,
+  seanceReducer,
 });
