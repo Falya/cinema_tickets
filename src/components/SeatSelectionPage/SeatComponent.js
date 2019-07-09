@@ -33,7 +33,7 @@ class ConnectedSeatComponent extends Component {
     ];
   };
 
-  setSeatState = () => {
+  seatStateDefinition = () => {
     switch (this.props.seatState) {
       case 'blocked':
         return 'seat_blocked';
@@ -91,7 +91,7 @@ class ConnectedSeatComponent extends Component {
         content={this.makeContent()}
         mouseEnterDelay={0.2}>
         <div
-          className={`seat ${this.setSeatState()} ${this.props.seatType.toLowerCase()}`}
+          className={`seat ${this.seatStateDefinition()} ${this.props.seatType.toLowerCase()}`}
           style={this.props.style}
           onClick={this.onSeatClick}>
           {this.state.seatNumber}
