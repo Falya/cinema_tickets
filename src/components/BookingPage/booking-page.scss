@@ -119,7 +119,7 @@ $mediaWidthSmall: 460px;
           color: $lineColorLight;
           left: 5px;
           font-size: 1.2em;
-          top: auto;
+          top: 5px;
         }
 
         .filter__select {
@@ -149,7 +149,6 @@ $mediaWidthSmall: 460px;
           flex-basis: 100%;
           border-right: none;
         }
-
       }
     }
 

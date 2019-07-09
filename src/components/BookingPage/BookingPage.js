@@ -1,48 +1,33 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './booking-page.scss';
 import MovieTheaterSeances from './MovieTheaterSeances';
-import { getSeancesByMovieId, getMovieById } from '../../webAPI';
 import FilterNavBar from './Filters/FilterNavBar';
+import { getMovieApi, setMovieId, setBlur } from '../../redux/actions/actions';
 
-class BookingPage extends Component {
+const mapStateToProps = state => {
+  return {
+    loading: state.loadingStateReducer.loading,
+    movie: state.movieReducer.movie,
+    movieTheaters: state.seancesReducer.movieTheaters,
+    movieId: state.filterParamsReducer.filterParameters.movieId,
+  };
+};
+
+class ConnectedBookingPage extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      loading: true,
-      movie: null,
-      movieTheaters: null,
-      filterParameters: {
-        city: null,
-        movieTheaterId: 'All cinemas',
-        movieId: this.props.match.params.movieId,
-        features: null,
-        date: new Date().toISOString()
-      }
-    };
   }
 
   getMovie = movieId => {
-    getMovieById(movieId).then(movie => {
-      this.setState({ movie: movie });
-    });
-  };
-
-  getSeances = parameters => {
-    getSeancesByMovieId(parameters).then(theaters => {
-      this.setState({ movieTheaters: theaters, loading: false });
-    });
+    this.props.getMovieApi(movieId);
   };
 
   renderMovieTheaters = theaters => {
     return theaters.map(theater => {
       return <MovieTheaterSeances movieTheater={theater} key={theater._id} />;
     });
-  };
-
-  setFilterParameters = filterParameters => {
-    this.setState({ filterParameters });
   };
 
   onCloseButton = () => {
@@ -54,31 +39,32 @@ class BookingPage extends Component {
   };
 
   componentDidMount() {
+    this.props.setBlur(true);
+    this.props.setMovieId(this.props.match.params.movieId);
     this.getMovie(this.props.match.params.movieId);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    const isFilterParameterChanged = nextState.filterParameters !== this.state.filterParameters;
-    const isMovieIdChanged = nextState.filterParameters.movieId !== this.state.filterParameters.movieId;
+  componentWillUnmount() {
+    this.props.setBlur(false);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const isMovieIdChanged = nextProps.movieId !== this.props.movieId;
     const isLocationChanged = nextProps.location !== this.props.location;
     if (isMovieIdChanged) {
-      this.props.history.push(`/schedule/movie/${nextState.filterParameters.movieId}`);
-    }
-    if (isFilterParameterChanged || isLocationChanged) {
-      this.setState({ loading: true });
-      if (isLocationChanged) {
-        nextState.filterParameters.movieId = nextProps.match.params.movieId;
-        this.getMovie(nextProps.match.params.movieId);
-      }
-      this.getSeances(nextState.filterParameters);
-      return true;
+      this.props.history.push(`/schedule/movie/${nextProps.movieId}`);
     }
 
-    return nextState !== this.state;
+    if (isLocationChanged) {
+      this.getMovie(nextProps.match.params.movieId);
+      this.props.setMovieId(nextProps.match.params.movieId);
+    }
+
+    return nextProps !== this.props;
   }
 
   render() {
-    const { loading, movie, movieTheaters } = this.state;
+    const { loading, movie, movieTheaters } = this.props;
 
     return (
       <section className="booking_page">
@@ -97,7 +83,7 @@ class BookingPage extends Component {
               </div>
             </div>
           </div>
-          <FilterNavBar parameters={this.state.filterParameters} onChangeMethod={this.setFilterParameters} />
+          <FilterNavBar />
           {movie && (
             <div className="booking_page__body">
               <div className="body_left_container">
@@ -137,5 +123,10 @@ class BookingPage extends Component {
     );
   }
 }
+
+const BookingPage = connect(
+  mapStateToProps,
+  { getMovieApi, setMovieId, setBlur }
+)(ConnectedBookingPage);
 
 export default withRouter(BookingPage);
