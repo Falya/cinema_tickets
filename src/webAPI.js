@@ -155,3 +155,48 @@ export function unBlockSeat(params) {
 
   return fetch(url, options).then(res => res.json());
 }
+
+export function makePayment(params) {
+  const url = new URL(`${BASE_URL}/payment`);
+  const token = localStorage.getItem('token');
+  console.log(params);
+  if (!token) {
+    return Promise.reject({ succes: false, message: 'You aren`t logged' });
+  }
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+    body: JSON.stringify(params),
+  };
+
+  return fetch(url, options).then(res => {
+    console.log('response received');
+    console.dir(res);
+    return res.json();
+  });
+}
+
+export function getUserProfile() {
+  const url = new URL(`${BASE_URL}/user`);
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return Promise.reject({ succes: false, message: 'You aren`t logged' });
+  }
+
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+  };
+
+  return fetch(url, options)
+    .then(res => res.json())
+    .then(result => {
+      return result;
+    });
+}

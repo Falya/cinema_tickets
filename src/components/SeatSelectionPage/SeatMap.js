@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SeatMapRowRender from './SeatMapRowRender';
+import { setBookingStage } from '../../redux/actions/actions';
 
 const mapStateToProps = state => {
   return {
@@ -20,7 +21,7 @@ class ConnectedSeatMap extends Component {
   mapSize = () => {
     const [hall] = this.props.seanceInfo.cinemaInfo.halls;
 
-    const vipRows = hall.rows.filter(row => row.rowType === 'VIP');
+    const vipRows = hall.rows.filter(row => row.rowType === 'vip');
 
     return {
       gridTemplateColumns: `repeat(${this.state.maxLength}, minmax(15px, 1fr))`,
@@ -29,6 +30,7 @@ class ConnectedSeatMap extends Component {
   };
 
   componentDidMount() {
+    this.props.setBookingStage(1);
     const [hall] = this.props.seanceInfo.cinemaInfo.halls;
     const maxLength =
       [...hall.rows].sort((a, b) => {
@@ -59,6 +61,9 @@ class ConnectedSeatMap extends Component {
   }
 }
 
-const SeatMap = connect(mapStateToProps)(ConnectedSeatMap);
+const SeatMap = connect(
+  mapStateToProps,
+  { setBookingStage }
+)(ConnectedSeatMap);
 
 export default SeatMap;

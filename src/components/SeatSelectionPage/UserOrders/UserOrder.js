@@ -11,6 +11,7 @@ const mapStateToProps = state => {
     userName: state.userNameReducer.userName,
     features: state.seanceReducer.seanceInfo.cinemaInfo.features,
     orderFetures: state.orderReducer.order.features,
+    totalPrice: state.orderReducer.order.totalPrice,
   };
 };
 
@@ -33,33 +34,34 @@ class ConnectedUserOrder extends Component {
     return this.props.features.map(feature => <FeaturesSelector feature={feature} />);
   };
 
-  sumPrice = orders => {
-    return orders.reduce((sum, order) => {
-      sum += order.price;
-      return sum;
-    }, 0);
+  onPayClick = () => {
+    this.props.history.push(`${this.props.history.location.pathname}/payment`);
   };
 
   render() {
     return (
       <div className="seats__seats_info">
         <h2>{`${this.props.userName}\`s order`}</h2>
-        <div className="oreder_features">
-          <input type="checkbox" className="invisible_input" />
-          <div className="features_header">
-            <span>Select some features</span>
-            <span className="icon-circle-down"></span>
+        {!!this.props.features.length && (
+          <div className="oreder_features">
+            <input type="checkbox" className="invisible_input" />
+            <div className="features_header">
+              <span>Select some features</span>
+              <span className="icon-circle-down"></span>
+            </div>
+            <div className="features_menu">{this.renderFeatures()}</div>
           </div>
-          <div className="features_menu">{this.renderFeatures()}</div>
-        </div>
+        )}
         {this.renderOreders(this.props.blockedSeats)}
         {this.renderOrderFeatures(this.props.orderFetures)}
         <div className="total_price">
           <h3>The total price is:</h3>
-          <span>{this.sumPrice(this.props.blockedSeats) + this.sumPrice(this.props.orderFetures)} BYN</span>
+          <span>{this.props.totalPrice} BYN</span>
         </div>
 
-        <Button ghost>Accept and pay</Button>
+        <Button ghost onClick={this.onPayClick}>
+          Accept and pay
+        </Button>
       </div>
     );
   }

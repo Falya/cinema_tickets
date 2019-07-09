@@ -5,7 +5,7 @@ class SeanceCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      seanceId: this.props.seance._id
+      seanceId: this.props.seance._id,
     };
   }
 
