@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import MovieCard from './MovieCard';
 import { getMoviesApi } from '../../../redux/actions/actions';
 
-const mapStateTOProps = ({ moviesReducer }) => {
+const mapStateToProps = ({ moviesReducer }) => {
   return { movies: moviesReducer.movies };
 };
+
 class ConnectedMovieList extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +34,7 @@ class ConnectedMovieList extends Component {
 }
 
 const MovieList = connect(
-  mapStateTOProps,
+  mapStateToProps,
   { getMoviesApi }
 )(ConnectedMovieList);
 

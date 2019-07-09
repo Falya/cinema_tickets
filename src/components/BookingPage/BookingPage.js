@@ -35,7 +35,7 @@ class ConnectedBookingPage extends Component {
   };
 
   onBackButton = () => {
-    this.props.history.go(-2);
+    this.props.history.goBack();
   };
 
   componentDidMount() {
