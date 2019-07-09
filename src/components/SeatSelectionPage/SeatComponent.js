@@ -22,7 +22,7 @@ class SeatComponent extends Component {
     ];
   };
 
-  setSeatState = () => {
+  seatStateDefinition = () => {
     switch (this.props.seatState) {
       case 'blocked':
         return 'seat_blocked';
@@ -42,7 +42,7 @@ class SeatComponent extends Component {
         overlayClassName="tooltip_overlay"
         content={this.makeContent()}
         mouseEnterDelay={0.2}>
-        <div className={`seat ${this.setSeatState()}`} style={this.props.style}>
+        <div className={`seat ${this.seatStateDefinition()}`} style={this.props.style}>
           {this.state.seatNumber}
         </div>
       </Popover>

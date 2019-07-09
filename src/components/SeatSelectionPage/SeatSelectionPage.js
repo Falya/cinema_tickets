@@ -56,7 +56,7 @@ class ConnectedSeatSelectionPage extends Component {
     return `${formatedDate} / ${startTime} - ${endTime}`;
   };
 
-  mapSeatTypes = () => {
+  rowTypeDefinition = () => {
     const types = new Map();
     const [hall] = this.props.seanceInfo.cinemaInfo.halls;
     hall.rows.map(row => types.set(row.rowType, row));
@@ -133,7 +133,7 @@ class ConnectedSeatSelectionPage extends Component {
                 <SeatMap />
                 <div className="seats__seats_info">
                   <h2>Types of seats</h2>
-                  {this.mapSeatTypes()}
+                  {this.rowTypeDefinition()}
                 </div>
               </div>
               <StopWatch time={Date.now()} />
