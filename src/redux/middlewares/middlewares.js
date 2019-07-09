@@ -35,7 +35,7 @@ function isLoadingMiddleware({ getState, dispatch }) {
   };
 }
 
-function onMovieIdset({ dispatch }) {
+function onMovieIdSet({ dispatch }) {
   return function(next) {
     return function(action) {
       if (action.type === actionTypes.SET_MOVIE_ID) {
@@ -56,6 +56,7 @@ function onSeanceIdSet({ dispatch }) {
         dispatch({
           type: actionTypes.SEANCE_REQUESTED,
           payload: { seanceId: action.payload },
+
         });
       }
       return next(action);
