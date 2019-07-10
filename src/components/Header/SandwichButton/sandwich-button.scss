@@ -2,10 +2,10 @@
 
 @keyframes slide {
   from {
-    width: 0;
+    height: 0;
   }
   to {
-    width: 280px;
+    height: max-content;
     padding: 40px;
     padding-top: 125px;
   }
@@ -83,8 +83,9 @@
   .menu {
     box-sizing: border-box;
     position: absolute;
-    width: 0;
-    left: -230px;
+    width: 280px;
+    height: 0;
+    left: -232px;
     top: -30px;
     padding: 0;
     overflow: hidden;
@@ -93,7 +94,7 @@
 
     -webkit-font-smoothing: antialiased;
     transform-origin: 0% 0%;
-    transform: translate(100vw, 0);
+    transform: translate(0, 10px);
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 
     .reg-log-group {

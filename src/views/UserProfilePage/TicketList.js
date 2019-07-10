@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, List } from 'antd';
+import { Collapse, List, Empty } from 'antd';
 import TicketCard from './TicketCard';
 const { Panel } = Collapse;
 
@@ -44,11 +44,11 @@ class TicketList extends Component {
   };
 
   render() {
-    return (
-      <Collapse bordered={false} accordion className="tickets_list">
+    return this.props.orders.length ? (
+      <Collapse bordered={true} accordion className="tickets_list">
         {this.props.orders.map((seance, index) => {
           return (
-            <Panel header={this.renderSeance(seance)} key={index} className="ticket_panel">
+            <Panel header={this.renderSeance(seance)} className="ticket_panel">
               <List
                 itemLayout="horizontal"
                 // bordered={true}
@@ -63,6 +63,10 @@ class TicketList extends Component {
           );
         })}
       </Collapse>
+    ) : (
+      <Empty
+      image={Empty.PRESENTED_IMAGE_SIMPLE}
+      description="You have no suitable tickets." style={{color: 'white', fontSize: '1.5em'}} />
     );
   }
 }

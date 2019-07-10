@@ -14,7 +14,7 @@
   position: absolute;
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   height: max-content;
   padding: auto;
   box-sizing: border-box;
@@ -33,7 +33,6 @@
   @media (max-width: 800px) {
     font-size: 1em;
   }
-
 
   .seat_selection_page__wrapper {
     width: 100%;
