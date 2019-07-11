@@ -18,7 +18,7 @@ section {
       display: flex;
       justify-content: center;
       padding: 10px;
-      background: linear-gradient(to right, rgba(0, 0, 0, 0), $lineColorDark, rgba(0, 0, 0, 0));
+      background: $gradientColorLine;
 
       h2 {
         margin: 10px;
@@ -92,6 +92,7 @@ section {
                 z-index: 1;
                 border-radius: 5px;
                 cursor: pointer;
+
                 &:hover {
                   background-color: rgba($color: $secondaryColorLight, $alpha: 0);
                 }
@@ -126,6 +127,7 @@ section {
                 font-weight: 600;
                 letter-spacing: 0.1em;
                 transition: color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
                 &:hover {
                   color: $lineColorLight;
                 }

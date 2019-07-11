@@ -16,19 +16,11 @@ const mapStateToProps = state => {
 class ConnectedPaymentPage extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      visible: false,
-    };
   }
 
   componentDidMount() {
     this.props.setBookingStage(2);
   }
-
-  onPayClick = () => {
-    this.setState({ visible: true });
-  };
 
   render() {
     return (
