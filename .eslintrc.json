@@ -51,6 +51,12 @@
     ],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "prefer-destructuring": ["error", {
+      "array": true,
+      "object": true
+    }, {
+      "enforceForRenamedProperties": false
+    }]
   }
 }

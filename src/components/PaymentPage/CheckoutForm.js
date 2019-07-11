@@ -5,6 +5,7 @@ import { Button } from 'antd';
 import { makePayment } from '../../webAPI';
 import { setLoadingState, getSeanceApi, setOrderFeature, setPayedOrder } from '../../redux/actions/actions';
 import { withRouter } from 'react-router-dom';
+import { STRIPE_KEY } from '../../config/config';
 
 const mapStateToProps = state => {
   return {
@@ -47,13 +48,13 @@ class ConnectedCheckout extends React.Component {
   render() {
     return (
       <StripeCheckout
-        stripeKey="pk_test_ryEnj082Xqllhv126BuXdxJ500vbxURRIu"
+        stripeKey={STRIPE_KEY}
         panelLabel={`Pay`}
         allowRememberMe={false}
         token={this.onToken}
         amount={this.props.totalPrice * 100}
         currency="BYN">
-        <Button type="primary" disabled={!this.props.totalPrice}>
+        <Button className="pay_with_card_button" type="primary" disabled={!this.props.totalPrice}>
           Pay with card
         </Button>
       </StripeCheckout>

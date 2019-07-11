@@ -35,7 +35,7 @@ function isLoadingMiddleware({ getState, dispatch }) {
   };
 }
 
-function onMovieIdset({ dispatch }) {
+function onMovieIdSet({ dispatch }) {
   return function(next) {
     return function(action) {
       if (action.type === actionTypes.SET_MOVIE_ID && action.payload) {
@@ -93,4 +93,4 @@ function setTotalSum({ getState, dispatch }) {
   };
 }
 
-export default [isLoadingMiddleware, onMovieIdset, onSeanceIdSet, setTotalSum];
+export default [isLoadingMiddleware, onMovieIdSet, onSeanceIdSet, setTotalSum];
