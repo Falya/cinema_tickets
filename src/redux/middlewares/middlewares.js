@@ -56,7 +56,6 @@ function onSeanceIdSet({ dispatch }) {
         dispatch({
           type: actionTypes.SEANCE_REQUESTED,
           payload: { seanceId: action.payload },
-
         });
       }
       return next(action);
@@ -94,4 +93,4 @@ function setTotalSum({ getState, dispatch }) {
   };
 }
 
-export default [isLoadingMiddleware, onMovieIdset, onSeanceIdSet, setTotalSum];
+export default [isLoadingMiddleware, onMovieIdSet, onSeanceIdSet, setTotalSum];
