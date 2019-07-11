@@ -20,7 +20,7 @@
 
     .total_price {
       width: 80%;
-      background: rgba($color: $thirdColor, $alpha: 0.5);
+      background: rgba($color: $secondaryColorLight, $alpha: 0.5);
       border-radius: $borderRadius;
       box-shadow: $boxShadow;
       overflow: hidden;
@@ -50,7 +50,7 @@
         }
       }
 
-      .ant-btn {
+      .pay_with_card_button {
         margin: 20px auto 20px auto;
         border-radius: $borderRadius;
         width: 50%;

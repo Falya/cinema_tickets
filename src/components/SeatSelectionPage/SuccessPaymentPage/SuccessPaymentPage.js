@@ -27,9 +27,9 @@ class ConnectedSuccessPaymentPage extends Component {
         <div className="payed_order__header">
           <h1>Payment was successful</h1>
         </div>
-        <span className="succes_message">Your tickets will appear in your account profile</span>
+        <span className="success_message">Your tickets will appear in your account profile</span>
         <Link to="/user/profile">
-          <Button ghost onClick={this.onProfileClick}>
+          <Button className="go_to_profile_button" ghost onClick={this.onProfileClick}>
             Go to profile
           </Button>
         </Link>

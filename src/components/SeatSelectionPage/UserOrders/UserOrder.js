@@ -59,7 +59,7 @@ class ConnectedUserOrder extends Component {
           <span>{this.props.totalPrice} BYN</span>
         </div>
 
-        <Button ghost onClick={this.onPayClick}>
+        <Button className="pay_button" ghost onClick={this.onPayClick}>
           Accept and pay
         </Button>
       </div>

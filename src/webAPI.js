@@ -2,6 +2,14 @@ import { BASE_URL } from './config/config';
 import store from './redux/store/store';
 import { actionTypes } from './redux/constants/action-types';
 
+function getHeaders() {
+  const headers = new Headers();
+  const token = localStorage.getItem('token');
+  headers.append('Content-Type', 'application/json');
+  headers.append('Authorization', token);
+  return headers;
+}
+
 export function getMovies() {
   const options = {
     method: 'GET',
@@ -54,10 +62,7 @@ export function getSeance(params) {
   const { token } = localStorage;
   const url = new URL(`${BASE_URL}/seance/${token ? 'authorized/' : ''}`);
   const options = {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    },
+    headers: getHeaders(),
   };
   url.search = new URLSearchParams(params);
   return fetch(url, options).then(res => res.json());
@@ -67,9 +72,7 @@ export function signUp(params) {
   const url = new URL(`${BASE_URL}/signup`);
   const options = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: getHeaders(),
     body: JSON.stringify(params),
   };
   return fetch(url, options)
@@ -89,9 +92,7 @@ export function logIn(params) {
   const url = new URL(`${BASE_URL}/login`);
   const options = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: getHeaders(),
     body: JSON.stringify(params),
   };
 
@@ -110,11 +111,8 @@ export function logIn(params) {
 
 export function getUserName() {
   const url = new URL(`${BASE_URL}/getusername`);
-  const token = localStorage.getItem('token');
   const options = {
-    headers: {
-      Authorization: token,
-    },
+    headers: getHeaders(),
   };
 
   return fetch(url, options).then(res => res.json());
@@ -122,13 +120,9 @@ export function getUserName() {
 
 export function toBlockSeat(params) {
   const url = new URL(`${BASE_URL}/seance/to-block-seat`);
-  const token = localStorage.getItem('token');
   const options = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    },
+    headers: getHeaders(),
     body: JSON.stringify(params),
   };
 
@@ -151,10 +145,7 @@ export function unBlockSeat(params) {
 
   const options = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    },
+    headers: getHeaders(),
     body: JSON.stringify(params),
   };
 
@@ -164,16 +155,12 @@ export function unBlockSeat(params) {
 export function makePayment(params) {
   const url = new URL(`${BASE_URL}/payment`);
   const token = localStorage.getItem('token');
-  console.log(params);
   if (!token) {
     return Promise.reject({ succes: false, message: 'You aren`t logged' });
   }
   const options = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    },
+    headers: getHeaders(),
     body: JSON.stringify(params),
   };
 

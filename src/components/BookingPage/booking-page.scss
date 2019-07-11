@@ -21,7 +21,7 @@ $mediaWidthSmall: 460px;
   padding: auto;
   box-sizing: border-box;
   margin: auto;
-  background: rgba($color: $secondColor, $alpha: 0.9);
+  background: rgba($color: $secondaryColorDark, $alpha: 0.9);
   top: 0;
   z-index: 2;
 
@@ -39,7 +39,7 @@ $mediaWidthSmall: 460px;
       position: sticky;
       top: 0;
       flex-direction: column;
-      background: rgba($color: $secondColor, $alpha: 0.8);
+      background: rgba($color: $secondaryColorDark, $alpha: 0.8);
       color: $mainColorText;
       padding: 10px 15px;
       z-index: 2;
@@ -198,7 +198,7 @@ $mediaWidthSmall: 460px;
             }
 
             span {
-              color: $secondColorText;
+              color: $secondaryColorDarkText;
               font-weight: 300;
             }
           }
@@ -225,7 +225,7 @@ $mediaWidthSmall: 460px;
               display: flex;
               flex-direction: column;
               padding: 10px;
-              color: $secondColorText;
+              color: $secondaryColorDarkText;
               font-weight: 300;
 
               h3 {
@@ -250,7 +250,7 @@ $mediaWidthSmall: 460px;
                 justify-content: space-around;
                 cursor: pointer;
                 border-radius: $borderRadius;
-                background: rgba($color: $secondColor, $alpha: 0.4);
+                background: rgba($color: $secondaryColorDark, $alpha: 0.4);
                 transition: border-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
                 &:hover {
                   border-color: $lineColorLight;
@@ -264,13 +264,13 @@ $mediaWidthSmall: 460px;
 
                 .card__format {
                   margin: auto;
-                  color: $thirdColorText;
+                  color: $secondaryColorLightText;
                   font-weight: 300;
                 }
 
                 .card__hall {
                   margin: auto;
-                  color: $secondColorText;
+                  color: $secondaryColorDarkText;
                   font-size: 0.9em;
                   font-weight: 100;
                 }
@@ -387,7 +387,7 @@ $mediaWidthSmall: 460px;
           .movie_trailer_preview__overlay {
             position: absolute;
             display: flex;
-            background-color: rgba($color: $thirdColor, $alpha: 0.4);
+            background-color: rgba($color: $secondaryColorLight, $alpha: 0.4);
             width: 100%;
             height: 100%;
             top: 0;
@@ -397,7 +397,7 @@ $mediaWidthSmall: 460px;
             border-radius: 5px;
             cursor: pointer;
             &:hover {
-              background-color: rgba($color: $thirdColor, $alpha: 0);
+              background-color: rgba($color: $secondaryColorLight, $alpha: 0);
 
               + img {
                 box-shadow: 0px 1px 5px rgba($color: $lineColorLight, $alpha: 0.4);
@@ -434,11 +434,11 @@ $mediaWidthSmall: 460px;
           padding-top: 15px;
           display: flex;
           flex-direction: column;
-          color: $thirdColorText;
+          color: $secondaryColorLightText;
           font-weight: 400;
 
           h3 {
-            color: $thirdColorText;
+            color: $secondaryColorLightText;
             font-size: 1.3em;
             text-decoration: underline;
             margin-bottom: 15px;
@@ -467,7 +467,7 @@ $mediaWidthSmall: 460px;
   border-radius: $borderRadius;
 
   ul {
-    background: $secondColorText;
+    background: $secondaryColorDarkText;
     border-radius: 0 0 $borderRadius $borderRadius;
     border-top: solid 2px $lineColor;
     max-height: 40%;
