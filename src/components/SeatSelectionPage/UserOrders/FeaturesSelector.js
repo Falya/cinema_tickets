@@ -6,6 +6,7 @@ import { setOrderFeature } from '../../../redux/actions/actions';
 const mapStateToProps = state => {
   return {
     features: state.orderReducer.order.features,
+    blockedSeats: state.seanceReducer.seanceInfo.blockedSeatsByUser,
   };
 };
 
@@ -40,14 +41,20 @@ class ConnectedFeaturesSelector extends Component {
 
   render() {
     const { inputValue } = this.state;
-    const { feature } = this.props;
+    const { feature, blockedSeats } = this.props;
 
     return (
       <div className="feature_item">
         <div className="feature_name">{feature.product}</div>
         <span className="feature_price">{feature.price} BYN</span>
         <div className="feature_input">
-          <InputNumber min={0} max={5} style={{ marginLeft: 16 }} value={inputValue} onChange={this.onChange} />
+          <InputNumber
+            min={0}
+            max={blockedSeats.length * 5}
+            style={{ marginLeft: 16 }}
+            value={inputValue}
+            onChange={this.onChange}
+          />
         </div>
       </div>
     );

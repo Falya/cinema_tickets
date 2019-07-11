@@ -56,6 +56,7 @@ $mediaWidthSmall: 460px;
           font-size: 1.3em;
           color: $lineColorLight;
           opacity: 0.8;
+          margin: 5px;
           transition: color, opacity, transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
           &:hover {
             color: $lineColor;
@@ -70,9 +71,10 @@ $mediaWidthSmall: 460px;
         .nav_bar__title,
         h3 {
           color: $mainColorText;
-          margin: 0;
+          margin: 0 10px;
           z-index: 1;
           font-size: 1.2em;
+          text-align: center;
         }
       }
       @media screen and (max-width: $mediaWidthMedium) {
@@ -80,6 +82,10 @@ $mediaWidthSmall: 460px;
 
         .header__nav_bar {
           padding: 0;
+
+          h3 {
+            font-size: 0.9em;
+          }
         }
       }
     }
@@ -187,6 +193,7 @@ $mediaWidthSmall: 460px;
 
           .movie__info {
             flex-basis: 70%;
+            padding: 0 5px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -284,11 +291,11 @@ $mediaWidthSmall: 460px;
 
           .movie {
             .movie__poster {
-              flex-basis: 40%;
+              flex-basis: 35%;
             }
 
             .movie__info {
-              flex-basis: 60%;
+              flex-basis: 65%;
 
               h1 {
                 font-size: 2em;
@@ -307,8 +314,8 @@ $mediaWidthSmall: 460px;
           }
 
           .movie__seances {
-            border-top: 2px solid $lineColorGray;
-            border-bottom: 2px solid $lineColorGray;
+            border-top: 1px solid $lineColorGray;
+            border-bottom: 1px solid $lineColorGray;
 
             .seances__card {
               border-bottom: 2px solid $lineColorGray;
@@ -355,7 +362,7 @@ $mediaWidthSmall: 460px;
                     }
 
                     .card__format {
-                      font-size: 0.9em;
+                      font-size: 0.7em;
                     }
 
                     .card__hall {

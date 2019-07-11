@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../components/MainPage/main-page.scss';
 import MovieList from '../components/MainPage/MovieList/MovieList';
+import { withRouter } from 'react-router-dom';
 
 class MainPage extends Component {
   constructor(props) {
@@ -16,4 +17,4 @@ class MainPage extends Component {
   }
 }
 
-export default MainPage;
+export default withRouter(MainPage);

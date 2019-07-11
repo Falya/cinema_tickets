@@ -38,6 +38,7 @@ class ConnectedBookingPage extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setBlur(true);
     this.props.setMovieId(this.props.match.params.movieId);
     this.props.setOrderFeature([]);
@@ -63,13 +64,18 @@ class ConnectedBookingPage extends Component {
       this.props.setMovieId(nextProps.match.params.movieId);
     }
 
+    // if (this.refs['mySection'].getBoundingClientRect().top < 0) {
+    //   console.log(this.refs['mySection'].getBoundingClientRect().top);
+    //   window.scrollBy(0, this.refs['mySection'].getBoundingClientRect().top);
+    // }
+
     return nextProps !== this.props;
   }
 
   render() {
     const { movie, movieTheaters } = this.props;
     return (
-      <section className="booking_page">
+      <section className="booking_page" ref="mySection">
         <div className="booking_page__wrapper">
           <div className="booking_page__header">
             <div className="header__nav_bar">

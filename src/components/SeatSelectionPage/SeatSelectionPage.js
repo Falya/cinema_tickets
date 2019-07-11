@@ -19,13 +19,11 @@ const mapStateToProps = state => {
   };
 };
 
-const seanceIdRegexp = /^\/schedule\/movie\/((?:[^\/]+?))\/seance\/((?:[^\/]+?))(?:\/(?=$))?(?:\/login|\/registration)?$/;
+const seanceIdRegexp = /^\/schedule\/movie\/((?:[^/]+?))\/seance\/((?:[^/]+?))(?:\/(?=$))?(?:\/login|\/registration)?$/;
 
 class ConnectedSeatSelectionPage extends Component {
   constructor(props) {
     super(props);
-
-    this.canvasParent = React.createRef();
   }
 
   onCloseButton = () => {
@@ -70,6 +68,7 @@ class ConnectedSeatSelectionPage extends Component {
   };
 
   componentDidMount() {
+    this.setState({ path: this.props.history.location.pathname });
     if (!this.props.movie) {
       this.props.getMovieApi(this.props.match.params.movieId);
     }
@@ -86,6 +85,7 @@ class ConnectedSeatSelectionPage extends Component {
     if (this.props.userName !== nextProps.userName) {
       this.props.getSeanceApi(this.props.match.params.seanceId);
     }
+
     return nextProps !== this.props;
   }
 
@@ -105,6 +105,10 @@ class ConnectedSeatSelectionPage extends Component {
               <div className="nav_bar__close_btn">
                 <span className="icon-cross" onClick={this.onCloseButton} />
               </div>
+            </div>
+            <div className="bottom_element">
+              <BookingStage />
+              {seanceInfo.blockedSeatsByUser[0] && <StopWatch />}
             </div>
           </div>
           {seanceInfo.seance && (
@@ -144,7 +148,7 @@ class ConnectedSeatSelectionPage extends Component {
               <Route
                 exact
                 path={seanceIdRegexp}
-                render={props => {
+                render={() => {
                   return (
                     <div className="body__seats">
                       <SeatMap />
@@ -161,10 +165,6 @@ class ConnectedSeatSelectionPage extends Component {
                 }}
               />
               <Route path="/schedule/movie/:movieId/seance/:seanceId/payment/accepted" component={SuccessPaymentPage} />
-              <div className="bottom_element">
-                {seanceInfo.blockedSeatsByUser[0] && <StopWatch />}
-                <BookingStage />
-              </div>
             </div>
           )}
         </div>

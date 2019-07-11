@@ -53,6 +53,7 @@
       .ant-btn {
         margin: 20px auto 20px auto;
         border-radius: $borderRadius;
+        min-width: max-content;
         width: 50%;
         height: max-content;
         padding: 10px;
@@ -65,6 +66,7 @@
           font-size: 1.2em;
           letter-spacing: 0.1em;
           font-weight: 400;
+          width: max-content;
         }
       }
     }
