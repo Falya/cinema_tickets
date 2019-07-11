@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import { Popover } from 'antd';
+import { connect } from 'react-redux';
+import { toBlockSeat, unBlockSeat } from '../../webAPI';
+import { getSeanceApi } from '../../redux/actions/actions';
+import { withRouter } from 'react-router-dom';
 
-class SeatComponent extends Component {
+const mapStateToProps = state => {
+  return {
+    seanceId: state.seanceReducer.seanceInfo.seanceId,
+    blockedByUser: state.seanceReducer.seanceInfo.blockedSeatsByUser,
+  };
+};
+
+class ConnectedSeatComponent extends Component {
   constructor(props) {
     super(props);
 
@@ -35,6 +46,43 @@ class SeatComponent extends Component {
     }
   };
 
+  onSeatClick = () => {
+    if (!this.props.seatState) {
+      const params = {
+        row: this.props.rowNumber,
+        seat: this.props.seatNumber,
+        seanceId: this.props.seanceId,
+        price: this.props.seatPrice,
+        seatType: this.props.seatType,
+      };
+
+      toBlockSeat(params)
+        .then(res => {
+          if (res !== 401) {
+            this.props.getSeanceApi(this.props.seanceId);
+          } else {
+            this.props.history.push(`${this.props.history.location.pathname}/login`);
+          }
+        })
+        .catch(err => console.error(err));
+    }
+
+    if (this.props.seatState === 'blocked') {
+      const [seat] = this.props.blockedByUser.filter(
+        seat => seat.row === this.props.rowNumber && seat.seat === this.props.seatNumber
+      );
+      const params = {
+        seatId: seat._id,
+      };
+      unBlockSeat(params)
+        .then(res => {
+          this.props.getSeanceApi(this.props.seanceId);
+          return console.log(res);
+        })
+        .catch(err => console.error(err));
+    }
+  };
+
   render() {
     return (
       <Popover
@@ -42,7 +90,10 @@ class SeatComponent extends Component {
         overlayClassName="tooltip_overlay"
         content={this.makeContent()}
         mouseEnterDelay={0.2}>
-        <div className={`seat ${this.seatStateDefinition()}`} style={this.props.style}>
+        <div
+          className={`seat ${this.seatStateDefinition()} ${this.props.seatType.toLowerCase()}`}
+          style={this.props.style}
+          onClick={this.onSeatClick}>
           {this.state.seatNumber}
         </div>
       </Popover>
@@ -50,6 +101,9 @@ class SeatComponent extends Component {
   }
 }
 
-SeatComponent.propTypes = {};
+const SeatComponent = connect(
+  mapStateToProps,
+  { getSeanceApi }
+)(ConnectedSeatComponent);
 
-export default SeatComponent;
+export default withRouter(SeatComponent);

@@ -17,13 +17,23 @@ $mediaWidthSmall: 460px;
   position: absolute;
   display: flex;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   padding: auto;
   box-sizing: border-box;
   margin: auto;
   top: 0;
   z-index: 2;
   background: rgba($color: $secondColor, $alpha: 0.9);
+
+  @media (max-width: 1400px) {
+    font-size: 0.8em;
+  }
+  @media (max-width: 1170px) {
+    font-size: 0.6em;
+  }
+  @media (max-width: 800px) {
+    font-size: 1em;
+  }
 
   .page_spiner {
     position: fixed;
@@ -32,11 +42,12 @@ $mediaWidthSmall: 460px;
     font-size: 15vh;
     color: $lineColor;
     animation: spin 1s linear infinite;
+    z-index: 1;
   }
 
   .seat_selection_page__wrapper {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 
     margin: 0 auto;
     display: flex;
@@ -98,7 +109,7 @@ $mediaWidthSmall: 460px;
       display: flex;
       flex-direction: column;
       flex-basis: 100%;
-      height: 100%;
+      min-height: 100%;
       box-sizing: border-box;
 
       .body__seance_info {
@@ -220,7 +231,7 @@ $mediaWidthSmall: 460px;
         justify-content: center;
         margin: 10px;
         height: max-content;
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
         @media (max-width: $mediaWidthMedium) {
           flex-direction: column;
         }
@@ -260,12 +271,36 @@ $mediaWidthSmall: 460px;
               box-sizing: border-box;
               border-radius: 2px 2px 10px 10px;
               text-align: center;
+              position: relative;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 80%;
               padding: 5px 0;
               margin: 5px 5%;
               cursor: pointer;
               color: $mainColorText;
               user-select: none;
               transition: border-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+              &.vip {
+                height: 60%;
+                border-color: rgba($color: $exceptionColor, $alpha: 0.8);
+                background: 'VIP';
+                width: 70%;
+                margin: auto;
+
+                &::after {
+                  color: $lineColorGray;
+                  content: 'VIP';
+                  position: absolute;
+                  bottom: 0;
+                }
+
+                @media (max-width: $mediaWidthSmall) {
+                  height: 40%;
+                }
+              }
 
               @media (max-width: $mediaWidthSmall) {
                 font-size: 0.7em;
@@ -372,12 +407,18 @@ $mediaWidthSmall: 460px;
       .seats__seats_info {
         flex-basis: 30%;
         display: flex;
+        height: max-content;
         flex-direction: column;
         align-items: center;
         padding: 0 5%;
 
+        @media (max-width: 970px) {
+          font-size: 0.9em;
+        }
+
         @media (max-width: $mediaWidthMedium) {
           margin-top: 50px;
+          font-size: 1em;
         }
 
         h2 {
@@ -385,24 +426,147 @@ $mediaWidthSmall: 460px;
           align-self: flex-start;
         }
 
+        .oreder_features {
+          height: 40px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+
+          .invisible_input {
+            display: block;
+            width: 100%;
+            height: 40px;
+            flex-basis: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            opacity: 0;
+            z-index: 2;
+            -webkit-touch-callout: none;
+
+            &:checked ~ .features_header .icon-circle-down {
+              transform: rotate(180deg);
+            }
+
+            &:checked ~ .features_menu {
+              display: flex;
+              opacity: 1;
+            }
+
+            &:checked ~ .features_header {
+              border-color: $lineColor;
+              color: $lineColor;
+            }
+          }
+
+          .features_header {
+            position: relative;
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+            border: 1px solid $mainColorText;
+            padding: 0 5px;
+            color: $mainColorText;
+            border-radius: $borderRadius;
+
+            span {
+              font-size: 0.8em;
+            }
+
+            .icon-circle-down {
+              transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+            }
+          }
+          .features_menu {
+            width: 100%;
+            background: rgba($color: $mainColorText, $alpha: 0.9);
+            z-index: 1;
+            position: absolute;
+            display: none;
+            height: max-content;
+            flex-direction: column;
+            top: 40px;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+            border-radius: 0 0 $borderRadius $borderRadius;
+            box-shadow: $boxShadow;
+
+            .feature_item {
+              display: grid;
+              grid-template-columns: repeat(12, 1fr);
+              grid-template-rows: 1fr;
+              padding: 5px;
+              box-sizing: border-box;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+
+              .feature_name {
+                display: flex;
+                align-items: center;
+                grid-column: 1 / span 4;
+              }
+
+              .feature_price {
+                display: flex;
+                align-items: center;
+                grid-column: 5 / span 3;
+              }
+
+              .feature_input {
+                justify-self: end;
+                grid-column-start: -6;
+                grid-column-end: span 5;
+              }
+            }
+          }
+        }
+
         .seat_type {
           width: 100%;
           display: flex;
+          height: max-content;
           box-sizing: border-box;
+          position: relative;
           padding: 10px;
           border-top: 1px solid $lineColorGray;
           border-bottom: 1px solid $lineColorGray;
+
+          .icon-cross {
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+            color: $lineColorGray;
+            font-size: 0.8em;
+            cursor: pointer;
+
+            &:hover {
+              color: $lineColor;
+            }
+
+            &:active {
+              color: $lineColorDark;
+            }
+          }
 
           .seat_image {
             width: 80px;
             padding: 5px 10px 5px 0;
             color: $lineColorGray;
+            align-items: center;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: 1fr;
 
             .seat_size {
               border: $lineColorGray 2px solid;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 35px;
               box-sizing: border-box;
               border-radius: 2px 2px 10px 10px;
               text-align: center;
@@ -413,10 +577,42 @@ $mediaWidthSmall: 460px;
                 grid-column-start: 1;
                 grid-column-end: span 4;
               }
+
+              &.vip {
+                grid-column-start: 1;
+                grid-column-end: span 4;
+                border-color: rgba($color: $exceptionColor, $alpha: 0.8);
+                height: 40px;
+                width: 70%;
+                margin: auto;
+
+                &::after {
+                  content: 'VIP';
+                }
+              }
+
+              &.selected_seat {
+                background-color: rgba($color: $lineColorDark, $alpha: 0.5);
+              }
+            }
+
+            @media (max-width: 970px) {
+              width: 40px;
+
+              .seat_size {
+                height: 15px;
+              }
+            }
+            @media (max-width: $mediaWidthMedium) {
+              width: 80px;
+
+              .seat_size {
+                height: 35px;
+              }
             }
           }
 
-          .seat_type__head {
+          & .seat_type__head {
             flex-basis: 80%;
             display: flex;
             flex-direction: column;
@@ -435,6 +631,14 @@ $mediaWidthSmall: 460px;
               .seat_price {
                 font-weight: bold;
               }
+
+              .order_info {
+                .order_info__seat {
+                  span {
+                    color: $lineColorDark;
+                  }
+                }
+              }
             }
 
             .seat_description {
@@ -442,6 +646,41 @@ $mediaWidthSmall: 460px;
               font-size: small;
               font-weight: lighter;
             }
+          }
+        }
+
+        .total_price {
+          padding: 10px;
+          background: $secondColor;
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+
+          h3 {
+            color: $mainColorText;
+            margin: 0;
+          }
+
+          span {
+            color: $lineColor;
+          }
+        }
+
+        .ant-btn {
+          border-radius: $borderRadius;
+          margin-top: 20px;
+          width: 80%;
+          height: max-content;
+          padding: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1em;
+
+          span {
+            font-size: 1.2em;
+            letter-spacing: 0.1em;
           }
         }
       }
@@ -469,5 +708,10 @@ $mediaWidthSmall: 460px;
   padding: 10px;
   justify-content: center;
   align-items: baseline;
-  color: $mainColorText;
+  color: $lineColorLight;
+
+  .time {
+    margin: 0 5px;
+    color: $lineColor;
+  }
 }

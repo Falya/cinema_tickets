@@ -1,4 +1,6 @@
 import { BASE_URL } from './config/config';
+import store from './redux/store/store';
+import { actionTypes } from './redux/constants/action-types';
 
 export function getMovies() {
   const options = {
@@ -44,7 +46,112 @@ export function getFilters(params) {
 }
 
 export function getSeance(params) {
-  const url = new URL(`${BASE_URL}/seance/`);
+  const { token } = localStorage;
+  const url = new URL(`${BASE_URL}/seance/${token ? 'authorized/' : ''}`);
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+  };
   url.search = new URLSearchParams(params);
-  return fetch(url).then(res => res.json());
+  return fetch(url, options).then(res => res.json());
+}
+
+export function signUp(params) {
+  const url = new URL(`${BASE_URL}/signup`);
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  };
+  return fetch(url, options)
+    .then(res => res.json())
+    .then(res => {
+      if (res.token) {
+        localStorage.setItem('token', res.token);
+        store.dispatch({
+          type: actionTypes.USER_NAME_REQUESTED,
+        });
+      }
+      return res;
+    });
+}
+
+export function logIn(params) {
+  const url = new URL(`${BASE_URL}/login`);
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  };
+
+  return fetch(url, options)
+    .then(res => res.json())
+    .then(res => {
+      if (res.token) {
+        localStorage.setItem('token', res.token);
+        store.dispatch({
+          type: actionTypes.USER_NAME_REQUESTED,
+        });
+      }
+      return res;
+    });
+}
+
+export function getUserName() {
+  const url = new URL(`${BASE_URL}/getusername`);
+  const token = localStorage.getItem('token');
+  const options = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  return fetch(url, options).then(res => res.json());
+}
+
+export function toBlockSeat(params) {
+  const url = new URL(`${BASE_URL}/seance/to-block-seat`);
+  const token = localStorage.getItem('token');
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+    body: JSON.stringify(params),
+  };
+
+  return fetch(url, options)
+    .then(res => {
+      if (res.status < 400) {
+        return res.json();
+      }
+      return res.status;
+    })
+    .catch(err => console.log(err));
+}
+
+export function unBlockSeat(params) {
+  const url = new URL(`${BASE_URL}/seance/unblock-seat`);
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return Promise.reject({ succes: false, message: 'You aren`t logged' });
+  }
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+    body: JSON.stringify(params),
+  };
+
+  return fetch(url, options).then(res => res.json());
 }

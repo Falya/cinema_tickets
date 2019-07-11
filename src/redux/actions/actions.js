@@ -27,6 +27,13 @@ export function getSeancesApi(payload) {
   };
 }
 
+export function getSeanceApi(payload) {
+  return {
+    type: actionTypes.SEANCE_REQUESTED,
+    payload: { seanceId: payload },
+  };
+}
+
 export function setMovieId(payload) {
   return {
     type: actionTypes.SET_MOVIE_ID,
@@ -58,6 +65,26 @@ export function setSeanceId(payload) {
 export function setBookingStage(payload) {
   return {
     type: actionTypes.SET_BOOKING_STAGE,
+    payload,
+  };
+}
+
+export function getUserName() {
+  return {
+    type: actionTypes.USER_NAME_REQUESTED,
+  };
+}
+
+export function resetUserName() {
+  return {
+    type: actionTypes.USER_NAME_LOADED,
+    payload: null,
+  };
+}
+
+export function setOrderFeature(payload) {
+  return {
+    type: actionTypes.SET_ORDER_FEATURE,
     payload,
   };
 }

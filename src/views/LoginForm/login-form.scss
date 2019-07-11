@@ -15,156 +15,190 @@
   }
 }
 
-.login-form {
-  width: 30vw;
-  background: $mainColor;
-  color: $mainColorText;
+.login-form__wrapper {
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
   position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  top: 20%;
-  box-sizing: border-box;
-  margin: 0 35vw;
-  box-shadow: $boxShadow;
-  font-size: 0.9em;
   z-index: 2;
-  animation: modalAppear 0.5s linear;
+  overflow: hidden;
 
-  @media (min-width: 1540px) {
-    width: 462px;
-    margin: 0 calc(50% - 231px);
-  }
-
-  @media (max-width: 1200px) {
-    width: 40vw;
-    margin: 0 30vw;
-  }
-
-  @media (max-width: 860px) {
-    width: 70vw;
-    margin: 0 15vw;
-  }
-
-  @media (max-width: 520px) {
-    width: 98vw;
-    margin: 0 1vw;
-  }
-
-  .login-form-header {
-    background: $gradientColor;
-    padding: 10px;
-    text-align: center;
+  .login-form {
+    width: 30vw;
+    background: $mainColor;
     color: $mainColorText;
-    font-size: 1.1em;
-    align-self: stretch;
-
-    .close-btn {
-      position: absolute;
-      right: 10px;
-      cursor: pointer;
-      &:hover {
-        color: $lineColorLight;
-      }
-      &:active {
-        color: $lineColor;
-      }
-    }
-  }
-
-  form {
+    position: fixed;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    top: 20%;
     box-sizing: border-box;
-    margin: 10px 0;
+    margin: 0 35vw;
+    box-shadow: $boxShadow;
+    font-size: 0.9em;
+    z-index: 2;
+    animation: modalAppear 0.5s linear;
 
-    .form-group {
-      display: flex;
-      justify-content: flex-start;
-      padding: 10px;
-      box-sizing: border-box;
-      align-items: baseline;
-
-      label {
-        flex-basis: 30%;
-        text-align: right;
-        padding-right: 15px;
-      }
-
-      .input-group {
-        flex-basis: 70%;
-
-        input {
-          box-sizing: border-box;
-          display: flex;
-          padding: 5px;
-          border: 1px solid $lineColorGray;
-          border-radius: $borderRadius;
-          background: $thirdColor;
-          caret-color: $thirdColorText;
-          color: $thirdColorText;
-          width: 100%;
-          &::placeholder {
-            color: $thirdColorText;
-            font-size: 0.9em;
-          }
-          &:focus {
-            outline-color: $lineColorLight;
-            outline-style: solid;
-            outline-width: thin;
-            padding: 5px;
-            background: $thirdColor;
-            caret-color: $thirdColorText;
-            color: $thirdColorText;
-          }
-
-          &.wrong-input {
-            outline-color: $exceptionColor;
-            outline-style: solid;
-            outline-width: thin;
-          }
-
-          &:-webkit-autofill,
-          &:-webkit-autofill:hover,
-          &:-webkit-autofill:focus {
-            box-sizing: border-box;
-            border: none;
-            -webkit-text-fill-color: $thirdColorText;
-            box-shadow: 0 0 0px 1000px $lineColorDark inset;
-          }
-        }
-      }
+    @media (min-width: 1540px) {
+      width: 462px;
+      margin: 0 calc(50% - 231px);
     }
 
-    .login-form-btn {
-      justify-content: center;
+    @media (max-width: 1200px) {
+      width: 40vw;
+      margin: 0 30vw;
+    }
 
-      button {
-        padding: 5px 10px;
-        outline-style: none;
-        background: none;
-        border-radius: $borderRadius;
-        color: $mainColorText;
-        border: 1px solid $mainColorText;
+    @media (max-width: 860px) {
+      width: 70vw;
+      margin: 0 15vw;
+    }
+
+    @media (max-width: 520px) {
+      width: 98vw;
+      margin: 0 1vw;
+    }
+
+    .result-message {
+      position: absolute;
+      background: rgba($color: $lineColor, $alpha: 0.9);
+      box-shadow: $boxShadow;
+      height: 80%;
+      width: 80%;
+      margin-top: 10%;
+      color: $mainColorText;
+      font-size: 2em;
+      text-align: center;
+      padding-top: 10%;
+    }
+
+    .login-form-header {
+      background: $gradientColor;
+      padding: 10px;
+      text-align: center;
+      color: $mainColorText;
+      font-size: 1.1em;
+      align-self: stretch;
+
+      .close-btn {
+        position: absolute;
+        right: 10px;
+        cursor: pointer;
         &:hover {
-          border-color: $lineColorLight;
           color: $lineColorLight;
         }
         &:active {
-          border-color: $lineColor;
           color: $lineColor;
         }
       }
     }
-  }
 
-  .login-form-confirm-tip {
-    font-size: 0.9em;
-    margin-left: 10px;
-    color: $exceptionColor;
-    &::before {
-      content: '*';
-      margin-right: 3px;
+    form {
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      margin: 10px 0;
+
+      .form-group {
+        display: flex;
+        justify-content: flex-start;
+        padding: 10px;
+        box-sizing: border-box;
+        align-items: baseline;
+
+        label {
+          flex-basis: 30%;
+          text-align: right;
+          padding-right: 15px;
+        }
+
+        .input-group {
+          flex-basis: 70%;
+
+          input {
+            box-sizing: border-box;
+            display: flex;
+            padding: 5px;
+            border: 1px solid $lineColorGray;
+            border-radius: $borderRadius;
+            background: $thirdColor;
+            caret-color: $thirdColorText;
+            color: $thirdColorText;
+            width: 100%;
+            &::placeholder {
+              color: $thirdColorText;
+              font-size: 0.9em;
+            }
+            &:focus {
+              outline-color: $lineColorLight;
+              outline-style: solid;
+              outline-width: thin;
+              padding: 5px;
+              background: $thirdColor;
+              caret-color: $thirdColorText;
+              color: $thirdColorText;
+            }
+
+            &.wrong-input {
+              outline-color: $exceptionColor;
+              outline-style: solid;
+              outline-width: thin;
+            }
+
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus {
+              box-sizing: border-box;
+              border: none;
+              -webkit-text-fill-color: $thirdColorText;
+              box-shadow: 0 0 0px 1000px $lineColorDark inset;
+            }
+          }
+        }
+      }
+
+      .login-form-btn {
+        justify-content: center;
+
+        button {
+          padding: 5px 10px;
+          outline-style: none;
+          background: none;
+          border-radius: $borderRadius;
+          color: $mainColorText;
+          border: 1px solid $mainColorText;
+          &:hover {
+            border-color: $lineColorLight;
+            color: $lineColorLight;
+          }
+          &:active {
+            border-color: $lineColor;
+            color: $lineColor;
+          }
+        }
+      }
+    }
+
+    .registration_link {
+      cursor: pointer;
+      color: $lineColor;
+      transition: color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+      padding: 10px;
+
+      &:hover {
+        color: $lineColorLight;
+      }
+    }
+
+    .login-form-confirm-tip {
+      font-size: 0.9em;
+      margin-left: 10px;
+      color: $exceptionColor;
+      &::before {
+        content: '*';
+        margin-right: 3px;
+      }
     }
   }
 }

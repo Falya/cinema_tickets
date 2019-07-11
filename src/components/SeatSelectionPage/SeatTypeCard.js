@@ -4,7 +4,7 @@ export default function SeatTypeCard(props) {
   return (
     <div className="seat_type">
       <div className="seat_image">
-        <div className={`seat_size ${props.rowType === 'double' ? 'double' : ''}`}></div>
+        <div className={`seat_size ${props.rowType.toLowerCase()}`}></div>
       </div>
       <div className="seat_type__head">
         <div className="seat_head_info">
