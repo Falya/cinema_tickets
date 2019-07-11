@@ -13,7 +13,6 @@ import SuccessPaymentPage from './SuccessPaymentPage/SuccessPaymentPage';
 
 const mapStateToProps = state => {
   return {
-    loading: state.loadingStateReducer.loading,
     movie: state.movieReducer.movie,
     seanceInfo: state.seanceReducer.seanceInfo,
     userName: state.userNameReducer.userName,
@@ -91,10 +90,9 @@ class ConnectedSeatSelectionPage extends Component {
   }
 
   render() {
-    const { movie, loading, seanceInfo } = this.props;
+    const { movie, seanceInfo } = this.props;
     return (
       <section className="seat_selection_page">
-        {loading && <span className="icon-spinner2 page_spiner" />}
         <div className="seat_selection_page__wrapper">
           <div className="seat_selection_page__header">
             <div className="header__nav_bar">
@@ -147,7 +145,6 @@ class ConnectedSeatSelectionPage extends Component {
                 exact
                 path={seanceIdRegexp}
                 render={props => {
-                  console.log(props);
                   return (
                     <div className="body__seats">
                       <SeatMap />

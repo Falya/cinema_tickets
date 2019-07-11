@@ -8,7 +8,6 @@ import { getMovieApi, setMovieId, setBlur, setOrderFeature } from '../redux/acti
 
 const mapStateToProps = state => {
   return {
-    loading: state.loadingStateReducer.loading,
     movie: state.movieReducer.movie,
     movieTheaters: state.seancesReducer.movieTheaters,
     movieId: state.filterParamsReducer.filterParameters.movieId,
@@ -68,10 +67,9 @@ class ConnectedBookingPage extends Component {
   }
 
   render() {
-    const { loading, movie, movieTheaters } = this.props;
+    const { movie, movieTheaters } = this.props;
     return (
       <section className="booking_page">
-        {loading && <span className="icon-spinner2 page_spiner" />}
         <div className="booking_page__wrapper">
           <div className="booking_page__header">
             <div className="header__nav_bar">

@@ -11,35 +11,35 @@ class FilterFeaturesComponent extends Component {
       options: [
         {
           name: '>1 empty seats',
-          flag: 'empty1'
+          flag: 'emptyMoreOne',
         },
         {
           name: '>2 empty seats',
-          flag: 'empty2'
+          flag: 'emptyMoreTwo',
         },
         {
-          name: 'VIP empty seats',
-          flag: 'vip'
+          name: 'has VIP',
+          flag: 'hasEmptyVip',
         },
         {
-          name: 'love empty seats',
-          flag: 'double'
-        },
-        {
-          name: '2D',
-          flag: '2D'
+          name: 'has double',
+          flag: 'hasEmptyDouble',
         },
         {
           name: '3D',
-          flag: '3D'
-        }
+          flag: 'video3d',
+        },
       ],
-      selectedFeatures: []
+      selectedFeatures: [],
     };
   }
 
   handleChange = selectedFeatures => {
-    this.props.setMethod(selectedFeatures);
+    const selected = selectedFeatures.reduce((acc, feature) => {
+      acc[feature] = true;
+      return acc;
+    }, {});
+    this.props.setMethod(selected);
     this.setState({ selectedFeatures });
   };
 
