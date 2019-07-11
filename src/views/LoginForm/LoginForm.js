@@ -99,7 +99,7 @@ class LoginForm extends Component {
           {this.state.message && <div className="result_message">{this.state.message}</div>}
           <div className="login_form__header">
             Authorization
-            <span className="close-btn icon-cross" onClick={this.onCloseButton} />
+            <span className="close_btn icon-cross" onClick={this.onCloseButton} />
           </div>
           <form onSubmit={this.onSubmit}>
             <div className="form_group">

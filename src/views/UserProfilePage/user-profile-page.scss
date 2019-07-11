@@ -157,7 +157,7 @@
                   font-weight: 300;
                   display: flex;
                   align-items: center;
-                  color: $secondColorText;
+                  color: $secondaryColorDarkText;
 
                   .icon-location {
                     margin-right: 10px;
@@ -269,13 +269,13 @@
         .price {
           grid-area: price;
           font-size: 1.1em;
-          color: $secondColorText;
+          color: $secondaryColorDarkText;
           text-align: right;
         }
 
         .type {
           grid-area: type;
-          color: $thirdColorText;
+          color: $secondaryColorLightText;
           font-weight: 300;
           text-align: center;
         }
@@ -284,7 +284,7 @@
           grid-area: buy_at;
           font-size: 0.8em;
           font-weight: 100;
-          color: $thirdColorText;
+          color: $secondaryColorDarkText;
         }
       }
 
