@@ -89,9 +89,11 @@
         position: absolute;
         right: 10px;
         cursor: pointer;
+
         &:hover {
           color: $lineColorLight;
         }
+
         &:active {
           color: $lineColor;
         }
@@ -129,10 +131,12 @@
             caret-color: $thirdColorText;
             color: $thirdColorText;
             width: 100%;
+
             &::placeholder {
               color: $thirdColorText;
               font-size: 0.9em;
             }
+
             &:focus {
               outline-color: $lineColorLight;
               outline-style: solid;
@@ -158,10 +162,12 @@
           color: $mainColorText;
           border: 1px solid $mainColorText;
           cursor: pointer;
+
           &:hover {
             border-color: $lineColorLight;
             color: $lineColorLight;
           }
+
           &:active {
             border-color: $lineColor;
             color: $lineColor;
@@ -174,6 +180,7 @@
       font-size: 0.9em;
       margin-left: 10px;
       color: $exceptionColor;
+
       &::before {
         content: '*';
         margin-right: 3px;
