@@ -22,7 +22,7 @@
   top: 0;
   z-index: 2;
   font-weight: 400;
-  background: rgba($color: $secondColor, $alpha: 0.9);
+  background: rgba($color: $secondaryColorDark, $alpha: 0.9);
 
   @media (max-width: 1400px) {
     font-size: 0.8em;
@@ -33,7 +33,6 @@
   @media (max-width: 800px) {
     font-size: 1em;
   }
-
 
   .seat_selection_page__wrapper {
     width: 100%;
@@ -49,7 +48,7 @@
       position: sticky;
       top: 0;
       flex-direction: column;
-      background: rgba($color: $secondColor, $alpha: 0.8);
+      background: rgba($color: $secondaryColorDark, $alpha: 0.8);
       color: $mainColorText;
       padding: 10px 15px;
       z-index: 2;
@@ -79,7 +78,7 @@
 
         .nav_bar__title,
         h3 {
-          color: $secondColorText;
+          color: $secondaryColorDarkText;
           margin: 0;
           z-index: 1;
           font-size: 1.2em;
@@ -105,7 +104,7 @@
       .body__seance_info {
         display: flex;
         align-items: center;
-        color: $thirdColorText;
+        color: $secondaryColorLightText;
         box-sizing: border-box;
         border-bottom: 2px solid $lineColorGray;
         padding: 5px 0;
@@ -245,11 +244,11 @@
 
           .screen {
             grid-area: screen;
-            border-top: $secondColorText 3px solid;
+            border-top: $secondaryColorDarkText 3px solid;
             border-radius: 50px / 5px;
             text-align: center;
             padding-bottom: 50px;
-            color: $thirdColorText;
+            color: $secondaryColorLightText;
             font-weight: 500;
           }
           .seat_map {
@@ -351,7 +350,7 @@
               text-align: left;
               padding: 5px;
               font-size: 0.8em;
-              color: $thirdColorText;
+              color: $secondaryColorLightText;
 
               &.row_end {
                 text-align: right;
@@ -378,7 +377,7 @@
             font-weight: 300;
 
             span {
-              color: $secondColorText;
+              color: $secondaryColorDarkText;
               padding: 0 10px;
             }
 
@@ -526,7 +525,7 @@
 
         .total_price {
           padding: 10px;
-          background: $secondColor;
+          background: $secondaryColorDark;
           display: flex;
           width: 100%;
           justify-content: space-between;
@@ -544,7 +543,7 @@
           }
         }
 
-        .ant-btn {
+        .pay_button {
           border-radius: $borderRadius;
           margin-top: 20px;
           width: 80%;
@@ -572,16 +571,16 @@
 
 .tooltip_overlay {
   .ant-popover-inner {
-    background: rgba($color: $secondColor, $alpha: 0.9);
-    color: $secondColorText;
+    background: rgba($color: $secondaryColorDark, $alpha: 0.9);
+    color: $secondaryColorDarkText;
 
     .ant-popover-title {
-      color: $secondColorText;
+      color: $secondaryColorDarkText;
       font-size: 1.1em;
       font-weight: 400;
     }
     .ant-popover-inner-content {
-      color: $secondColorText;
+      color: $secondaryColorDarkText;
       font-weight: 300;
     }
   }

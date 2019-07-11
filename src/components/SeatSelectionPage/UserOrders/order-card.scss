@@ -94,14 +94,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: $secondColorText;
+    color: $secondaryColorDarkText;
 
     .seat_head_info {
       display: flex;
       justify-content: space-between;
 
       h3 {
-        color: $thirdColorText;
+        color: $secondaryColorLightText;
         font-size: 1.2em;
         font-weight: 400;
       }
@@ -122,7 +122,7 @@
     }
 
     // .seat_description {
-    //   color: $thirdColorText;
+    //   color: $secondaryColorLightText;
     //   font-size: small;
     //   font-weight: 100;
     // }
