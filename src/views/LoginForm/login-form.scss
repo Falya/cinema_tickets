@@ -122,12 +122,12 @@
             padding: 5px;
             border: 1px solid $lineColorGray;
             border-radius: $borderRadius;
-            background: $thirdColor;
-            caret-color: $thirdColorText;
-            color: $thirdColorText;
+            background: $secondaryColorLight;
+            caret-color: $secondaryColorLightText;
+            color: $secondaryColorLightText;
             width: 100%;
             &::placeholder {
-              color: $thirdColorText;
+              color: $secondaryColorLightText;
               font-size: 0.9em;
             }
             &:focus {
@@ -135,9 +135,9 @@
               outline-style: solid;
               outline-width: thin;
               padding: 5px;
-              background: $thirdColor;
-              caret-color: $thirdColorText;
-              color: $thirdColorText;
+              background: $secondaryColorLight;
+              caret-color: $secondaryColorLightText;
+              color: $secondaryColorLightText;
             }
 
             &.wrong-input {
@@ -151,7 +151,7 @@
             &:-webkit-autofill:focus {
               box-sizing: border-box;
               border: none;
-              -webkit-text-fill-color: $thirdColorText;
+              -webkit-text-fill-color: $secondaryColorLightText;
               box-shadow: 0 0 0px 1000px $lineColorDark inset;
             }
           }

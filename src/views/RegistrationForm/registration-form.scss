@@ -127,13 +127,13 @@
             display: flex;
             padding: 5px;
             border: 1px solid $lineColorGray;
-            background: $thirdColor;
-            caret-color: $thirdColorText;
-            color: $thirdColorText;
+            background: $secondaryColorLight;
+            caret-color: $secondaryColorLightText;
+            color: $secondaryColorLightText;
             width: 100%;
 
             &::placeholder {
-              color: $thirdColorText;
+              color: $secondaryColorLightText;
               font-size: 0.9em;
             }
 

@@ -18,7 +18,7 @@ header {
     padding: 5px 15px;
     box-sizing: border-box;
     position: relative;
-    color: $secondColorText;
+    color: $secondaryColorDarkText;
     margin: auto;
 
     .brand {
@@ -79,7 +79,7 @@ header {
 
           &:hover {
             border-bottom-color: $lineColor;
-            color: $thirdColorText;
+            color: $secondaryColorLightText;
           }
         }
       }
@@ -96,12 +96,12 @@ header {
           width: max-content;
           box-sizing: border-box;
           border-bottom: 2px solid transparent;
-          color: $secondColorText;
+          color: $secondaryColorDarkText;
           cursor: pointer;
 
           &:hover {
             border-bottom-color: $lineColorLight;
-            color: $thirdColorText;
+            color: $secondaryColorLightText;
           }
         }
       }
@@ -145,8 +145,8 @@ header {
         div {
           position: relative;
           width: 100%;
-          background: $secondColor;
-          color: $secondColorText;
+          background: $secondaryColorDark;
+          color: $secondaryColorDarkText;
         }
 
         .matches {
