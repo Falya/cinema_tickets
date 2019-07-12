@@ -41,8 +41,6 @@ class ConnectedApp extends Component {
   }
 
   render() {
-    const log = /^[a-z0-9/]*\/login$/gi;
-    const reg = /^[a-z0-9/]*\/registration$/gi;
     const { loading } = this.props;
     return (
       <div className="wrapper">
@@ -62,8 +60,13 @@ class ConnectedApp extends Component {
               <Route path="/schedule/movie/:movieId/seance/:seanceId" component={SeatSelectionPage} />
               <Route exact path="/user/profile" component={UserProfilePage} />
             </Switch>
-            <Route path={log} component={LoginForm} />
-            <Route path={reg} component={RegistrationForm} />
+            <Switch>
+              <Route path={['/login', '/schedule/movie/:movieId/seance/:seanceId/login']} component={LoginForm} />
+              <Route
+                path={['/registration', '/schedule/movie/:movieId/seance/:seanceId/registration']}
+                component={RegistrationForm}
+              />
+            </Switch>
           </ScrollToTop>
         </Router>
       </div>

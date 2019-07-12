@@ -3,8 +3,15 @@ import { withRouter } from 'react-router-dom';
 import './login-form.scss';
 import { Button } from 'antd';
 import { logIn } from '../../webAPI';
+import { connect } from 'react-redux';
 
-class LoginForm extends Component {
+const mapStateToProps = state => {
+  return {
+    userName: state.userNameReducer.userName,
+  };
+};
+
+class ConnectedLoginForm extends Component {
   constructor(props) {
     super(props);
 
@@ -79,7 +86,7 @@ class LoginForm extends Component {
             } else {
               this.setState({ message: null });
             }
-          }, 2000);
+          }, 1500);
         })
         .catch(err => console.log(err));
     }
@@ -92,7 +99,13 @@ class LoginForm extends Component {
 
   onCloseButton = () => this.props.history.goBack();
 
+  componentDidMount() {
+    const { token } = localStorage;
+    token && this.props.history.replace('/');
+  }
+
   render() {
+    console.log(this.props.userName);
     return (
       <div className="login_form__wrapper">
         <div className="login_form">
@@ -144,5 +157,7 @@ class LoginForm extends Component {
     );
   }
 }
+
+const LoginForm = connect(mapStateToProps)(ConnectedLoginForm);
 
 export default withRouter(LoginForm);

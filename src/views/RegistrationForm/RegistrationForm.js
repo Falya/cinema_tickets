@@ -25,10 +25,10 @@ class RegistrationForm extends Component {
       confirmPassword = formData.get('confirmPassword'),
       isPasswordConfirmed = password === confirmPassword;
 
-    if (this.state.isPasswordConfirmed !== confirmPassword) {
+    if (this.state.isPasswordConfirmed !== isPasswordConfirmed) {
       this.setState({ isPasswordConfirmed });
 
-      if (areAllInputsFilled && this.state.isPasswordConfirmed) {
+      if (areAllInputsFilled && isPasswordConfirmed) {
         const data = {
           nickName: formData.get('userName'),
           email: formData.get('email'),

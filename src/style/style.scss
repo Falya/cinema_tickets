@@ -13,7 +13,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: $fontFamily;
   margin: 0;
   padding: 0;
   background: $secondaryColorLight;
