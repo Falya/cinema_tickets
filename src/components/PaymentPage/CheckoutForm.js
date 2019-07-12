@@ -2,7 +2,7 @@ import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
-import { makePayment } from '../../webAPI';
+import { makePayment, getCurrency } from '../../webAPI';
 import { setLoadingState, getSeanceApi, setOrderFeature, setPayedOrder } from '../../redux/actions/actions';
 import { withRouter } from 'react-router-dom';
 import { STRIPE_KEY } from '../../config/config';
@@ -12,15 +12,20 @@ const mapStateToProps = state => {
     totalPrice: state.orderReducer.order.totalPrice,
     orderFeatures: state.orderReducer.order.features,
     orderTickets: state.seanceReducer.seanceInfo.blockedSeatsByUser,
+    currency: state.orderReducer.currency,
   };
 };
 
 class ConnectedCheckout extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   onToken = async token => {
     this.props.setLoadingState(true);
-    const { orderFeatures, orderTickets, totalPrice } = this.props;
+    const { orderFeatures, orderTickets, totalPrice, currency } = this.props;
     const body = {
-      totalPrice: totalPrice * 100,
+      totalPrice: (totalPrice / currency) * 100,
       stripeEmail: token.email,
       stripeToken: token.id,
       stripeTokenType: token.type,
@@ -46,14 +51,16 @@ class ConnectedCheckout extends React.Component {
   };
 
   render() {
+    const { currency } = this.props;
+    console.log('currency: ', currency);
     return (
       <StripeCheckout
         stripeKey={STRIPE_KEY}
         panelLabel={`Pay`}
         allowRememberMe={false}
         token={this.onToken}
-        amount={this.props.totalPrice * 100}
-        currency="BYN">
+        amount={(this.props.totalPrice / currency) * 100}
+        currency="usd">
         <Button className="pay_with_card_button" type="primary" disabled={!this.props.totalPrice}>
           Pay with card
         </Button>

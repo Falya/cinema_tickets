@@ -64,11 +64,6 @@ class ConnectedBookingPage extends Component {
       this.props.setMovieId(nextProps.match.params.movieId);
     }
 
-    // if (this.refs['mySection'].getBoundingClientRect().top < 0) {
-    //   console.log(this.refs['mySection'].getBoundingClientRect().top);
-    //   window.scrollBy(0, this.refs['mySection'].getBoundingClientRect().top);
-    // }
-
     return nextProps !== this.props;
   }
 
@@ -82,16 +77,14 @@ class ConnectedBookingPage extends Component {
               <div className="nav_bar__back_btn" onClick={this.onBackButton}>
                 <span className="icon-arrow-left" />
               </div>
-              <div className="nav_bar__title">
-                <h3>{movie && movie.name}</h3>
-              </div>
+              <div className="nav_bar__title">{movie && movie._id && <h3>{movie.name}</h3>}</div>
               <div className="nav_bar__close_btn">
                 <span className="icon-cross" onClick={this.onCloseButton} />
               </div>
             </div>
           </div>
           <FilterNavBar />
-          {movie && (
+          {movie && movie._id === this.props.match.params.movieId && (
             <div className="booking_page__body">
               <div className="body_left_container">
                 <div className="movie">

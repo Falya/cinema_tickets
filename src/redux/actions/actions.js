@@ -115,3 +115,9 @@ export function getUserProfileApi() {
     type: actionTypes.USER_PROFILE_REQUESTED,
   };
 }
+
+export function getCurrencyApi() {
+  return {
+    type: actionTypes.CURRENCY_REQUESTED,
+  };
+}

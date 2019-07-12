@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route } from 'react-router-dom';
 import './seat-selection-page.scss';
-import { setBlur, setSeanceId, getMovieApi, setBookingStage, getSeanceApi } from '../../redux/actions/actions';
+import {
+  setBlur,
+  setSeanceId,
+  getMovieApi,
+  setBookingStage,
+  getSeanceApi,
+  getCurrencyApi,
+} from '../../redux/actions/actions';
 import SeatMap from './SeatMap';
 import SeatTypeCard from './SeatTypeCard';
 import BookingStage from '../BookingStage/BookingStage';
@@ -75,6 +82,7 @@ class ConnectedSeatSelectionPage extends Component {
     this.props.setSeanceId(this.props.match.params.seanceId);
     this.props.setBlur(true);
     this.props.setBookingStage(1);
+    this.props.getCurrencyApi();
   }
 
   componentWillUnmount() {
@@ -174,7 +182,7 @@ class ConnectedSeatSelectionPage extends Component {
 
 const SeatSelectionPage = connect(
   mapStateToProps,
-  { setBlur, setSeanceId, getMovieApi, setBookingStage, getSeanceApi }
+  { setBlur, setSeanceId, getMovieApi, setBookingStage, getSeanceApi, getCurrencyApi }
 )(ConnectedSeatSelectionPage);
 
 export default withRouter(SeatSelectionPage);

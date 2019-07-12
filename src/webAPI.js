@@ -192,3 +192,9 @@ export function getUserProfile() {
       return result;
     });
 }
+
+export function getCurrency() {
+  return fetch('http://www.nbrb.by/API/ExRates/Rates/145')
+    .then(res => res.json())
+    .then(res => res.Cur_OfficialRate);
+}
