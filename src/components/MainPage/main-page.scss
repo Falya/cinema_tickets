@@ -123,14 +123,9 @@ section {
                 margin: 10px 0;
                 font-size: larger;
                 color: $mainColorText;
-                cursor: pointer;
                 font-weight: 600;
                 letter-spacing: 0.1em;
                 transition: color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-
-                &:hover {
-                  color: $lineColorLight;
-                }
               }
 
               span {

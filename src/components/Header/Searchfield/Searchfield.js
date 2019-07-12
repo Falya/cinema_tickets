@@ -21,11 +21,14 @@ class ConnectedSearchField extends Component {
   }
 
   filterMovies = searchTerm => {
-    const matches = this.props.movies.filter(
-      movie => searchTerm && movie.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-    );
+    if (searchTerm) {
+      const regExp = new RegExp(`(:?^|\\s)+${searchTerm}`, 'ig');
+      const matches = this.props.movies.filter(movie => searchTerm && movie.name.match(regExp)).sort();
 
-    this.setState({ matches });
+      this.setState({ matches });
+    } else {
+      this.setState({ matches: [] });
+    }
   };
 
   onInput = e => {
