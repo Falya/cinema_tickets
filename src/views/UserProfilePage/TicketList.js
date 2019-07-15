@@ -25,10 +25,10 @@ class TicketList extends Component {
           <img src={seance.movieInfo.poster} alt={seance.movieInfo.name} />
         </div>
         <div className="film_name">{seance.movieInfo.name}</div>
-        <div className="cinema_adress">
+        <div className="cinema_address">
           <span className="icon-location"></span>
           <span>
-            {seance.movieTheaterInfo.name}, {seance.movieTheaterInfo.city}, {seance.movieTheaterInfo.adress} /{' '}
+            {seance.movieTheaterInfo.name}, {seance.movieTheaterInfo.city}, {seance.movieTheaterInfo.address} /{' '}
             {seance.hallName}
           </span>
         </div>
@@ -65,8 +65,10 @@ class TicketList extends Component {
       </Collapse>
     ) : (
       <Empty
-      image={Empty.PRESENTED_IMAGE_SIMPLE}
-      description="You have no suitable tickets." style={{color: 'white', fontSize: '1.5em'}} />
+        image={Empty.PRESENTED_IMAGE_SIMPLE}
+        description="You have no suitable tickets."
+        style={{ color: 'white', fontSize: '1.5em' }}
+      />
     );
   }
 }

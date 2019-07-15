@@ -130,10 +130,10 @@ class ConnectedSeatSelectionPage extends Component {
                 <div className="seance_info__wrapper">
                   <div className="seance_info__cinema_info">
                     <h1 className="cinema_info__movie_name">{movie && movie.name}</h1>
-                    <div className="cinema_info__adress">
+                    <div className="cinema_info__address">
                       <span className="text_icon icon-location2"></span>
                       <span>
-                        {seanceInfo.cinemaInfo.cinemaName}, {seanceInfo.cinemaInfo.adress} /{' '}
+                        {seanceInfo.cinemaInfo.cinemaName}, {seanceInfo.cinemaInfo.address} /{' '}
                         {seanceInfo.seance.hallName}
                       </span>
                     </div>

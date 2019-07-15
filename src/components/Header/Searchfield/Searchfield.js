@@ -21,9 +21,12 @@ class ConnectedSearchField extends Component {
   }
 
   filterMovies = searchTerm => {
+    const { currentMovies, featureMovies } = this.props.movies;
     if (searchTerm) {
       const regExp = new RegExp(`(:?^|\\s)+${searchTerm}`, 'ig');
-      const matches = this.props.movies.filter(movie => searchTerm && movie.name.match(regExp)).sort();
+      const matches = [...currentMovies, ...featureMovies]
+        .filter(movie => searchTerm && movie.name.match(regExp))
+        .sort();
 
       this.setState({ matches });
     } else {

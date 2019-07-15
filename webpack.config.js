@@ -4,18 +4,17 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-
 module.exports = {
   context: __dirname,
   mode: 'development',
   entry: {
-    app: path.join(__dirname, 'src', 'index')
+    app: path.join(__dirname, 'src', 'index'),
   },
   watch: true,
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   devtool: 'cheap-module-eval-source-map',
   devServer: {
@@ -32,61 +31,56 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
-      inject: 'head'
+      inject: 'head',
     }),
     new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer'
-    })
+      defaultAttribute: 'defer',
+    }),
   ],
   module: {
-    rules: [{
-
-      test: /.jsx?$/,
-      include: [
-        path.resolve(__dirname, 'src')
-      ],
-      exclude: [
-        path.resolve(__dirname, 'node_modules')
-      ],
-      options: {
-        presets: ['env', 'react'],
-        plugins: [
-          "transform-class-properties"
-        ]
-      },
-      loader: 'babel-loader',
-    },
-    {
-      test: /\.woff(2)?(\?[a-z0-9]+)?$/,
-      loader: "url-loader?limit=10000&mimetype=application/font-woff"
-    },
-    {
-      test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
-      loader: "file-loader"
-    },
-    {
-      test: /\.css$/,
-      use: [{
-        loader: 'style-loader',
-      }, {
-        loader: 'css-loader',
-      }],
-
-    },
-    {
-      test: /\.scss$/,
-      use: [
-        {
-          loader: MiniCssExtractPlugin.loader
+    rules: [
+      {
+        test: /.jsx?$/,
+        include: [path.resolve(__dirname, 'src')],
+        exclude: [path.resolve(__dirname, 'node_modules')],
+        options: {
+          presets: ['env', 'react'],
+          plugins: ['transform-class-properties'],
         },
-        'css-loader',
-        'sass-loader'
-      ]
-    },
-
-    ]
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.woff(2)?(\?[a-z0-9]+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader',
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+        ],
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ['.json', '.js', '.jsx']
+    extensions: ['.json', '.js', '.jsx'],
   },
 };
