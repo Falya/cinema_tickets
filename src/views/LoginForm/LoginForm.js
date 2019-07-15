@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './login-form.scss';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { logIn } from '../../webAPI';
 import { connect } from 'react-redux';
 
@@ -66,12 +66,14 @@ class ConnectedLoginForm extends Component {
       logIn(data)
         .then(res => {
           if (res.message) {
+            message.error(res.message, 5);
             this.setState({
               loading: false,
               disabledBtn: false,
               message: res.message,
             });
           } else {
+            message.success('You are logged in', 5);
             this.setState({
               loading: false,
               disabledBtn: false,
@@ -105,7 +107,6 @@ class ConnectedLoginForm extends Component {
   }
 
   render() {
-    console.log(this.props.userName);
     return (
       <div className="login_form__wrapper">
         <div className="login_form">

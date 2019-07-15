@@ -43,7 +43,6 @@ export function getSeancesByMovieId(params) {
   };
 
   const url = new URL(`${BASE_URL}/movies/movie/seances/`);
-  // url.search = new URLSearchParams(customParams);
 
   return fetch(url, options).then(res => res.json());
 }
@@ -131,7 +130,9 @@ export function toBlockSeat(params) {
       if (res.status < 400) {
         return res.json();
       }
-      return res.status;
+      return {
+        status: res.status,
+      };
     })
     .catch(err => console.log(err));
 }

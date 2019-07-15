@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './registration-form.scss';
 import { signUp } from '../../webAPI';
+import { message } from 'antd';
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -36,8 +37,10 @@ class RegistrationForm extends Component {
         };
         signUp(data).then(res => {
           if (res.message) {
+            message.error(res.message, 5);
             this.setState({ message: res.message });
           } else {
+            message.success('You are registered', 5);
             this.setState({ message: 'success' });
           }
           setTimeout(() => {

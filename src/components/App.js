@@ -8,9 +8,10 @@ import RegistrationForm from '../views/RegistrationForm/RegistrationForm';
 import MainPage from '../views/MainPage';
 import BookingPage from '../views/BookingPage';
 import SeatSelectionPage from './SeatSelectionPage/SeatSelectionPage';
-import { getUserName } from '../redux/actions/actions';
+import { getUserName, resetUserName } from '../redux/actions/actions';
 import UserProfilePage from '../views/UserProfilePage/UserProfilePage';
 import ScrollToTop from './ScrollToTop';
+import { message } from 'antd';
 
 const mapStateToProps = state => {
   return {
@@ -30,6 +31,18 @@ class ConnectedApp extends Component {
     if (token) {
       this.props.getUserName();
     }
+
+    window.addEventListener('storage', e => {
+      if (e.key === 'token') {
+        if (localStorage.token) {
+          message.info('You are logged in', 5);
+          this.props.getUserName();
+        } else {
+          message.info('You are logged out', 5);
+          this.props.resetUserName();
+        }
+      }
+    });
   }
 
   shouldComponentUpdate(nextProps) {
@@ -76,6 +89,6 @@ class ConnectedApp extends Component {
 
 const App = connect(
   mapStateToProps,
-  { getUserName }
+  { getUserName, resetUserName }
 )(ConnectedApp);
 export default App;
