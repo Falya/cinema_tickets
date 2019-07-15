@@ -382,7 +382,8 @@ $mediaWidthSmall: 460px;
         flex-direction: column;
 
         .movie_trailer_preview {
-          width: 80%;
+          width: 90%;
+          height: max-content;
           margin: 15px auto;
           display: flex;
           flex-direction: column;
@@ -458,6 +459,7 @@ $mediaWidthSmall: 460px;
 
           .movie_trailer_preview {
             width: 70%;
+            min-height: 200px;
           }
 
           .movie_description {

@@ -5,6 +5,7 @@ import '../components/BookingPage/booking-page.scss';
 import MovieTheaterSeances from '../components/BookingPage/MovieTheaterSeances';
 import FilterNavBar from '../components/BookingPage/Filters/FilterNavBar';
 import { getMovieApi, setMovieId, setBlur, setOrderFeature } from '../redux/actions/actions';
+import TrailerPlayer from '../components/BookingPage/TrailerPlayer';
 
 const mapStateToProps = state => {
   return {
@@ -104,12 +105,8 @@ class ConnectedBookingPage extends Component {
               </div>
               <div className="body_right_container">
                 <div className="description">
-                  <div className="movie_trailer_preview">
-                    <div className="movie_trailer_preview__overlay">
-                      <span className="icon-play2" />
-                    </div>
-                    <img src="https://i.ytimg.com/vi/TXuuWMDqBak/maxresdefault.jpg" alt="" />
-                  </div>
+                  <TrailerPlayer trailer={movie.trailer} />
+
                   <div className="movie_description">
                     <h3>{movie.name}</h3>
                     <span>{movie.description}</span>

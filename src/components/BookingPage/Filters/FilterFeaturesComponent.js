@@ -11,11 +11,11 @@ class FilterFeaturesComponent extends Component {
       options: [
         {
           name: '>1 empty seats',
-          flag: 'emptyMoreOne',
+          flag: 'hasEmptyMoreOne',
         },
         {
           name: '>2 empty seats',
-          flag: 'emptyMoreTwo',
+          flag: 'hasEmptyMoreTwo',
         },
         {
           name: 'has VIP',
@@ -27,7 +27,7 @@ class FilterFeaturesComponent extends Component {
         },
         {
           name: '3D',
-          flag: 'video3d',
+          flag: 'hasVideo3d',
         },
       ],
       selectedFeatures: [],
