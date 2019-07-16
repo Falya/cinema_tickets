@@ -6,6 +6,7 @@ import MovieTheaterSeances from '../components/BookingPage/MovieTheaterSeances';
 import FilterNavBar from '../components/BookingPage/Filters/FilterNavBar';
 import { getMovieApi, setMovieId, setBlur, setOrderFeature } from '../redux/actions/actions';
 import TrailerPlayer from '../components/BookingPage/TrailerPlayer';
+import { Empty } from 'antd';
 
 const mapStateToProps = state => {
   return {
@@ -101,7 +102,18 @@ class ConnectedBookingPage extends Component {
                     </span>
                   </div>
                 </div>
-                <div className="movie__seances">{movieTheaters && this.renderMovieTheaters(movieTheaters)}</div>
+                <div className="movie__seances">
+                  {movieTheaters.length ? (
+                    this.renderMovieTheaters(movieTheaters)
+                  ) : (
+                    <Empty
+                      image={Empty.PRESENTED_IMAGE_SIMPLE}
+                      description={
+                        <span style={{ color: 'white', fontSize: '1.1em' }}>There are no seances for this date.</span>
+                      }
+                    />
+                  )}
+                </div>
               </div>
               <div className="body_right_container">
                 <div className="description">

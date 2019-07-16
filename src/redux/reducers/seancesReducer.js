@@ -1,7 +1,7 @@
 import { actionTypes } from '../constants/action-types';
 
 const initialState = {
-  movieTheaters: null,
+  movieTheaters: [],
 };
 
 export default function seancesReducer(state = initialState, action) {
