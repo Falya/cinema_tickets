@@ -30,6 +30,7 @@ class TrailerPlayer extends Component {
       light: true,
       width: '100%',
       height: this.state.height,
+      playing: true,
     };
 
     return (
