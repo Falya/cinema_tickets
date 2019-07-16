@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import '../components/MainPage/main-page.scss';
 import MovieList from '../components/MainPage/MovieList/MovieList';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { getMoviesApi } from '../redux/actions/actions';
 
-const mapStateToProps = state => {
-  return {
-    loading: state.loadingStateReducer.loading,
-  };
+const mapStateToProps = ({ moviesReducer }) => {
+  return { movies: moviesReducer.movies };
 };
 
 class ConnectedMainPage extends Component {
@@ -14,17 +14,26 @@ class ConnectedMainPage extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.getMoviesApi();
+  }
+
   render() {
-    const { loading } = this.props;
+    const { movies } = this.props;
     return (
-      <section>
-        {loading && <span className="icon-spinner2 page_spiner" />}
-        <MovieList />
-      </section>
+      !!movies.currentMovies.length && (
+        <section>
+          <MovieList headingName={`Now in the cinema`} movies={movies.currentMovies} />
+          <MovieList headingName={`Coming soon`} movies={movies.featureMovies} />
+        </section>
+      )
     );
   }
 }
 
-const MainPage = connect(mapStateToProps)(ConnectedMainPage);
+const MainPage = connect(
+  mapStateToProps,
+  { getMoviesApi }
+)(ConnectedMainPage);
 
-export default MainPage;
+export default withRouter(MainPage);

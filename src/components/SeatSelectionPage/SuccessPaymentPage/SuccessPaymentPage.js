@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setBookingStage } from '../../../redux/actions/actions';
 import { Button } from 'antd';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './succese-payment-page.scss';
 
 const mapStateToProps = state => {
@@ -17,7 +17,12 @@ class ConnectedSuccessPaymentPage extends Component {
     super(props);
   }
 
+  onProfileClick = () => {
+    this.props.history.replace('/user/profile');
+  };
+
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setBookingStage(3);
   }
 
@@ -27,12 +32,10 @@ class ConnectedSuccessPaymentPage extends Component {
         <div className="payed_order__header">
           <h1>Payment was successful</h1>
         </div>
-        <span className="succes_message">Your tickets will appear in your account profile</span>
-        <Link to="/user/profile">
-          <Button ghost onClick={this.onProfileClick}>
-            Go to profile
-          </Button>
-        </Link>
+        <span className="success_message">Your tickets will appear in your account profile</span>
+        <Button className="go_to_profile_button" ghost onClick={this.onProfileClick}>
+          Go to profile
+        </Button>
       </div>
     );
   }

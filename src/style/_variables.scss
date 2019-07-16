@@ -1,12 +1,15 @@
 $maxBodyWidth: 2560px;
 $maxHeaderWidth: 1680px;
+$mediaWidthLarge: 1200px;
 $mediaWidthMedium: 800px;
 $mediaWidthSmall: 460px;
 
+$fontFamily: 'Roboto', sans-serif;
+
 $mainColor: #8e8e8e;
-$secondColor: #373737;
-$thirdColor: #616161;
-$gradientColor: linear-gradient(to right, $secondColor, #4f5255);
+$secondaryColorDark: #373737;
+$secondaryColorLight: #616161;
+$gradientColor: linear-gradient(to right, $secondaryColorDark, #4f5255);
 $lineColor: #90caf9;
 $lineColorLight: #c3fdff;
 $lineColorDark: #5d99c6;
@@ -14,16 +17,16 @@ $lineColorGray: rgba(
   $color: #fff,
   $alpha: 0.2
 );
-$gradientColorLine: linear-gradient(to right, $lineColor, $lineColorDark, $lineColor);
+$gradientColorLine: linear-gradient(to right, rgba(0, 0, 0, 0), $lineColorDark, rgba(0, 0, 0, 0));
 $mainColorText: rgba(
   $color: #fff,
   $alpha: 0.95
 );
-$secondColorText: rgba(
+$secondaryColorDarkText: rgba(
   $color: #fff,
   $alpha: 0.7
 );
-$thirdColorText: rgba(
+$secondaryColorLightText: rgba(
   $color: #fff,
   $alpha: 0.8
 );

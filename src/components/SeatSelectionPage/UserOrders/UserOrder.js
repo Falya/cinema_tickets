@@ -18,6 +18,10 @@ const mapStateToProps = state => {
 class ConnectedUserOrder extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      checked: false,
+    };
   }
 
   renderOreders = orders => {
@@ -38,12 +42,29 @@ class ConnectedUserOrder extends Component {
     this.props.history.push(`${this.props.history.location.pathname}/payment`);
   };
 
+  setCheckBoxState = e => {
+    const element = e.currentTarget;
+    const checkbox = e.currentTarget.querySelector('.invisible_input');
+    if (checkbox.checked && !this.state.checked) {
+      this.setState({ checked: true, element, checkbox });
+      window.addEventListener('click', this.closeHandler);
+    }
+  };
+
+  closeHandler = event => {
+    if (!event.path.includes(this.state.element)) {
+      this.state.checkbox.checked = false;
+      this.setState({ checked: false });
+      window.removeEventListener('click', this.closeHandler);
+    }
+  };
+
   render() {
     return (
       <div className="seats__seats_info">
         <h2>{`${this.props.userName}\`s order`}</h2>
         {!!this.props.features.length && (
-          <div className="oreder_features">
+          <div className="oreder_features" onClick={this.setCheckBoxState}>
             <input type="checkbox" className="invisible_input" />
             <div className="features_header">
               <span>Select some features</span>
@@ -59,7 +80,7 @@ class ConnectedUserOrder extends Component {
           <span>{this.props.totalPrice} BYN</span>
         </div>
 
-        <Button ghost onClick={this.onPayClick}>
+        <Button className="pay_button" ghost onClick={this.onPayClick}>
           Accept and pay
         </Button>
       </div>

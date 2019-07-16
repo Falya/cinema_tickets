@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { toBlockSeat, unBlockSeat } from '../../webAPI';
 import { getSeanceApi } from '../../redux/actions/actions';
 import { withRouter } from 'react-router-dom';
+import { message } from 'antd';
 
 const mapStateToProps = state => {
   return {
@@ -19,6 +20,7 @@ class ConnectedSeatComponent extends Component {
     this.state = {
       rowNumber: this.props.rowNumber,
       seatNumber: this.props.seatNumber,
+      messageDuration: 5,
     };
   }
 
@@ -33,7 +35,7 @@ class ConnectedSeatComponent extends Component {
     ];
   };
 
-  setSeatState = () => {
+  seatStateDefinition = () => {
     switch (this.props.seatState) {
       case 'blocked':
         return 'seat_blocked';
@@ -58,9 +60,13 @@ class ConnectedSeatComponent extends Component {
 
       toBlockSeat(params)
         .then(res => {
-          if (res !== 401) {
+          if (res.success && !res.status) {
             this.props.getSeanceApi(this.props.seanceId);
+            message.success(res.message, this.state.messageDuration);
+          } else if (!res.success && !res.status) {
+            message.error(res.message, this.state.messageDuration);
           } else {
+            message.error('You aren`t logged in. Please login', this.state.messageDuration);
             this.props.history.push(`${this.props.history.location.pathname}/login`);
           }
         })
@@ -77,7 +83,11 @@ class ConnectedSeatComponent extends Component {
       unBlockSeat(params)
         .then(res => {
           this.props.getSeanceApi(this.props.seanceId);
-          return console.log(res);
+          if (res.success) {
+            message.success(res.message, this.state.messageDuration);
+          } else {
+            message.error(res.message, this.state.messageDuration);
+          }
         })
         .catch(err => console.error(err));
     }
@@ -91,7 +101,7 @@ class ConnectedSeatComponent extends Component {
         content={this.makeContent()}
         mouseEnterDelay={0.2}>
         <div
-          className={`seat ${this.setSeatState()} ${this.props.seatType.toLowerCase()}`}
+          className={`seat ${this.seatStateDefinition()} ${this.props.seatType.toLowerCase()}`}
           style={this.props.style}
           onClick={this.onSeatClick}>
           {this.state.seatNumber}

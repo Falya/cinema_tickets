@@ -17,26 +17,17 @@ $mediaWidthSmall: 460px;
   position: absolute;
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   padding: auto;
   box-sizing: border-box;
   margin: auto;
-  background: rgba($color: $secondColor, $alpha: 0.9);
+  background: rgba($color: $secondaryColorDark, $alpha: 0.9);
   top: 0;
   z-index: 2;
 
-  .page_spiner {
-    position: fixed;
-    top: calc(50% - 7.5vh);
-    left: calc(50% - 7.5vh);
-    font-size: 15vh;
-    color: $lineColor;
-    animation: spin 1s linear infinite;
-  }
-
   .booking_page__wrapper {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     margin: 0 auto;
     display: flex;
     max-width: $maxHeaderWidth;
@@ -48,7 +39,7 @@ $mediaWidthSmall: 460px;
       position: sticky;
       top: 0;
       flex-direction: column;
-      background: rgba($color: $secondColor, $alpha: 0.8);
+      background: rgba($color: $secondaryColorDark, $alpha: 0.8);
       color: $mainColorText;
       padding: 10px 15px;
       z-index: 2;
@@ -65,6 +56,7 @@ $mediaWidthSmall: 460px;
           font-size: 1.3em;
           color: $lineColorLight;
           opacity: 0.8;
+          margin: 5px;
           transition: color, opacity, transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
           &:hover {
             color: $lineColor;
@@ -79,9 +71,10 @@ $mediaWidthSmall: 460px;
         .nav_bar__title,
         h3 {
           color: $mainColorText;
-          margin: 0;
+          margin: 0 10px;
           z-index: 1;
           font-size: 1.2em;
+          text-align: center;
         }
       }
       @media screen and (max-width: $mediaWidthMedium) {
@@ -89,6 +82,10 @@ $mediaWidthSmall: 460px;
 
         .header__nav_bar {
           padding: 0;
+
+          h3 {
+            font-size: 0.9em;
+          }
         }
       }
     }
@@ -196,6 +193,7 @@ $mediaWidthSmall: 460px;
 
           .movie__info {
             flex-basis: 70%;
+            padding: 0 5px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -207,7 +205,7 @@ $mediaWidthSmall: 460px;
             }
 
             span {
-              color: $secondColorText;
+              color: $secondaryColorDarkText;
               font-weight: 300;
             }
           }
@@ -221,6 +219,7 @@ $mediaWidthSmall: 460px;
           box-sizing: border-box;
           border-top: 2px solid $lineColorGray;
           border-bottom: 2px solid $lineColorGray;
+          color: $mainColorText;
 
           .seances__card {
             display: flex;
@@ -234,7 +233,7 @@ $mediaWidthSmall: 460px;
               display: flex;
               flex-direction: column;
               padding: 10px;
-              color: $secondColorText;
+              color: $secondaryColorDarkText;
               font-weight: 300;
 
               h3 {
@@ -259,7 +258,7 @@ $mediaWidthSmall: 460px;
                 justify-content: space-around;
                 cursor: pointer;
                 border-radius: $borderRadius;
-                background: rgba($color: $secondColor, $alpha: 0.4);
+                background: rgba($color: $secondaryColorDark, $alpha: 0.4);
                 transition: border-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
                 &:hover {
                   border-color: $lineColorLight;
@@ -273,13 +272,13 @@ $mediaWidthSmall: 460px;
 
                 .card__format {
                   margin: auto;
-                  color: $thirdColorText;
+                  color: $secondaryColorLightText;
                   font-weight: 300;
                 }
 
                 .card__hall {
                   margin: auto;
-                  color: $secondColorText;
+                  color: $secondaryColorDarkText;
                   font-size: 0.9em;
                   font-weight: 100;
                 }
@@ -293,11 +292,11 @@ $mediaWidthSmall: 460px;
 
           .movie {
             .movie__poster {
-              flex-basis: 40%;
+              flex-basis: 35%;
             }
 
             .movie__info {
-              flex-basis: 60%;
+              flex-basis: 65%;
 
               h1 {
                 font-size: 2em;
@@ -316,8 +315,8 @@ $mediaWidthSmall: 460px;
           }
 
           .movie__seances {
-            border-top: 2px solid $lineColorGray;
-            border-bottom: 2px solid $lineColorGray;
+            border-top: 1px solid $lineColorGray;
+            border-bottom: 1px solid $lineColorGray;
 
             .seances__card {
               border-bottom: 2px solid $lineColorGray;
@@ -364,7 +363,7 @@ $mediaWidthSmall: 460px;
                     }
 
                     .card__format {
-                      font-size: 0.9em;
+                      font-size: 0.7em;
                     }
 
                     .card__hall {
@@ -384,7 +383,8 @@ $mediaWidthSmall: 460px;
         flex-direction: column;
 
         .movie_trailer_preview {
-          width: 80%;
+          width: 90%;
+          height: max-content;
           margin: 15px auto;
           display: flex;
           flex-direction: column;
@@ -396,7 +396,7 @@ $mediaWidthSmall: 460px;
           .movie_trailer_preview__overlay {
             position: absolute;
             display: flex;
-            background-color: rgba($color: $thirdColor, $alpha: 0.4);
+            background-color: rgba($color: $secondaryColorLight, $alpha: 0.4);
             width: 100%;
             height: 100%;
             top: 0;
@@ -406,7 +406,7 @@ $mediaWidthSmall: 460px;
             border-radius: 5px;
             cursor: pointer;
             &:hover {
-              background-color: rgba($color: $thirdColor, $alpha: 0);
+              background-color: rgba($color: $secondaryColorLight, $alpha: 0);
 
               + img {
                 box-shadow: 0px 1px 5px rgba($color: $lineColorLight, $alpha: 0.4);
@@ -443,11 +443,11 @@ $mediaWidthSmall: 460px;
           padding-top: 15px;
           display: flex;
           flex-direction: column;
-          color: $thirdColorText;
+          color: $secondaryColorLightText;
           font-weight: 400;
 
           h3 {
-            color: $thirdColorText;
+            color: $secondaryColorLightText;
             font-size: 1.3em;
             text-decoration: underline;
             margin-bottom: 15px;
@@ -460,6 +460,7 @@ $mediaWidthSmall: 460px;
 
           .movie_trailer_preview {
             width: 70%;
+            min-height: 200px;
           }
 
           .movie_description {
@@ -476,7 +477,7 @@ $mediaWidthSmall: 460px;
   border-radius: $borderRadius;
 
   ul {
-    background: $secondColorText;
+    background: $secondaryColorDarkText;
     border-radius: 0 0 $borderRadius $borderRadius;
     border-top: solid 2px $lineColor;
     max-height: 40%;

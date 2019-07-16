@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './user-profile-page.scss';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { Avatar, Card, Skeleton, Tabs } from 'antd';
 import TicketList from './TicketList';
-import { getUserProfileApi } from '../../redux/actions/actions';
+import { getUserProfileApi, setBlur } from '../../redux/actions/actions';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -42,12 +42,25 @@ class ConnectedUserProfilePage extends Component {
 
   componentDidMount() {
     this.props.getUserProfileApi();
+    this.props.setBlur(true);
+  }
+
+  // shouldComponentUpdate(nextProps) {
+  //   if (condition) {
+
+  //   }
+  //   return this.Props !== nextProps;
+  // }
+
+  componentWillUnmount() {
+    this.props.setBlur(false);
   }
 
   render() {
     const { loading, userProfile, userName } = this.props;
     return (
       <section className="user_profile">
+        {!userName && <Redirect to="/" />}
         {loading && <span className="icon-spinner2 page_spiner" />}
         <div className="user_profile__wrapper">
           <div className="user_profile__header">
@@ -79,7 +92,12 @@ class ConnectedUserProfilePage extends Component {
                       Bought tickets: <strong>{userProfile.bought}</strong>
                     </span>
                     <span>
-                      Last purchase: <strong>{new Date(userProfile.lastPurchase).toLocaleString()}</strong>
+                      Last purchase:{' '}
+                      <strong>
+                        {userProfile.lastPurchase
+                          ? new Date(userProfile.lastPurchase).toLocaleString()
+                          : `haven't bought yet`}
+                      </strong>
                     </span>
                   </div>
                 )}
@@ -108,7 +126,7 @@ class ConnectedUserProfilePage extends Component {
 
 const UserProfilePage = connect(
   mapStateToProps,
-  { getUserProfileApi }
+  { getUserProfileApi, setBlur }
 )(ConnectedUserProfilePage);
 
 export default withRouter(UserProfilePage);

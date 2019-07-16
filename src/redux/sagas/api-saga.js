@@ -7,6 +7,7 @@ import getSeancesWatcher from './getSeancesSaga';
 import getSeanceWatcher from './getSeanceSaga';
 import getUserNameWatcher from './getUserNameSaga';
 import getUserProfileWatcher from './getUserProfileSaga';
+import getCurrencyWatcher from './getCurrencySaga';
 
 export default function*() {
   yield all([
@@ -17,5 +18,6 @@ export default function*() {
     getSeanceWatcher(),
     getUserNameWatcher(),
     getUserProfileWatcher(),
+    getCurrencyWatcher(),
   ]);
 }

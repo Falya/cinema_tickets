@@ -15,7 +15,7 @@
   }
 }
 
-.registration-form__wrapper {
+.registration_form__wrapper {
   height: 100vh;
   width: 100%;
   top: 0;
@@ -24,7 +24,7 @@
   z-index: 2;
   overflow: hidden;
 
-  .registration-form {
+  .registration_form {
     width: 30vw;
     background: $mainColor;
     color: $mainColorText;
@@ -64,20 +64,23 @@
       top: 2%;
     }
 
-    .result-message {
+    .result_message {
       position: absolute;
+      display: flex;
       background: rgba($color: $lineColor, $alpha: 0.9);
       box-shadow: $boxShadow;
-      height: 80%;
-      width: 80%;
-      margin-top: 10%;
+      height: 100%;
+      width: 100%;
       color: $mainColorText;
-      font-size: 2em;
+      font-size: 3em;
+      justify-content: center;
       text-align: center;
-      padding-top: 10%;
+      align-items: center;
+      padding: 10px;
+      z-index: 1;
     }
 
-    .registration-form-header {
+    .registration_form__header {
       background: $gradientColor;
       padding: 10px;
       text-align: center;
@@ -85,13 +88,15 @@
       font-size: 1.1em;
       align-self: stretch;
 
-      .close-btn {
+      .close_btn {
         position: absolute;
         right: 10px;
         cursor: pointer;
+
         &:hover {
           color: $lineColorLight;
         }
+
         &:active {
           color: $lineColor;
         }
@@ -103,8 +108,9 @@
       flex-direction: column;
       box-sizing: border-box;
       margin: 10px 0;
+      font-weight: 400;
 
-      .form-group {
+      .form_group {
         display: flex;
         justify-content: flex-start;
         padding: 10px;
@@ -117,7 +123,7 @@
           padding-right: 15px;
         }
 
-        .input-group {
+        .input_group {
           flex-basis: 56%;
 
           input {
@@ -125,21 +131,23 @@
             display: flex;
             padding: 5px;
             border: 1px solid $lineColorGray;
-            background: $thirdColor;
-            caret-color: $thirdColorText;
-            color: $thirdColorText;
+            background: $secondaryColorLight;
+            caret-color: $secondaryColorLightText;
+            color: $secondaryColorLightText;
             width: 100%;
+
             &::placeholder {
-              color: $thirdColorText;
+              color: $secondaryColorLightText;
               font-size: 0.9em;
             }
+
             &:focus {
               outline-color: $lineColorLight;
               outline-style: solid;
               outline-width: thin;
             }
 
-            &.wrong-input {
+            &.wrong_input {
               outline-color: $exceptionColor;
               outline-style: solid;
               outline-width: thin;
@@ -148,7 +156,7 @@
         }
       }
 
-      .registration-form-btn {
+      .registration_form_btn {
         justify-content: center;
 
         button {
@@ -158,10 +166,12 @@
           color: $mainColorText;
           border: 1px solid $mainColorText;
           cursor: pointer;
+
           &:hover {
             border-color: $lineColorLight;
             color: $lineColorLight;
           }
+
           &:active {
             border-color: $lineColor;
             color: $lineColor;
@@ -170,10 +180,11 @@
       }
     }
 
-    .registration-form-confirm-tip {
+    .registration_form__confirm_tip {
       font-size: 0.9em;
       margin-left: 10px;
       color: $exceptionColor;
+
       &::before {
         content: '*';
         margin-right: 3px;

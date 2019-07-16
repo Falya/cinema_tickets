@@ -9,6 +9,7 @@ function isLoadingMiddleware({ getState, dispatch }) {
         case actionTypes.SEANCES_REQUESTED:
         case actionTypes.SEANCE_REQUESTED:
         case actionTypes.MOVIES_REQUESTED:
+        case actionTypes.USER_PROFILE_REQUESTED:
           if (!loading) {
             dispatch({
               type: actionTypes.SET_LOADING_STATE,
@@ -17,10 +18,10 @@ function isLoadingMiddleware({ getState, dispatch }) {
           }
           break;
 
-        case actionTypes.MOVIE_LOADED:
         case actionTypes.SEANCES_LOADED:
         case actionTypes.SEANCE_LOADED:
         case actionTypes.MOVIES_LOADED:
+        case actionTypes.USER_PROFILE_LOADED:
           if (loading) {
             dispatch({
               type: actionTypes.SET_LOADING_STATE,
@@ -35,7 +36,7 @@ function isLoadingMiddleware({ getState, dispatch }) {
   };
 }
 
-function onMovieIdset({ dispatch }) {
+function onMovieIdSet({ dispatch }) {
   return function(next) {
     return function(action) {
       if (action.type === actionTypes.SET_MOVIE_ID && action.payload) {
@@ -93,4 +94,4 @@ function setTotalSum({ getState, dispatch }) {
   };
 }
 
-export default [isLoadingMiddleware, onMovieIdset, onSeanceIdSet, setTotalSum];
+export default [isLoadingMiddleware, onMovieIdSet, onSeanceIdSet, setTotalSum];

@@ -5,10 +5,11 @@ import '../components/BookingPage/booking-page.scss';
 import MovieTheaterSeances from '../components/BookingPage/MovieTheaterSeances';
 import FilterNavBar from '../components/BookingPage/Filters/FilterNavBar';
 import { getMovieApi, setMovieId, setBlur, setOrderFeature } from '../redux/actions/actions';
+import TrailerPlayer from '../components/BookingPage/TrailerPlayer';
+import { Empty } from 'antd';
 
 const mapStateToProps = state => {
   return {
-    loading: state.loadingStateReducer.loading,
     movie: state.movieReducer.movie,
     movieTheaters: state.seancesReducer.movieTheaters,
     movieId: state.filterParamsReducer.filterParameters.movieId,
@@ -39,6 +40,7 @@ class ConnectedBookingPage extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setBlur(true);
     this.props.setMovieId(this.props.match.params.movieId);
     this.props.setOrderFeature([]);
@@ -68,26 +70,23 @@ class ConnectedBookingPage extends Component {
   }
 
   render() {
-    const { loading, movie, movieTheaters } = this.props;
+    const { movie, movieTheaters } = this.props;
     return (
-      <section className="booking_page">
-        {loading && <span className="icon-spinner2 page_spiner" />}
+      <section className="booking_page" ref="mySection">
         <div className="booking_page__wrapper">
           <div className="booking_page__header">
             <div className="header__nav_bar">
               <div className="nav_bar__back_btn" onClick={this.onBackButton}>
                 <span className="icon-arrow-left" />
               </div>
-              <div className="nav_bar__title">
-                <h3>{movie && movie.name}</h3>
-              </div>
+              <div className="nav_bar__title">{movie && movie._id && <h3>{movie.name}</h3>}</div>
               <div className="nav_bar__close_btn">
                 <span className="icon-cross" onClick={this.onCloseButton} />
               </div>
             </div>
           </div>
           <FilterNavBar />
-          {movie && (
+          {movie && movie._id === this.props.match.params.movieId && (
             <div className="booking_page__body">
               <div className="body_left_container">
                 <div className="movie">
@@ -103,16 +102,23 @@ class ConnectedBookingPage extends Component {
                     </span>
                   </div>
                 </div>
-                <div className="movie__seances">{movieTheaters && this.renderMovieTheaters(movieTheaters)}</div>
+                <div className="movie__seances">
+                  {movieTheaters.length ? (
+                    this.renderMovieTheaters(movieTheaters)
+                  ) : (
+                    <Empty
+                      image={Empty.PRESENTED_IMAGE_SIMPLE}
+                      description={
+                        <span style={{ color: 'white', fontSize: '1.1em' }}>There are no seances for this date.</span>
+                      }
+                    />
+                  )}
+                </div>
               </div>
               <div className="body_right_container">
                 <div className="description">
-                  <div className="movie_trailer_preview">
-                    <div className="movie_trailer_preview__overlay">
-                      <span className="icon-play2" />
-                    </div>
-                    <img src="https://i.ytimg.com/vi/TXuuWMDqBak/maxresdefault.jpg" alt="" />
-                  </div>
+                  <TrailerPlayer trailer={movie.trailer} />
+
                   <div className="movie_description">
                     <h3>{movie.name}</h3>
                     <span>{movie.description}</span>

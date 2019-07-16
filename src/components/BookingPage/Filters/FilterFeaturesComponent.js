@@ -11,36 +11,62 @@ class FilterFeaturesComponent extends Component {
       options: [
         {
           name: '>1 empty seats',
-          flag: 'empty1'
+          flag: 'hasEmptyMoreOne',
+          type: {
+            minSeats: 1,
+          },
         },
         {
           name: '>2 empty seats',
-          flag: 'empty2'
+          flag: 'hasEmptyMoreTwo',
+          type: {
+            minSeats: 2,
+          },
         },
         {
-          name: 'VIP empty seats',
-          flag: 'vip'
+          name: 'has VIP',
+          flag: 'hasEmptyVip',
+          type: {
+            seatType: 'vip',
+          },
         },
         {
-          name: 'love empty seats',
-          flag: 'double'
-        },
-        {
-          name: '2D',
-          flag: '2D'
+          name: 'has double',
+          flag: 'hasEmptyDouble',
+          type: {
+            seatType: 'double',
+          },
         },
         {
           name: '3D',
-          flag: '3D'
-        }
+          flag: 'hasVideo3d',
+          type: {
+            is3d: true,
+          },
+        },
       ],
-      selectedFeatures: []
+      selectedFeatures: [],
     };
   }
 
   handleChange = selectedFeatures => {
-    this.props.setMethod(selectedFeatures);
-    this.setState({ selectedFeatures });
+    const { options } = this.state;
+    const selected = selectedFeatures.reduce((acc, feature) => {
+      const [option] = options.filter(({ flag }) => flag === feature);
+      acc = {
+        ...acc,
+        ...option.type,
+      };
+      return acc;
+    }, {});
+
+    const newState = Object.entries(selected).map(([key, value]) => {
+      const [{ flag }] = options.filter(({ type }) => type[key] === value);
+      return flag;
+    });
+
+    this.props.setMethod(selected);
+    this.setState({ selectedFeatures: newState });
   };
 
   createOptions = () => {

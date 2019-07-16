@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'babel-polyfill';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './Header/Header';
@@ -7,11 +8,17 @@ import RegistrationForm from '../views/RegistrationForm/RegistrationForm';
 import MainPage from '../views/MainPage';
 import BookingPage from '../views/BookingPage';
 import SeatSelectionPage from './SeatSelectionPage/SeatSelectionPage';
-import { getUserName } from '../redux/actions/actions';
+import { getUserName, resetUserName } from '../redux/actions/actions';
 import UserProfilePage from '../views/UserProfilePage/UserProfilePage';
+import ScrollToTop from './ScrollToTop';
+import { message } from 'antd';
 
 const mapStateToProps = state => {
-  return { isBlur: state.blurReducer.isBlur, userName: state.userNameReducer.userName };
+  return {
+    isBlur: state.blurReducer.isBlur,
+    userName: state.userNameReducer.userName,
+    loading: state.loadingStateReducer.loading,
+  };
 };
 
 class ConnectedApp extends Component {
@@ -24,6 +31,18 @@ class ConnectedApp extends Component {
     if (token) {
       this.props.getUserName();
     }
+
+    window.addEventListener('storage', e => {
+      if (e.key === 'token') {
+        if (localStorage.token) {
+          message.info('You are logged in', 5);
+          this.props.getUserName();
+        } else {
+          message.info('You are logged out', 5);
+          this.props.resetUserName();
+        }
+      }
+    });
   }
 
   shouldComponentUpdate(nextProps) {
@@ -35,23 +54,33 @@ class ConnectedApp extends Component {
   }
 
   render() {
-    const log = /^[a-z0-9/]*\/login$/gi;
-    const reg = /^[a-z0-9/]*\/registration$/gi;
+    const { loading } = this.props;
     return (
       <div className="wrapper">
-        <Router>
-          <div className={this.props.isBlur ? 'for-blur' : ''}>
-            <Header />
-            <Route path="/" component={MainPage} />
+        {loading && (
+          <div className="page_spiner">
+            <span className="icon-spinner2" />
           </div>
-          <Switch>
-            <Route exact path="/schedule/movie/:movieId" component={BookingPage} />
-            <Route path="/schedule/movie/:movieId/seance/:seanceId" component={SeatSelectionPage} />
-            {/* <Route path="/schedule/movie/:movieId/seance/:seanceId/authorize" component={SeatSelectionPage} /> */}
-            <Route exact path="/user/profile" component={UserProfilePage} />
-          </Switch>
-          <Route path={log} component={LoginForm} />
-          <Route path={reg} component={RegistrationForm} />
+        )}
+        <Router>
+          <ScrollToTop>
+            <div className={this.props.isBlur ? 'for-blur' : ''}>
+              <Header />
+              <Route path="/" component={MainPage} />
+            </div>
+            <Switch>
+              <Route exact path="/schedule/movie/:movieId" component={BookingPage} />
+              <Route path="/schedule/movie/:movieId/seance/:seanceId" component={SeatSelectionPage} />
+              <Route exact path="/user/profile" component={UserProfilePage} />
+            </Switch>
+            <Switch>
+              <Route path={['/login', '/schedule/movie/:movieId/seance/:seanceId/login']} component={LoginForm} />
+              <Route
+                path={['/registration', '/schedule/movie/:movieId/seance/:seanceId/registration']}
+                component={RegistrationForm}
+              />
+            </Switch>
+          </ScrollToTop>
         </Router>
       </div>
     );
@@ -60,6 +89,6 @@ class ConnectedApp extends Component {
 
 const App = connect(
   mapStateToProps,
-  { getUserName }
+  { getUserName, resetUserName }
 )(ConnectedApp);
 export default App;

@@ -9,6 +9,7 @@ const initialState = {
     tickets: [],
     features: {},
   },
+  currency: 1,
 };
 
 export default function orderReducer(state = initialState, action) {
@@ -21,6 +22,9 @@ export default function orderReducer(state = initialState, action) {
 
     case actionTypes.SET_PAYED_ORDER:
       return { ...state, payedOrder: action.payload };
+
+    case actionTypes.CURRENCY_LOADED:
+      return { ...state, currency: action.payload };
 
     default:
       return state;
