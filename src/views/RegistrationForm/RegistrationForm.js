@@ -20,13 +20,14 @@ class RegistrationForm extends Component {
    */
   onSubmit = e => {
     e.preventDefault();
+
     let formData = new FormData(e.target);
     let areAllInputsFilled = [...formData.values()].every(value => !!value);
     const password = formData.get('password'),
       confirmPassword = formData.get('confirmPassword'),
       isPasswordConfirmed = password === confirmPassword;
 
-    if (this.state.isPasswordConfirmed !== isPasswordConfirmed) {
+    if (this.state.isPasswordConfirmed !== isPasswordConfirmed || this.state.isPasswordConfirmed) {
       this.setState({ isPasswordConfirmed });
 
       if (areAllInputsFilled && isPasswordConfirmed) {
@@ -38,7 +39,7 @@ class RegistrationForm extends Component {
         signUp(data).then(res => {
           if (res.message) {
             message.error(res.message, 5);
-            this.setState({ message: res.message });
+            this.setState({ message: 'Failed' });
           } else {
             message.success('You are registered', 5);
             this.setState({ message: 'success' });

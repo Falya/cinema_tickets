@@ -70,7 +70,7 @@ class ConnectedLoginForm extends Component {
             this.setState({
               loading: false,
               disabledBtn: false,
-              message: res.message,
+              message: 'Failed',
             });
           } else {
             message.success('You are logged in', 5);

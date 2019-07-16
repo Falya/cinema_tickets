@@ -55,7 +55,6 @@ class ConnectedCheckout extends React.Component {
 
   render() {
     const { currency } = this.props;
-    console.log('currency: ', currency);
     return (
       <StripeCheckout
         stripeKey={STRIPE_KEY}
