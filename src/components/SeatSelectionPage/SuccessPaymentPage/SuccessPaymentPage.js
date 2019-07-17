@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setBookingStage } from '../../../redux/actions/actions';
-import { Button } from 'antd';
+import Button from 'antd/lib/button';
 import { withRouter } from 'react-router-dom';
 import './succese-payment-page.scss';
 

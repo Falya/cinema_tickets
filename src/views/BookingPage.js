@@ -6,7 +6,7 @@ import MovieTheaterSeances from '../components/BookingPage/MovieTheaterSeances';
 import FilterNavBar from '../components/BookingPage/Filters/FilterNavBar';
 import { getMovieApi, setMovieId, setBlur, setOrderFeature } from '../redux/actions/actions';
 import TrailerPlayer from '../components/BookingPage/TrailerPlayer';
-import { Empty } from 'antd';
+import Empty from 'antd/lib/empty';
 
 const mapStateToProps = state => {
   return {

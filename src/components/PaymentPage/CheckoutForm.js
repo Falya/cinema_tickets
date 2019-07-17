@@ -1,7 +1,8 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
-import { Button, message } from 'antd';
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
 import { makePayment } from '../../webAPI';
 import { setLoadingState, getSeanceApi, setOrderFeature, setPayedOrder } from '../../redux/actions/actions';
 import { withRouter } from 'react-router-dom';

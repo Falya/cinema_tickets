@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './registration-form.scss';
 import { signUp } from '../../webAPI';
-import { message } from 'antd';
+import message from 'antd/lib/message';
 
 class RegistrationForm extends Component {
   constructor(props) {

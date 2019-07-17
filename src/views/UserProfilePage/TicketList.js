@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Collapse, List, Empty } from 'antd';
+import List from 'antd/lib/list';
+import Collapse from 'antd/lib/collapse';
+import Empty from 'antd/lib/empty';
 import TicketCard from './TicketCard';
 const { Panel } = Collapse;
 

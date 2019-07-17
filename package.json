@@ -7,7 +7,6 @@
     "start": "node herokuServer.js",
     "build": "webpack",
     "heroku-postbuild": "webpack -p"
-
   },
   "engines": {
     "node": "10.16.0",
@@ -36,6 +35,7 @@
     "stylelint-config-recommended": "^2.2.0",
     "url-loader": "^2.0.1",
     "webpack": "^4.35.3",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.1.14"
   },

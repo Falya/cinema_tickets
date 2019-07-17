@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputNumber } from 'antd';
+import InputNumber from 'antd/lib/input-number';
 import { connect } from 'react-redux';
 import { setOrderFeature } from '../../../redux/actions/actions';
 

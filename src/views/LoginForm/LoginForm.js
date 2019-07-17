@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './login-form.scss';
-import { Button, message } from 'antd';
+import message from 'antd/lib/message';
+import Button from 'antd/lib/button';
 import { logIn } from '../../webAPI';
 import { connect } from 'react-redux';
 
