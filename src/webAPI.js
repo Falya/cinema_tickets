@@ -203,5 +203,5 @@ export function getCurrency() {
 
   return fetch(`${CURRENCY_URL}${CURRENCY_API_KEY}`, options)
     .then(res => res.json())
-    .then(res => res.data.USDBUN);
+    .then(res => res.data.USDBYN);
 }
