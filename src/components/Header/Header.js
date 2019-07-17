@@ -2,7 +2,7 @@ import { Component } from 'react';
 import SearchField from './SearchField/SearchField';
 import './header.scss';
 import SandwichButton from './SandwichButton/SandwichButton';
-import connect from 'react-redux/lib/connect';
+import { connect } from 'react-redux';
 import RegLogGroup from './RegLogGroup';
 
 const mapStateToProps = state => {
