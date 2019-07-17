@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import SearchField from './SearchField/SearchField';
+import SearchField from './Searcfield/Searchfield';
 import './header.scss';
 import SandwichButton from './SandwichButton/SandwichButton';
 import { connect } from 'react-redux';
