@@ -195,13 +195,17 @@ export function getUserProfile() {
 }
 
 export function getCurrency() {
+  const url = new URL(`https://cors-anywhere.herokuapp.com/${CURRENCY_URL}${CURRENCY_API_KEY}`);
   const options = {
+    method: 'GET',
     mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/html',
     },
   };
-  return fetch(`${CURRENCY_URL}${CURRENCY_API_KEY}`, options)
+  console.log(url);
+  return fetch(url, options)
     .then(res => res.json())
     .then(res => res.data.USDBYN);
 }
