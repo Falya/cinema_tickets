@@ -195,13 +195,7 @@ export function getUserProfile() {
 }
 
 export function getCurrency() {
-  const options = {
-    headers: {
-      'Content-Security-Policy': 'upgrade-insecure-requests',
-    },
-  };
-
-  return fetch(`${CURRENCY_URL}${CURRENCY_API_KEY}`, options)
+  return fetch(`${CURRENCY_URL}${CURRENCY_API_KEY}`)
     .then(res => res.json())
     .then(res => res.data.USDBYN);
 }
