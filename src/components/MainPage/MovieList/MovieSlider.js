@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Carousel } from 'antd';
+import Carousel from 'antd/lib/carousel';
 
 class MovieSlider extends Component {
   constructor(props) {

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './user-profile-page.scss';
 import { withRouter, Redirect } from 'react-router-dom';
-import { Avatar, Card, Skeleton, Tabs } from 'antd';
+import Avatar from 'antd/lib/avatar';
+import Card from 'antd/lib/card';
+import Skeleton from 'antd/lib/skeleton';
+import Tabs from 'antd/lib/tabs';
 import TicketList from './TicketList';
 import { getUserProfileApi, setBlur } from '../../redux/actions/actions';
 

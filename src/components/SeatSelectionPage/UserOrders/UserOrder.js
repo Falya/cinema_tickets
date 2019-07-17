@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button } from 'antd';
+import Button from 'antd/lib/button';
 import FeaturesSelector from './FeaturesSelector';
 import OrderCard from './OrderCard';
 

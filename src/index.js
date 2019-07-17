@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import './style/style.scss';

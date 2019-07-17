@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Popover } from 'antd';
+import Popover from 'antd/lib/popover';
 import { connect } from 'react-redux';
 import { toBlockSeat, unBlockSeat } from '../../webAPI';
 import { getSeanceApi } from '../../redux/actions/actions';
 import { withRouter } from 'react-router-dom';
-import { message } from 'antd';
+import message from 'antd/lib/message';
 
 const mapStateToProps = state => {
   return {

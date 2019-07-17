@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactPlayer from 'react-player';
+import YouTube from 'react-player/lib/players/YouTube';
 
 class TrailerPlayer extends Component {
   constructor(props) {
@@ -30,12 +30,11 @@ class TrailerPlayer extends Component {
       light: true,
       width: '100%',
       height: this.state.height,
-      playing: true,
     };
 
     return (
       <div className="movie_trailer_preview" ref={this.player}>
-        <ReactPlayer url={this.props.trailer} {...settings} />
+        <YouTube url={this.props.trailer} {...settings} />
       </div>
     );
   }

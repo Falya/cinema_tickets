@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Select } from 'antd';
+import Select from 'antd/lib/select';
 
 const { Option } = Select;
 
@@ -8,7 +8,7 @@ class FilterComponent extends Component {
     super(props);
 
     this.state = {
-      options: this.props.options
+      options: this.props.options,
     };
   }
 
@@ -31,7 +31,7 @@ class FilterComponent extends Component {
             {optionValues[1]}
           </Option>
         );
-      })
+      }),
     ];
   };
 
@@ -47,7 +47,11 @@ class FilterComponent extends Component {
     return (
       <div className="filter__item">
         <span className={`filter__icon ${this.props.icon}`} />
-        <Select value={this.props.defaultValue} dropdownClassName="filter__dropdown_menu" className="filter__select" onChange={this.handleChange}>
+        <Select
+          value={this.props.defaultValue}
+          dropdownClassName="filter__dropdown_menu"
+          className="filter__select"
+          onChange={this.handleChange}>
           {this.createOptions()}
         </Select>
       </div>
