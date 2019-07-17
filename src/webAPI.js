@@ -1,4 +1,4 @@
-import { BASE_URL } from './config/config';
+import { BASE_URL, CURRENCY_URL, CURRENCY_API_KEY } from './config/config';
 import store from './redux/store/store';
 import { actionTypes } from './redux/constants/action-types';
 
@@ -200,7 +200,8 @@ export function getCurrency() {
       'Content-Security-Policy': 'upgrade-insecure-requests',
     },
   };
-  return fetch('https://www.nbrb.by/API/ExRates/Rates/145', options)
+
+  return fetch(`${CURRENCY_URL}${CURRENCY_API_KEY}`, options)
     .then(res => res.json())
-    .then(res => res.Cur_OfficialRate);
+    .then(res => res.data.USDBUN);
 }
