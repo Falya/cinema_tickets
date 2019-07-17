@@ -195,7 +195,13 @@ export function getUserProfile() {
 }
 
 export function getCurrency() {
-  return fetch(`${CURRENCY_URL}${CURRENCY_API_KEY}`)
+  const options = {
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  };
+  return fetch(`${CURRENCY_URL}${CURRENCY_API_KEY}`, options)
     .then(res => res.json())
     .then(res => res.data.USDBYN);
 }
