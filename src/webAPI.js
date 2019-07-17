@@ -200,7 +200,7 @@ export function getCurrency() {
       'Content-Security-Policy': 'upgrade-insecure-requests',
     },
   };
-  return fetch('http://www.nbrb.by/API/ExRates/Rates/145', options)
+  return fetch('https://www.nbrb.by/API/ExRates/Rates/145', options)
     .then(res => res.json())
     .then(res => res.Cur_OfficialRate);
 }
