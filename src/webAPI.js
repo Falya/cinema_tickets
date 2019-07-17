@@ -1,4 +1,4 @@
-import { BASE_URL } from './config/config';
+import { BASE_URL, CURRENCY_URL, CURRENCY_API_KEY } from './config/config';
 import store from './redux/store/store';
 import { actionTypes } from './redux/constants/action-types';
 
@@ -195,7 +195,16 @@ export function getUserProfile() {
 }
 
 export function getCurrency() {
-  return fetch('http://www.nbrb.by/API/ExRates/Rates/145')
+  const url = new URL(`https://cors-anywhere.herokuapp.com/${CURRENCY_URL}${CURRENCY_API_KEY}`);
+  const options = {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/html',
+    },
+  };
+  return fetch(url, options)
     .then(res => res.json())
-    .then(res => res.Cur_OfficialRate);
+    .then(res => res.data.USDBYN);
 }

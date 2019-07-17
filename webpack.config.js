@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
   context: __dirname,
@@ -24,6 +25,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new FaviconsWebpackPlugin('./public/icons/favicon.png'),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].[hash].css',
       chunkFilename: 'styles/[id].[hash].css',
