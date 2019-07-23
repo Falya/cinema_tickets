@@ -59,6 +59,10 @@ class ConnectedUserOrder extends Component {
     }
   };
 
+  componentWillUnmount() {
+    window.removeEventListener('click', this.closeHandler);
+  }
+
   render() {
     return (
       <div className="seats__seats_info">
