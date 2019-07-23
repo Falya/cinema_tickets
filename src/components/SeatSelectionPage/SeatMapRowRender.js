@@ -97,7 +97,7 @@ const SeatMapRowRender = props => {
 };
 
 function calcRowCoefficient(rowNumber, vipRows) {
-  if (vipRows.some(vip => vip.rowNumber === rowNumber - 1)) {
+  if (vipRows.some(vip => rowNumber - vip.rowNumber > 0)) {
     return rowNumber + 1;
   }
 

@@ -20,6 +20,7 @@
 
     .total_price {
       width: 80%;
+      height: max-content;
       background: rgba($color: $secondaryColorLight, $alpha: 0.5);
       border-radius: $borderRadius;
       box-shadow: $boxShadow;

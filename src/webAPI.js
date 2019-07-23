@@ -204,7 +204,6 @@ export function getCurrency() {
       'Content-Type': 'text/html',
     },
   };
-  console.log(url);
   return fetch(url, options)
     .then(res => res.json())
     .then(res => res.data.USDBYN);

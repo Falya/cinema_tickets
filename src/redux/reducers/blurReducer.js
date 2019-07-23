@@ -1,7 +1,7 @@
 import { actionTypes } from '../constants/action-types';
 
 const initialState = {
-  isBlur: false
+  isBlur: false,
 };
 
 export default function blurReducer(state = initialState, action) {
