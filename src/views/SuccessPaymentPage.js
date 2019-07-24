@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setBookingStage } from '../../../redux/actions/actions';
+import { setBookingStage } from '../redux/actions/actions';
 import Button from 'antd/lib/button';
 import { withRouter } from 'react-router-dom';
-import './succese-payment-page.scss';
+import '../components/SeatSelectionPage/SuccessPaymentPage/succese-payment-page.scss';
 
 const mapStateToProps = state => {
   return {

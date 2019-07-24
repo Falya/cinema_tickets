@@ -131,7 +131,7 @@ header {
 
       @media (max-width: $mediaWidthMedium) {
         flex-basis: 100%;
-        font-size: 0.7em;
+        font-size: 0.9em;
       }
 
       label {
@@ -215,6 +215,10 @@ header {
           color: $lineColor;
         }
       }
+    }
+
+    @media (max-width: $mediaWidthMedium) {
+      width: 90%;
     }
   }
 }
