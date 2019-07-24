@@ -54,7 +54,12 @@ class ConnectedBookingPage extends Component {
   shouldComponentUpdate(nextProps) {
     const isMovieIdChanged = nextProps.movieId !== this.props.movieId;
     const isLocationChanged = nextProps.location !== this.props.location;
-    if (isMovieIdChanged && this.props.movieId) {
+    if (
+      isMovieIdChanged &&
+      this.props.movieId &&
+      nextProps.movieId &&
+      nextProps.movieId !== nextProps.match.params.movieId
+    ) {
       this.props.history.push(`/schedule/movie/${nextProps.movieId}`);
     }
 
