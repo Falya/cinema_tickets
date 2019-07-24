@@ -39,6 +39,15 @@ class ConnectedFeaturesSelector extends Component {
     this.props.setOrderFeature(params);
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    const [feature] = this.props.features.filter(item => item.product === this.props.feature.product);
+    const amount = feature ? feature.amount : 0;
+
+    if (amount !== this.state.inputValue) {
+      this.setState({ inputValue: amount });
+    }
+  }
+
   render() {
     const { inputValue } = this.state;
     const { feature, blockedSeats } = this.props;
