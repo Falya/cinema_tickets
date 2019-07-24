@@ -166,8 +166,6 @@ export function makePayment(params) {
   };
 
   return fetch(url, options).then(res => {
-    console.log('response received');
-    console.dir(res);
     return res.json();
   });
 }

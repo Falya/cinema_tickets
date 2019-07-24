@@ -7,6 +7,10 @@ section {
   justify-content: space-between;
   margin-top: 70px;
 
+  @media (max-width: $mediaWidthMedium) {
+    margin-top: -40px;
+  }
+
   .heading {
     display: flex;
     flex-direction: column;
@@ -102,6 +106,10 @@ section {
                       cursor: pointer;
 
                       &:hover {
+                        background-color: rgba($color: $secondaryColorLight, $alpha: 0);
+                      }
+
+                      @media (max-width: $mediaWidthMedium) {
                         background-color: rgba($color: $secondaryColorLight, $alpha: 0);
                       }
                     }

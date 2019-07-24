@@ -15,8 +15,8 @@ import SeatTypeCard from './SeatTypeCard';
 import BookingStage from '../BookingStage/BookingStage';
 import StopWatch from './StopWatch';
 import UserOrder from './UserOrders/UserOrder';
-import PaymentPage from '../PaymentPage/PaymentPage';
-import SuccessPaymentPage from './SuccessPaymentPage/SuccessPaymentPage';
+import PaymentPage from '../../views/PaymentPage';
+import SuccessPaymentPage from '../../views/SuccessPaymentPage';
 
 const mapStateToProps = state => {
   return {
