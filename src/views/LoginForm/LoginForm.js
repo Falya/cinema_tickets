@@ -23,8 +23,14 @@ class ConnectedLoginForm extends Component {
       isUserNameEntered: true,
       isPasswordEntered: true,
       wrongMessage: '',
+      password: '',
     };
   }
+
+  onPasswordChange = e => {
+    const { value } = e.target;
+    this.setState({ password: value });
+  };
 
   /**
    * @param {Event} e;
@@ -72,6 +78,7 @@ class ConnectedLoginForm extends Component {
               loading: false,
               disabledBtn: false,
               message: 'Failed',
+              password: '',
             });
           } else {
             message.success('You are logged in', 5);
@@ -140,6 +147,8 @@ class ConnectedLoginForm extends Component {
                   id="user-pswd"
                   required
                   placeholder="password"
+                  value={this.state.password}
+                  onChange={this.onPasswordChange}
                   className={this.state.isPasswordEntered ? '' : 'wrong_input'}
                 />
               </div>
