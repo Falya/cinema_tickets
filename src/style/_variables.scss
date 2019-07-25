@@ -18,6 +18,7 @@ $lineColorGray: rgba(
   $alpha: 0.2
 );
 $gradientColorLine: linear-gradient(to right, rgba(0, 0, 0, 0), $lineColorDark, rgba(0, 0, 0, 0));
+$gradientColorBack: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
 $mainColorText: rgba(
   $color: #fff,
   $alpha: 0.95

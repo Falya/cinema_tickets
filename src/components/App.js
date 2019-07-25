@@ -55,32 +55,37 @@ class ConnectedApp extends Component {
   render() {
     const { loading } = this.props;
     return (
-      <div className="wrapper">
-        {loading && (
-          <div className="page_spiner">
-            <span className="icon-spinner2" />
-          </div>
-        )}
-        <Router>
-          <ScrollToTop>
-            <div className={this.props.isBlur ? 'for-blur' : ''}>
-              <Header />
-              <Route path="/" component={MainPage} />
+      <div>
+        <div className="wrapper">
+          {loading && (
+            <div className="page_spiner">
+              <span className="icon-spinner2" />
             </div>
-            <Switch>
-              <Route exact path="/schedule/movie/:movieId" component={BookingPage} />
-              <Route path="/schedule/movie/:movieId/seance/:seanceId" component={SeatSelectionPage} />
-              <Route exact path="/user/profile" component={UserProfilePage} />
-            </Switch>
-            <Switch>
-              <Route path={['/login', '/schedule/movie/:movieId/seance/:seanceId/login']} component={LoginForm} />
-              <Route
-                path={['/registration', '/schedule/movie/:movieId/seance/:seanceId/registration']}
-                component={RegistrationForm}
-              />
-            </Switch>
-          </ScrollToTop>
-        </Router>
+          )}
+          <Router>
+            <ScrollToTop>
+              <div className={this.props.isBlur ? 'for-blur' : ''}>
+                <Header />
+                <Route path="/" component={MainPage} />
+              </div>
+              <Switch>
+                <Route exact path="/schedule/movie/:movieId" component={BookingPage} />
+                <Route path="/schedule/movie/:movieId/seance/:seanceId" component={SeatSelectionPage} />
+                <Route exact path="/user/profile" component={UserProfilePage} />
+              </Switch>
+              <Switch>
+                <Route path={['/login', '/schedule/movie/:movieId/seance/:seanceId/login']} component={LoginForm} />
+                <Route
+                  path={['/registration', '/schedule/movie/:movieId/seance/:seanceId/registration']}
+                  component={RegistrationForm}
+                />
+              </Switch>
+            </ScrollToTop>
+          </Router>
+        </div>
+        <footer>
+          The application is developed under the strict guidance of Dmitry Pendo. <br /> &#169; 2019 Maksim Falei
+        </footer>
       </div>
     );
   }

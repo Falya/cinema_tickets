@@ -3,11 +3,14 @@ import { actionTypes } from '../constants/action-types';
 function isLoadingMiddleware({ getState, dispatch }) {
   return function(next) {
     return function(action) {
-      const { loading } = getState().loadingStateReducer;
+      const { loadingStateReducer, seanceReducer } = getState();
+      const { loading } = loadingStateReducer;
+      const { seanceInfo } = seanceReducer;
+      const { seanceId } = seanceInfo;
       switch (action.type) {
         case actionTypes.MOVIE_REQUESTED:
         case actionTypes.SEANCES_REQUESTED:
-        case actionTypes.SEANCE_REQUESTED:
+
         case actionTypes.MOVIES_REQUESTED:
         case actionTypes.USER_PROFILE_REQUESTED:
           if (!loading) {
@@ -18,8 +21,33 @@ function isLoadingMiddleware({ getState, dispatch }) {
           }
           break;
 
-        case actionTypes.SEANCES_LOADED:
+        case actionTypes.SEANCE_REQUESTED:
+          if (seanceId !== action.payload.seanceId) {
+            dispatch({
+              type: actionTypes.SET_LOADING_STATE,
+              payload: true,
+            });
+          }
+          dispatch({
+            type: actionTypes.SET_SEAT_LOADING_STATE,
+            payload: true,
+          });
+          break;
+
         case actionTypes.SEANCE_LOADED:
+          if (seanceId !== action.payload.seanceId) {
+            dispatch({
+              type: actionTypes.SET_LOADING_STATE,
+              payload: false,
+            });
+          }
+          dispatch({
+            type: actionTypes.SET_SEAT_LOADING_STATE,
+            payload: false,
+          });
+          break;
+
+        case actionTypes.SEANCES_LOADED:
         case actionTypes.MOVIES_LOADED:
         case actionTypes.USER_PROFILE_LOADED:
           if (loading) {
