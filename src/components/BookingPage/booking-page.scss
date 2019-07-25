@@ -99,7 +99,7 @@ $mediaWidthSmall: 460px;
 
       .filter__item {
         display: flex;
-        align-items: baseline;
+        align-items: center;
         flex-basis: 20%;
         padding: 10px 0 5px 0;
         border-right: 1px solid $lineColorGray;
@@ -112,11 +112,9 @@ $mediaWidthSmall: 460px;
         }
 
         .filter__icon {
-          position: absolute;
           color: $lineColorLight;
-          left: 5px;
           font-size: 1.2em;
-          top: 5px;
+          margin: auto 5px;
         }
 
         .filter__select {

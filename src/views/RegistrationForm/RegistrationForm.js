@@ -12,8 +12,20 @@ class RegistrationForm extends Component {
       isPostedData: false,
       isPasswordConfirmed: true,
       message: null,
+      password: '',
+      confirmPassword: '',
     };
   }
+
+  onPasswordChange = e => {
+    const { value } = e.target;
+    this.setState({ password: value });
+  };
+
+  onConfirmPasswordChange = e => {
+    const { value } = e.target;
+    this.setState({ confirmPassword: value });
+  };
 
   /**
    * @param {Event} e
@@ -40,6 +52,7 @@ class RegistrationForm extends Component {
           if (res.message) {
             message.error(res.message, 5);
             this.setState({ message: 'Failed' });
+            this.setState({ confirmPassword: '', password: '' });
           } else {
             message.success('You are registered', 5);
             this.setState({ message: 'success' });
@@ -84,7 +97,14 @@ class RegistrationForm extends Component {
             <div className="form_group">
               <label htmlFor="password">Password:</label>
               <div className="input_group">
-                <input type="password" name="password" id="password" placeholder="password" required />
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  required
+                  value={this.state.password}
+                  onChange={this.onPasswordChange}
+                />
               </div>
             </div>
             <div className="form_group">
@@ -95,8 +115,9 @@ class RegistrationForm extends Component {
                   name="confirmPassword"
                   id="confirm-password"
                   className={isPasswordConfirmed ? '' : 'wrong_input'}
-                  placeholder="confirm password"
                   required
+                  value={this.state.confirmPassword}
+                  onChange={this.onConfirmPasswordChange}
                 />
               </div>
             </div>

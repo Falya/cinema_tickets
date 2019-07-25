@@ -8,6 +8,7 @@ const mapStateToProps = state => {
   return {
     seanceId: state.seanceReducer.seanceInfo.seanceId,
     features: state.orderReducer.order.features,
+    blockedSeats: state.seanceReducer.seanceInfo.blockedSeatsByUser,
   };
 };
 
@@ -32,6 +33,18 @@ class ConnectedOrderCard extends Component {
       this.props.setOrderFeature([...newFeatures]);
     }
   };
+
+  componentDidUpdate() {
+    const { feature } = this.props;
+    if (feature && !this.props.blockedSeats.length) {
+      this.props.setOrderFeature([]);
+    } else if (feature && feature.amount / this.props.blockedSeats.length / 5 > 1) {
+      const [newFeature] = this.props.features.filter(item => item.product === this.props.feature.product);
+      const newFeatures = this.props.features.filter(item => item.product !== this.props.feature.product);
+      newFeature.amount = 5 * this.props.blockedSeats.length;
+      this.props.setOrderFeature([...newFeatures, newFeature]);
+    }
+  }
 
   render() {
     const { seat, feature } = this.props;
