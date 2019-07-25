@@ -6,6 +6,7 @@ import { setBookingStage } from '../../redux/actions/actions';
 const mapStateToProps = state => {
   return {
     seanceInfo: state.seanceReducer.seanceInfo,
+    loading: state.loadingStateReducer.seatLoading,
   };
 };
 
@@ -40,8 +41,14 @@ class ConnectedSeatMap extends Component {
   }
 
   render() {
+    const { loading } = this.props;
     return (
       <div className="seats__seats_selection">
+        {loading && (
+          <div className="seats_spinner">
+            <span className="icon-spinner2" />
+          </div>
+        )}
         <div className="screen">Screen</div>
         <SeatMapRowRender
           seanceInfo={this.props.seanceInfo}
