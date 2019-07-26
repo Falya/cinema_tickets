@@ -9,7 +9,7 @@ const initialState = {
     tickets: [],
     features: {},
   },
-  currency: 1,
+  currency: 2,
 };
 
 export default function orderReducer(state = initialState, action) {

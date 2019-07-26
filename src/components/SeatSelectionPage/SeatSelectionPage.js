@@ -17,6 +17,7 @@ import StopWatch from './StopWatch';
 import UserOrder from './UserOrders/UserOrder';
 import PaymentPage from '../../views/PaymentPage';
 import SuccessPaymentPage from '../../views/SuccessPaymentPage';
+import seatsSocket from '../../sockets/seatsSocket';
 
 const mapStateToProps = state => {
   return {
@@ -31,6 +32,8 @@ const seanceIdRegexp = /^\/schedule\/movie\/((?:[^/]+?))\/seance\/((?:[^/]+?))(?
 class ConnectedSeatSelectionPage extends Component {
   constructor(props) {
     super(props);
+
+    this.socket = seatsSocket(this.props.match.params.seanceId, this.props.getSeanceApi);
   }
 
   onCloseButton = () => {
@@ -79,6 +82,7 @@ class ConnectedSeatSelectionPage extends Component {
     if (!this.props.movie) {
       this.props.getMovieApi(this.props.match.params.movieId);
     }
+
     this.props.setSeanceId(this.props.match.params.seanceId);
     this.props.setBlur(true);
     this.props.setBookingStage(1);
@@ -87,6 +91,7 @@ class ConnectedSeatSelectionPage extends Component {
 
   componentWillUnmount() {
     this.props.setBlur(false);
+    this.socket();
   }
 
   shouldComponentUpdate(nextProps) {
