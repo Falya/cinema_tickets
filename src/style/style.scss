@@ -1,5 +1,5 @@
 @import './variables';
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700&display=swap');
 @import '~antd/dist/antd.css';
 @import '~./icomoon.css';
 
@@ -7,7 +7,7 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  background: $thirdColor;
+  background: $secondaryColorLight;
   min-height: 100%;
   font-size: 18px;
   overflow-x: hidden;
@@ -29,5 +29,15 @@ body {
     .for-blur {
       filter: blur(5px);
     }
+  }
+
+  .page_spiner {
+    position: fixed;
+    top: calc(50% - 7.5vh);
+    left: calc(50% - 7.5vh);
+    font-size: 15vh;
+    color: $lineColor;
+    animation: spin 1s linear infinite;
+    z-index: 1;
   }
 }

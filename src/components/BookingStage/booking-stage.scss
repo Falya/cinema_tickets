@@ -1,4 +1,15 @@
 @import '../../style/variables';
+
+@keyframes progress-frame {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 33%;
+  }
+}
+
 .booking_stage {
   margin: 20px;
   padding: 0 10px;
@@ -11,8 +22,8 @@
   .stage {
     border: 2px solid $lineColorDark;
     border-radius: 50px;
-    background: $thirdColor;
-    color: $thirdColorText;
+    background: $secondaryColorLight;
+    color: $secondaryColorLightText;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,6 +33,7 @@
     width: 25px;
     margin-top: -10px;
     user-select: none;
+    font-weight: 300;
 
     &.stage_2 {
       margin-left: -12.5px;
@@ -39,7 +51,10 @@
   }
 
   .progress {
-    grid-column: 1 / span 1;
+    border-radius: 0 50px 50px 0;
+    grid-column: 1 / span 3;
     background: linear-gradient(to right, $lineColorLight, $lineColor);
+    animation: 1s progress-frame cubic-bezier(0.19, 1, 0.22, 1.2);
+    transition: width 1s cubic-bezier(0.19, 1, 0.22, 1.2);
   }
 }

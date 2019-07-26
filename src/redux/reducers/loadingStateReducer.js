@@ -1,7 +1,7 @@
 import { actionTypes } from '../constants/action-types';
 
 const initialState = {
-  loading: true
+  loading: true,
 };
 
 export default function loadingStateReducer(state = initialState, action) {

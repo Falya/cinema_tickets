@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import '../components/BookingPage/booking-page.scss';
 import MovieTheaterSeances from '../components/BookingPage/MovieTheaterSeances';
 import FilterNavBar from '../components/BookingPage/Filters/FilterNavBar';
-import { getMovieApi, setMovieId, setBlur } from '../redux/actions/actions';
+import { getMovieApi, setMovieId, setBlur, setOrderFeature } from '../redux/actions/actions';
 
 const mapStateToProps = state => {
   return {
@@ -35,28 +35,32 @@ class ConnectedBookingPage extends Component {
   };
 
   onBackButton = () => {
-    this.props.history.go(-2);
+    this.props.history.goBack();
   };
 
   componentDidMount() {
     this.props.setBlur(true);
     this.props.setMovieId(this.props.match.params.movieId);
-    this.getMovie(this.props.match.params.movieId);
+    this.props.setOrderFeature([]);
   }
 
   componentWillUnmount() {
     this.props.setBlur(false);
+    this.props.setMovieId(null);
   }
 
   shouldComponentUpdate(nextProps) {
     const isMovieIdChanged = nextProps.movieId !== this.props.movieId;
     const isLocationChanged = nextProps.location !== this.props.location;
-    if (isMovieIdChanged) {
+    if (isMovieIdChanged && this.props.movieId) {
       this.props.history.push(`/schedule/movie/${nextProps.movieId}`);
     }
 
+    if (isMovieIdChanged) {
+      this.getMovie(nextProps.movieId);
+    }
+
     if (isLocationChanged) {
-      this.getMovie(nextProps.match.params.movieId);
       this.props.setMovieId(nextProps.match.params.movieId);
     }
 
@@ -125,7 +129,7 @@ class ConnectedBookingPage extends Component {
 
 const BookingPage = connect(
   mapStateToProps,
-  { getMovieApi, setMovieId, setBlur },
+  { getMovieApi, setMovieId, setBlur, setOrderFeature }
 )(ConnectedBookingPage);
 
 export default withRouter(BookingPage);

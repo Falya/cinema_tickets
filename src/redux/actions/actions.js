@@ -88,3 +88,24 @@ export function setOrderFeature(payload) {
     payload,
   };
 }
+
+export function setTotalPrice(payload) {
+  return {
+    type: actionTypes.SET_TOTAL_PRICE,
+    payload,
+  };
+}
+
+export function setLoadingState(payload) {
+  return {
+    type: actionTypes.SET_LOADING_STATE,
+    payload,
+  };
+}
+
+export function setPayedOrder(payload) {
+  return {
+    type: actionTypes.SET_PAYED_ORDER,
+    payload,
+  };
+}

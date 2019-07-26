@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { unBlockSeat } from '../../../webAPI';
 import { connect } from 'react-redux';
 import { getSeanceApi, setOrderFeature } from '../../../redux/actions/actions';
+import './order-card.scss';
 
 const mapStateToProps = state => {
   return {
@@ -53,7 +54,7 @@ class ConnectedOrderCard extends Component {
                 </div>
               )}
               {seat && <span>{`Type: ${seat.seatType}`}</span>}
-              {feature && <span>{`mount: ${feature.amount} pc.`}</span>}
+              {feature && <span>{`amount: ${feature.amount} pc.`}</span>}
             </div>
             <span className="seat_price">{seat ? seat.price : feature.price} BYN</span>
           </div>

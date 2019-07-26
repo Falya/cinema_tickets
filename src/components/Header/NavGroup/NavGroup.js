@@ -1,10 +1,10 @@
-import { Component } from "react";
+import { Component } from 'react';
 
 class NavGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      links: ["Link1", "Link2", "Link3", "Link4", "Link5", "Link6"]
+      links: ['Link1', 'Link2', 'Link3', 'Link4', 'Link5', 'Link6'],
     };
   }
 
