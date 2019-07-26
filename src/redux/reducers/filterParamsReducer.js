@@ -5,9 +5,9 @@ const initialState = {
     city: null,
     movieTheaterId: 'All cinemas',
     movieId: null,
-    features: null,
-    date: new Date().toISOString()
-  }
+    features: {},
+    date: new Date().toISOString(),
+  },
 };
 
 export default function filterParamsReducer(state = initialState, action) {

@@ -11,7 +11,11 @@ import { getUserName } from '../redux/actions/actions';
 import UserProfilePage from '../views/UserProfilePage/UserProfilePage';
 
 const mapStateToProps = state => {
-  return { isBlur: state.blurReducer.isBlur, userName: state.userNameReducer.userName };
+  return {
+    isBlur: state.blurReducer.isBlur,
+    userName: state.userNameReducer.userName,
+    loading: state.loadingStateReducer.loading,
+  };
 };
 
 class ConnectedApp extends Component {
@@ -37,8 +41,14 @@ class ConnectedApp extends Component {
   render() {
     const log = /^[a-z0-9/]*\/login$/gi;
     const reg = /^[a-z0-9/]*\/registration$/gi;
+    const { loading } = this.props;
     return (
       <div className="wrapper">
+        {loading && (
+          <div className="page_spiner">
+            <span className="icon-spinner2" />
+          </div>
+        )}
         <Router>
           <div className={this.props.isBlur ? 'for-blur' : ''}>
             <Header />
@@ -47,7 +57,6 @@ class ConnectedApp extends Component {
           <Switch>
             <Route exact path="/schedule/movie/:movieId" component={BookingPage} />
             <Route path="/schedule/movie/:movieId/seance/:seanceId" component={SeatSelectionPage} />
-            {/* <Route path="/schedule/movie/:movieId/seance/:seanceId/authorize" component={SeatSelectionPage} /> */}
             <Route exact path="/user/profile" component={UserProfilePage} />
           </Switch>
           <Route path={log} component={LoginForm} />

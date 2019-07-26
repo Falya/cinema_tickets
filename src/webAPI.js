@@ -27,9 +27,6 @@ export function getMovieById(movieId) {
 
 export function getSeancesByMovieId(params) {
   const { movieTheaterId } = params;
-  const options = {
-    method: 'GET',
-  };
 
   let customParams = { ...params };
 
@@ -37,8 +34,16 @@ export function getSeancesByMovieId(params) {
     customParams.movieTheaterId = '';
   }
 
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(customParams),
+  };
+
   const url = new URL(`${BASE_URL}/movies/movie/seances/`);
-  url.search = new URLSearchParams(customParams);
+  // url.search = new URLSearchParams(customParams);
 
   return fetch(url, options).then(res => res.json());
 }
