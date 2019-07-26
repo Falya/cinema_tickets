@@ -4,7 +4,7 @@ import './user-profile-page.scss';
 import { withRouter } from 'react-router-dom';
 import { Avatar, Card, Skeleton, Tabs } from 'antd';
 import TicketList from './TicketList';
-import { getUserProfileApi } from '../../redux/actions/actions';
+import { getUserProfileApi, setBlur } from '../../redux/actions/actions';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -42,6 +42,11 @@ class ConnectedUserProfilePage extends Component {
 
   componentDidMount() {
     this.props.getUserProfileApi();
+    this.props.setBlur(true);
+  }
+
+  componentWillUnmount() {
+    this.props.setBlur(false);
   }
 
   render() {
@@ -79,7 +84,12 @@ class ConnectedUserProfilePage extends Component {
                       Bought tickets: <strong>{userProfile.bought}</strong>
                     </span>
                     <span>
-                      Last purchase: <strong>{new Date(userProfile.lastPurchase).toLocaleString()}</strong>
+                      Last purchase:{' '}
+                      <strong>
+                        {userProfile.lastPurchase
+                          ? new Date(userProfile.lastPurchase).toLocaleString()
+                          : `haven't bought yet`}
+                      </strong>
                     </span>
                   </div>
                 )}
@@ -108,7 +118,7 @@ class ConnectedUserProfilePage extends Component {
 
 const UserProfilePage = connect(
   mapStateToProps,
-  { getUserProfileApi }
+  { getUserProfileApi, setBlur }
 )(ConnectedUserProfilePage);
 
 export default withRouter(UserProfilePage);

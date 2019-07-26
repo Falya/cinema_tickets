@@ -5,7 +5,7 @@
   position: absolute;
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   height: max-content;
   padding: auto;
   box-sizing: border-box;
@@ -111,15 +111,17 @@
           display: flex;
           justify-content: center;
         }
+
         .tickets_list {
           width: 100%;
           color: $mainColorText;
           background: transparent;
           box-sizing: border-box;
-
+          border: none;
           .ticket_panel {
             .ant-collapse-header {
               color: $mainColorText;
+              border-radius: $borderRadius;
 
               .ticket_panel__header {
                 display: grid;
@@ -240,56 +242,57 @@
       }
 
       .ticket_card {
-        color: $mainColorText;
+        color: $secondaryColorDark;
         font-size: 1.5em;
         width: 100%;
-        display: grid;
-        user-select: none;
-        grid-template-columns: 2fr 1fr;
-        grid-template-rows: repeat(2, 1fr);
-        grid-template-areas:
-          'seat price'
-          'type buy_at';
+        display: flex;
+        justify-content: space-between;
         align-items: center;
 
-        .seat {
-          grid-area: seat;
-          padding: 5px;
-          font-weight: 900;
+        .card_group {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
 
-          span {
-            color: $lineColorDark;
+          .seat {
+            padding: 5px;
+            font-weight: 900;
+
+            span {
+              color: $lineColorDark;
+            }
+
+            .icon-ticket {
+              padding: 5px 10px 5px 0;
+            }
           }
 
-          .icon-ticket {
-            padding: 5px 10px;
+          .type {
+            font-weight: 300;
+            padding: 5px;
+            text-align: center;
           }
-        }
 
-        .price {
-          grid-area: price;
-          font-size: 1.1em;
-          color: $secondaryColorDarkText;
-          text-align: right;
-        }
+          .price {
+            color: $secondaryColorLight;
+            text-align: right;
+            padding: 5px;
+            height: 100%;
+          }
 
-        .type {
-          grid-area: type;
-          color: $secondaryColorLightText;
-          font-weight: 300;
-          text-align: center;
-        }
-
-        .buy_at {
-          grid-area: buy_at;
-          font-size: 0.8em;
-          font-weight: 100;
-          color: $secondaryColorDarkText;
+          .buy_at {
+            font-size: 0.8em;
+            font-weight: 300;
+            color: $secondaryColorLight;
+            text-align: end;
+            padding: 5px;
+            height: 100%;
+          }
         }
       }
 
       .feature_card {
-        color: $mainColorText;
+        color: $secondaryColorDark;
         font-size: 1.5em;
         width: 100%;
         display: grid;
@@ -323,6 +326,13 @@
               color: $lineColorDark;
             }
           }
+        }
+      }
+
+      @media (max-width: $mediaWidthMedium) {
+        .ticket_card,
+        .feature_card {
+          font-size: 1.2em;
         }
       }
 

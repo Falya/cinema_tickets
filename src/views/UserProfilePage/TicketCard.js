@@ -5,13 +5,18 @@ const TicketCard = props => {
   if (children.seatNumber) {
     return (
       <div className="ticket_card">
-        <div className="seat">
-          <span className="icon-ticket"></span>
-          Row: <span>{children.rowNumber}</span> / Seat: <span>{children.seatNumber}</span>
+        <div className="card_group">
+          <div className="seat">
+            <span className="icon-ticket"></span>
+            Row: <span>{children.rowNumber}</span> / Seat: <span>{children.seatNumber}</span>
+          </div>
+          <div className="type">Type: {children.seatType}</div>
         </div>
-        <div className="price">Price: {children.price} BYN</div>
-        <div className="type">{children.seatType}</div>
-        <div className="buy_at">Buyed at: {new Date(children.buyingTime).toLocaleDateString()}</div>
+        <div className="card_group">
+          <div className="price">Price: {children.price} BYN</div>
+
+          <div className="buy_at">Buyed at: {new Date(children.buyingTime).toLocaleDateString()}</div>
+        </div>
       </div>
     );
   }

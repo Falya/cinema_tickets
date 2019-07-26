@@ -4,10 +4,7 @@
     "es6": true,
     "node": true
   },
-  "extends": [
-    "eslint:recommended",
-    "prettier/react"
-  ],
+  "extends": ["eslint:recommended", "prettier/react"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -20,38 +17,38 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "prettier"
-
-  ],
+  "plugins": ["react", "prettier"],
   "rules": {
-    "prettier/prettier": ["error", {
-      "singleQuote": true,
-      "parser": "babylon",
-      "trailingComma": "es5",
-      "jsxSingleQuote": false,
-      "printWidth": 120,
-      "jsxBracketSameLine": true,
-      "stylelintIntegration": true,
-      "tabWidth": 2
-      }],
-    "jsx-quotes": [
-      1,
-      "prefer-double"
-    ],
-    "prefer-destructuring": ["error", {
-      "VariableDeclarator": {
-        "array": true,
-        "object": true
-      },
-      "AssignmentExpression": {
-        "array": false,
-        "object": true
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "parser": "babylon",
+        "trailingComma": "es5",
+        "jsxSingleQuote": false,
+        "printWidth": 120,
+        "jsxBracketSameLine": true,
+        "stylelintIntegration": true,
+        "tabWidth": 2
       }
-    }, {
-      "enforceForRenamedProperties": false
-    }],
+    ],
+    "jsx-quotes": [1, "prefer-double"],
+    "prefer-destructuring": [
+      "error",
+      {
+        "VariableDeclarator": {
+          "array": true,
+          "object": true
+        },
+        "AssignmentExpression": {
+          "array": false,
+          "object": true
+        }
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "semi": ["error", "always"],

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './sandwich-button.scss';
-import NavGroup from '../NavGroup/NavGroup';
 import RegLogGroup from '../RegLogGroup';
 class SandwichButton extends Component {
   constructor(props) {
@@ -39,7 +38,6 @@ class SandwichButton extends Component {
         <span className="sandwich-span" />
         <div className="menu" onClick={this.onMenuClick}>
           <RegLogGroup />
-          <NavGroup className="nav-group" />
         </div>
       </div>
     );

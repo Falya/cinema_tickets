@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import NavGroup from './NavGroup/NavGroup';
 import SearchField from './SearchField/SearchField';
 import './header.scss';
 import SandwichButton from './SandwichButton/SandwichButton';
@@ -21,9 +20,11 @@ class ConnectedHeader extends Component {
     return (
       <header>
         <div className="top-header">
-          <div className="brand">Brand</div>
+          <div className="brand">
+            <span className="first">Just</span>
+            <span className="second">Watch</span>
+          </div>
           <div className="menu-group">
-            <NavGroup className="nav-group" />
             <RegLogGroup />
           </div>
           <SandwichButton onLogin={this.props.onLogin} onRegistration={this.props.onRegistration} />
