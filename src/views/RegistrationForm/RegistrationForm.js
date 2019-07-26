@@ -62,7 +62,7 @@ class RegistrationForm extends Component {
           {this.state.message && <div className="result_message">{this.state.message}</div>}
           <div className="registration_form__header">
             Registration
-            <span className="close-btn icon-cross" onClick={this.onCloseButton} />
+            <span className="close_btn icon-cross" onClick={this.onCloseButton} />
           </div>
           <form onSubmit={this.onSubmit} autoComplete="on">
             <div className="form_group">

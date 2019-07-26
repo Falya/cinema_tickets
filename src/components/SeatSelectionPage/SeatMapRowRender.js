@@ -5,7 +5,7 @@ const SeatMapRowRender = props => {
   const [hall] = props.seanceInfo.cinemaInfo.halls;
   const { blockedSeatsByUser, blockedSeats } = props.seanceInfo;
   const { soldSeats } = props.seanceInfo.seance;
-  const vipRows = hall.rows.filter(row => row.rowType === 'VIP');
+  const vipRows = hall.rows.filter(row => row.rowType === 'vip');
 
   const seat = hall.rows.map(row => {
     const rowStart = calcRowCoefficient(row.rowNumber, vipRows);
@@ -44,7 +44,7 @@ const SeatMapRowRender = props => {
         };
         size = 2;
         pos = i * size - 1;
-      } else if (row.rowType === 'VIP') {
+      } else if (row.rowType === 'vip') {
         style = {
           gridRow: `${row.rowNumber} / span 2`,
           gridColumnEnd: 'span 2',

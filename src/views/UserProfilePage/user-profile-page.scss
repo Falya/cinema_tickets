@@ -1,5 +1,6 @@
 @import '../../style/variables';
 .user_profile {
+  font-family: 'Roboto', sans-serif;
   flex-basis: 100%;
   position: absolute;
   display: flex;
@@ -110,10 +111,218 @@
           display: flex;
           justify-content: center;
         }
-        .ticket {
-          background: white;
-          height: 500px;
-          width: 400px;
+        .tickets_list {
+          width: 100%;
+          color: $mainColorText;
+          background: transparent;
+          box-sizing: border-box;
+
+          .ticket_panel {
+            .ant-collapse-header {
+              color: $mainColorText;
+
+              .ticket_panel__header {
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                grid-template-areas:
+                  'poster film_name film_name film_name film_name film_name film_name .'
+                  'poster cinema_ardess cinema_ardess cinema_ardess cinema_ardess cinema_ardess tickets_amount tickets_amount'
+                  'poster seance_date seance_date seance_date seance_date seance_date tickets_amount tickets_amount';
+                user-select: none;
+
+                .ticket_panel__poster {
+                  grid-area: poster;
+                  overflow: hidden;
+                  width: 80%;
+                  border-radius: $borderRadius;
+                  box-shadow: $boxShadow;
+                  align-self: center;
+
+                  img {
+                    max-width: 100%;
+                  }
+                }
+
+                .film_name {
+                  padding: 5px;
+                  grid-area: film_name;
+                  font-size: 2em;
+                  font-weight: 500;
+                }
+
+                .cinema_adress {
+                  padding: 5px;
+                  grid-area: cinema_ardess;
+                  font-weight: 300;
+                  display: flex;
+                  align-items: center;
+                  color: $secondaryColorDarkText;
+
+                  .icon-location {
+                    margin-right: 10px;
+                    color: $lineColor;
+                    font-size: 1.3em;
+                  }
+                }
+
+                .seance_date {
+                  grid-area: seance_date;
+                  display: flex;
+                  align-items: center;
+                  padding: 5px;
+                  font-weight: 200;
+                  font-size: 1.3em;
+
+                  .icon-calendar {
+                    margin-right: 10px;
+                    color: $lineColor;
+                  }
+                }
+
+                .tickets_amount {
+                  grid-area: tickets_amount;
+                  font-size: 1.3em;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  span {
+                    margin-left: 5px;
+                    color: $lineColorDark;
+                    font-weight: 500;
+                    font-size: 1.5em;
+                    box-sizing: border-box;
+                    border: 2px solid $lineColorGray;
+                    padding: 5px 10px;
+                    border-radius: 50px;
+                  }
+                }
+
+                @media (max-width: $mediaWidthSmall) {
+                  grid-template-columns: repeat(3, 1fr);
+                  grid-template-rows: repeat(4, max-content);
+                  grid-template-areas:
+                    'poster film_name film_name '
+                    'cinema_ardess cinema_ardess cinema_ardess '
+                    'seance_date seance_date seance_date'
+                    'tickets_amount tickets_amount tickets_amount';
+
+                  .ticket_panel__poster {
+                    width: 100%;
+                  }
+
+                  .film_name {
+                    padding: 5px 10px;
+                    font-size: 1.4em;
+                    font-weight: 400;
+                  }
+
+                  .cinema_adress {
+                    font-size: 1em;
+                  }
+
+                  .tickets_amount {
+                    padding: 10px 5px;
+                    font-weight: 300;
+
+                    span {
+                      margin-left: 5px;
+                      font-weight: 400;
+                      font-size: 1.4em;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .ticket_card {
+        color: $mainColorText;
+        font-size: 1.5em;
+        width: 100%;
+        display: grid;
+        user-select: none;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas:
+          'seat price'
+          'type buy_at';
+        align-items: center;
+
+        .seat {
+          grid-area: seat;
+          padding: 5px;
+          font-weight: 900;
+
+          span {
+            color: $lineColorDark;
+          }
+
+          .icon-ticket {
+            padding: 5px 10px;
+          }
+        }
+
+        .price {
+          grid-area: price;
+          font-size: 1.1em;
+          color: $secondaryColorDarkText;
+          text-align: right;
+        }
+
+        .type {
+          grid-area: type;
+          color: $secondaryColorLightText;
+          font-weight: 300;
+          text-align: center;
+        }
+
+        .buy_at {
+          grid-area: buy_at;
+          font-size: 0.8em;
+          font-weight: 100;
+          color: $secondaryColorDarkText;
+        }
+      }
+
+      .feature_card {
+        color: $mainColorText;
+        font-size: 1.5em;
+        width: 100%;
+        display: grid;
+        user-select: none;
+        grid-auto-rows: 1fr;
+
+        .feature_row {
+          display: flex;
+          justify-content: space-between;
+          padding: 5px;
+          box-sizing: border-box;
+          border-bottom: 1px $lineColorGray solid;
+
+          &:last-child {
+            border-color: transparent;
+          }
+
+          .feature {
+            span {
+              color: $lineColorDark;
+            }
+
+            .icon-cart {
+              padding: 5px 10px;
+            }
+          }
+
+          .price {
+            padding: 0 5px;
+            span {
+              color: $lineColorDark;
+            }
+          }
         }
       }
 
@@ -141,13 +350,13 @@
           flex-direction: column;
           align-items: flex-start;
           font-size: 1.2em;
-          font-weight: 400;
+          font-weight: 300;
 
           span {
             padding: 5px;
 
             strong {
-              font-weight: 400;
+              font-weight: 300;
               color: $lineColorLight;
             }
           }

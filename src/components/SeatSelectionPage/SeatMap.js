@@ -21,7 +21,7 @@ class ConnectedSeatMap extends Component {
   mapSize = () => {
     const [hall] = this.props.seanceInfo.cinemaInfo.halls;
 
-    const vipRows = hall.rows.filter(row => row.rowType === 'VIP');
+    const vipRows = hall.rows.filter(row => row.rowType === 'vip');
 
     return {
       gridTemplateColumns: `repeat(${this.state.maxLength}, minmax(15px, 1fr))`,

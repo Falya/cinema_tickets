@@ -109,3 +109,9 @@ export function setPayedOrder(payload) {
     payload,
   };
 }
+
+export function getUserProfileApi() {
+  return {
+    type: actionTypes.USER_PROFILE_REQUESTED,
+  };
+}
