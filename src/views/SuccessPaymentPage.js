@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setBookingStage } from '../../../redux/actions/actions';
-import { Button } from 'antd';
-import { withRouter, Link } from 'react-router-dom';
-import './succese-payment-page.scss';
+import { setBookingStage } from '../redux/actions/actions';
+import Button from 'antd/lib/button';
+import { withRouter } from 'react-router-dom';
+import '../components/SeatSelectionPage/SuccessPaymentPage/succese-payment-page.scss';
 
 const mapStateToProps = state => {
   return {
@@ -17,7 +17,12 @@ class ConnectedSuccessPaymentPage extends Component {
     super(props);
   }
 
+  onProfileClick = () => {
+    this.props.history.replace('/user/profile');
+  };
+
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.setBookingStage(3);
   }
 
@@ -28,11 +33,9 @@ class ConnectedSuccessPaymentPage extends Component {
           <h1>Payment was successful</h1>
         </div>
         <span className="success_message">Your tickets will appear in your account profile</span>
-        <Link to="/user/profile">
-          <Button className="go_to_profile_button" ghost onClick={this.onProfileClick}>
-            Go to profile
-          </Button>
-        </Link>
+        <Button className="go_to_profile_button" ghost onClick={this.onProfileClick}>
+          Go to profile
+        </Button>
       </div>
     );
   }

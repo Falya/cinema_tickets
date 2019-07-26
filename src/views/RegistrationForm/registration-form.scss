@@ -66,15 +66,18 @@
 
     .result_message {
       position: absolute;
+      display: flex;
       background: rgba($color: $lineColor, $alpha: 0.9);
       box-shadow: $boxShadow;
-      height: 80%;
-      width: 80%;
-      margin-top: 10%;
+      height: 100%;
+      width: 100%;
       color: $mainColorText;
-      font-size: 2em;
+      font-size: 3em;
+      justify-content: center;
       text-align: center;
-      padding-top: 10%;
+      align-items: center;
+      padding: 10px;
+      z-index: 1;
     }
 
     .registration_form__header {
@@ -105,6 +108,7 @@
       flex-direction: column;
       box-sizing: border-box;
       margin: 10px 0;
+      font-weight: 400;
 
       .form_group {
         display: flex;

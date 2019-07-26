@@ -62,15 +62,18 @@
 
     .result_message {
       position: absolute;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
       background: rgba($color: $lineColor, $alpha: 0.9);
       box-shadow: $boxShadow;
-      height: 80%;
-      width: 80%;
-      margin-top: 10%;
+      height: 100%;
+      width: 100%;
       color: $mainColorText;
-      font-size: 2em;
-      text-align: center;
-      padding-top: 10%;
+      font-size: 3em;
+      padding: 10%;
+      z-index: 1;
     }
 
     .login_form__header {
@@ -185,6 +188,7 @@
       color: $lineColor;
       transition: color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
       padding: 10px;
+      font-weight: 300;
 
       &:hover {
         color: $lineColorLight;

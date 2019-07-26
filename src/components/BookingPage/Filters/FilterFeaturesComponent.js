@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Select } from 'antd';
+import Select from 'antd/lib/select';
 
 const { Option } = Select;
 
@@ -11,23 +11,38 @@ class FilterFeaturesComponent extends Component {
       options: [
         {
           name: '>1 empty seats',
-          flag: 'emptyMoreOne',
+          flag: 'hasEmptyMoreOne',
+          type: {
+            minSeats: 1,
+          },
         },
         {
           name: '>2 empty seats',
-          flag: 'emptyMoreTwo',
+          flag: 'hasEmptyMoreTwo',
+          type: {
+            minSeats: 2,
+          },
         },
         {
           name: 'has VIP',
           flag: 'hasEmptyVip',
+          type: {
+            seatType: 'vip',
+          },
         },
         {
           name: 'has double',
           flag: 'hasEmptyDouble',
+          type: {
+            seatType: 'double',
+          },
         },
         {
           name: '3D',
-          flag: 'video3d',
+          flag: 'hasVideo3d',
+          type: {
+            is3d: true,
+          },
         },
       ],
       selectedFeatures: [],
@@ -35,12 +50,23 @@ class FilterFeaturesComponent extends Component {
   }
 
   handleChange = selectedFeatures => {
+    const { options } = this.state;
     const selected = selectedFeatures.reduce((acc, feature) => {
-      acc[feature] = true;
+      const [option] = options.filter(({ flag }) => flag === feature);
+      acc = {
+        ...acc,
+        ...option.type,
+      };
       return acc;
     }, {});
+
+    const newState = Object.entries(selected).map(([key, value]) => {
+      const [{ flag }] = options.filter(({ type }) => type[key] === value);
+      return flag;
+    });
+
     this.props.setMethod(selected);
-    this.setState({ selectedFeatures });
+    this.setState({ selectedFeatures: newState });
   };
 
   createOptions = () => {

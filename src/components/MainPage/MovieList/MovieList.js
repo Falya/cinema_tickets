@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import MovieCard from './MovieCard';
-import { getMoviesApi } from '../../../redux/actions/actions';
+import MovieSlider from './MovieSlider';
 
-const mapStateToProps = ({ moviesReducer }) => {
-  return { movies: moviesReducer.movies };
-};
-
-class ConnectedMovieList extends Component {
+class MovieList extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentWillMount() {
-    this.props.getMoviesApi();
   }
 
   rederMovieCards = movies => {
@@ -21,21 +12,16 @@ class ConnectedMovieList extends Component {
   };
 
   render() {
-    const { movies } = this.props;
+    const { movies, headingName } = this.props;
     return (
       <div className="heading">
         <div className="heading-header">
-          <h2>Now in the cinema</h2>
+          <h2>{headingName}</h2>
         </div>
-        <div className="heading-body">{this.rederMovieCards(movies)}</div>
+        <MovieSlider>{this.rederMovieCards(movies)}</MovieSlider>
       </div>
     );
   }
 }
-
-const MovieList = connect(
-  mapStateToProps,
-  { getMoviesApi }
-)(ConnectedMovieList);
 
 export default MovieList;

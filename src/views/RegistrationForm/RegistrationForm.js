@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './registration-form.scss';
 import { signUp } from '../../webAPI';
+import message from 'antd/lib/message';
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -19,16 +20,17 @@ class RegistrationForm extends Component {
    */
   onSubmit = e => {
     e.preventDefault();
+
     let formData = new FormData(e.target);
     let areAllInputsFilled = [...formData.values()].every(value => !!value);
     const password = formData.get('password'),
       confirmPassword = formData.get('confirmPassword'),
       isPasswordConfirmed = password === confirmPassword;
 
-    if (this.state.isPasswordConfirmed !== confirmPassword) {
+    if (this.state.isPasswordConfirmed !== isPasswordConfirmed || this.state.isPasswordConfirmed) {
       this.setState({ isPasswordConfirmed });
 
-      if (areAllInputsFilled && this.state.isPasswordConfirmed) {
+      if (areAllInputsFilled && isPasswordConfirmed) {
         const data = {
           nickName: formData.get('userName'),
           email: formData.get('email'),
@@ -36,8 +38,10 @@ class RegistrationForm extends Component {
         };
         signUp(data).then(res => {
           if (res.message) {
-            this.setState({ message: res.message });
+            message.error(res.message, 5);
+            this.setState({ message: 'Failed' });
           } else {
+            message.success('You are registered', 5);
             this.setState({ message: 'success' });
           }
           setTimeout(() => {

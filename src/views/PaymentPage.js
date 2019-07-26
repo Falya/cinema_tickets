@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { setBookingStage } from '../../redux/actions/actions';
+import { setBookingStage } from '../redux/actions/actions';
 import { connect } from 'react-redux';
-import './PaymentPage.scss';
-import OrderCard from '../SeatSelectionPage/UserOrders/OrderCard';
-import Checkout from './CheckoutForm';
+import '../components/PaymentPage/PaymentPage.scss';
+import OrderCard from '../components/SeatSelectionPage/UserOrders/OrderCard';
+import Checkout from '../components/PaymentPage/CheckoutForm';
 
 const mapStateToProps = state => {
   return {

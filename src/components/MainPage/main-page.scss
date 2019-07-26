@@ -7,18 +7,28 @@ section {
   justify-content: space-between;
   margin-top: 70px;
 
+  @media (max-width: $mediaWidthMedium) {
+    margin-top: -40px;
+  }
+
   .heading {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     overflow: hidden;
+    margin: 60px 0;
 
     .heading-header {
       width: 100%;
       display: flex;
+      text-align: center;
       justify-content: center;
       padding: 10px;
       background: $gradientColorLine;
+
+      @media (max-width: $mediaWidthMedium) {
+        font-size: 0.8em;
+      }
 
       h2 {
         margin: 10px;
@@ -29,123 +39,200 @@ section {
     }
 
     .heading-body {
-      display: flex;
-      box-sizing: border-box;
-      justify-content: space-between;
-      height: 100%;
       width: 100%;
-      flex-wrap: wrap;
-      padding: 0 1%;
+      height: max-content;
+      box-sizing: border-box;
 
-      .card {
-        flex-basis: 18%;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        margin: 20px 0;
+      .slick-dots-bottom {
+        bottom: 0px;
+      }
 
-        .card-header {
-          width: 100%;
-          padding: 5px;
-          text-align: center;
-          color: $secondaryColorDarkText;
-          box-sizing: border-box;
-          background: $gradientColor;
-        }
+      .slick-track {
+        .slick-slide,
+        .slick-active {
+          overflow: hidden;
+          margin: 20px 0;
 
-        .card-body {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
+          div {
+            height: max-content;
 
-          figure {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
-
-            .image-wrapper {
-              position: relative;
+            .card {
+              height: 700px;
+              width: 90%;
+              display: flex;
+              flex-direction: column;
               box-sizing: border-box;
+              margin: 0 auto;
 
-              img {
-                max-height: 100%;
-                margin: auto;
-                width: 100%;
-                max-width: 100%;
-                box-sizing: border-box;
-                z-index: 1;
-                border-radius: 5px;
-              }
-
-              .card-overlay {
-                position: absolute;
-                background-color: rgba($color: $secondaryColorLight, $alpha: 0.4);
+              .card-body {
                 width: 100%;
                 height: 100%;
-                top: 0;
-                box-sizing: border-box;
-                transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-                z-index: 1;
-                border-radius: 5px;
-                cursor: pointer;
+                display: flex;
+                flex-direction: column;
 
-                &:hover {
-                  background-color: rgba($color: $secondaryColorLight, $alpha: 0);
+                figure {
+                  width: 100%;
+                  height: 80%;
+                  margin: 0;
+                  display: flex;
+                  flex-direction: column;
+                  box-sizing: border-box;
+
+                  .image-wrapper {
+                    position: relative;
+                    box-sizing: border-box;
+                    height: 90%;
+
+                    img {
+                      max-height: 475px;
+                      margin: auto;
+                      width: auto;
+                      max-width: 100%;
+                      box-sizing: border-box;
+                      z-index: 1;
+                      border-radius: 5px;
+                    }
+
+                    .card-overlay {
+                      position: absolute;
+                      background-color: rgba($color: $secondaryColorLight, $alpha: 0.3);
+                      width: 100%;
+                      height: 100%;
+                      top: 0;
+                      box-sizing: border-box;
+                      transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+                      z-index: 1;
+                      border-radius: 5px;
+                      cursor: pointer;
+
+                      &:hover {
+                        background-color: rgba($color: $secondaryColorLight, $alpha: 0);
+                      }
+
+                      @media (max-width: $mediaWidthMedium) {
+                        background-color: rgba($color: $secondaryColorLight, $alpha: 0);
+                      }
+                    }
+
+                    a:hover {
+                      + img {
+                        box-shadow: 0px 1px 5px rgba($color: $lineColorLight, $alpha: 0.4);
+                      }
+                    }
+                  }
+
+                  figcaption {
+                    width: 100%;
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    box-sizing: border-box;
+                    flex-basis: 100%;
+
+                    p {
+                      margin: 0;
+                      font-size: small;
+                      font-weight: lighter;
+                      color: $secondaryColorLightText;
+                    }
+
+                    h3 {
+                      margin: 10px 0;
+                      font-size: larger;
+                      color: $mainColorText;
+                      font-weight: 600;
+                      letter-spacing: 0.05em;
+                      transition: color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+                    }
+
+                    span {
+                      margin-top: auto;
+                      font-size: small;
+                      color: $secondaryColorDark;
+                      justify-self: end;
+                    }
+                  }
+                }
+                .button-link {
+                  display: flex;
+                  justify-content: center;
+                  margin-top: auto;
+
+                  button {
+                    flex-basis: 80%;
+                    box-sizing: border-box;
+                  }
                 }
               }
 
-              a:hover {
-                + img {
-                  box-shadow: 0px 1px 5px rgba($color: $lineColorLight, $alpha: 0.4);
-                }
-              }
-            }
+              @media (max-width: $mediaWidthLarge) {
+                height: 500px;
+                font-size: 0.9em;
 
-            figcaption {
-              width: 100%;
-              padding: 10px;
-              text-align: center;
-              box-sizing: border-box;
-              flex-basis: 100%;
+                .card-body {
+                  figure {
+                    .image-wrapper {
+                      img {
+                        max-height: 270px;
 
-              p {
-                margin: 0;
-                font-size: small;
-                font-weight: lighter;
-                color: $secondaryColorLightText;
-              }
+                        @media (max-width: 900px) {
+                          max-height: 210px;
+                        }
+                      }
 
-              h3 {
-                margin: 10px 0;
-                font-size: larger;
-                color: $mainColorText;
-                cursor: pointer;
-                font-weight: 600;
-                letter-spacing: 0.1em;
-                transition: color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-
-                &:hover {
-                  color: $lineColorLight;
+                      .card-overlay {
+                        height: 100%;
+                        max-height: 270px;
+                      }
+                    }
+                  }
                 }
               }
 
-              span {
-                font-size: small;
-                color: $secondaryColorDark;
-                justify-self: end;
-              }
-            }
-          }
-          .button-link {
-            display: flex;
-            justify-content: center;
+              @media (max-width: $mediaWidthMedium) {
+                height: 400px;
+                font-size: 0.8em;
 
-            button {
-              flex-basis: 90%;
+                .card-body {
+                  figure {
+                    .image-wrapper {
+                      img {
+                        max-height: 250px;
+
+                        @media (max-height: 600px) {
+                          max-height: 180px;
+                        }
+                      }
+                      .card-overlay {
+                        max-height: 250px;
+                      }
+                    }
+                  }
+                }
+              }
+
+              @media (max-width: $mediaWidthSmall) {
+                height: 400px;
+                font-size: 0.7em;
+
+                .card-body {
+                  figure {
+                    .image-wrapper {
+                      img {
+                        max-height: 250px;
+
+                        @media (max-width: 400px) {
+                          max-height: 220px;
+                        }
+                      }
+                      .card-overlay {
+                        max-height: 250px;
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

@@ -12,7 +12,7 @@ class ConnectedStopWatch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: 0,
+      time: 15 * 60 * 1000,
     };
   }
 

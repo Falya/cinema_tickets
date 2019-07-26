@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './login-form.scss';
-import { Button } from 'antd';
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
 import { logIn } from '../../webAPI';
+import { connect } from 'react-redux';
 
-class LoginForm extends Component {
+const mapStateToProps = state => {
+  return {
+    userName: state.userNameReducer.userName,
+  };
+};
+
+class ConnectedLoginForm extends Component {
   constructor(props) {
     super(props);
 
@@ -59,12 +67,14 @@ class LoginForm extends Component {
       logIn(data)
         .then(res => {
           if (res.message) {
+            message.error(res.message, 5);
             this.setState({
               loading: false,
               disabledBtn: false,
-              message: res.message,
+              message: 'Failed',
             });
           } else {
+            message.success('You are logged in', 5);
             this.setState({
               loading: false,
               disabledBtn: false,
@@ -79,7 +89,7 @@ class LoginForm extends Component {
             } else {
               this.setState({ message: null });
             }
-          }, 2000);
+          }, 1500);
         })
         .catch(err => console.log(err));
     }
@@ -91,6 +101,11 @@ class LoginForm extends Component {
   };
 
   onCloseButton = () => this.props.history.goBack();
+
+  componentDidMount() {
+    const { token } = localStorage;
+    token && this.props.history.replace('/');
+  }
 
   render() {
     return (
@@ -144,5 +159,7 @@ class LoginForm extends Component {
     );
   }
 }
+
+const LoginForm = connect(mapStateToProps)(ConnectedLoginForm);
 
 export default withRouter(LoginForm);

@@ -95,6 +95,10 @@ class ConnectedFilterNavBar extends Component {
     });
   };
 
+  componentWillUnmount() {
+    this.props.setFilterParams({ ...this.props.parameters, date: new Date().toISOString() });
+  }
+
   render() {
     const { options } = this.props;
     return (

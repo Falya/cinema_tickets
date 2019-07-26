@@ -13,11 +13,12 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: $fontFamily;
   margin: 0;
   padding: 0;
   background: $secondaryColorLight;
   min-height: 100%;
+  height: max-content;
   max-width: 100vw;
   font-size: 18px;
   overflow-x: hidden;
@@ -30,7 +31,8 @@ body {
     flex-direction: column;
     margin: 0 auto;
     width: 100%;
-    min-height: 100%;
+    height: max-content;
+    // min-height: 100%;
     user-select: none;
 
     .wrapper {

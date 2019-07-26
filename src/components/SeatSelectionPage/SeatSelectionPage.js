@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route } from 'react-router-dom';
 import './seat-selection-page.scss';
-import { setBlur, setSeanceId, getMovieApi, setBookingStage, getSeanceApi } from '../../redux/actions/actions';
+import {
+  setBlur,
+  setSeanceId,
+  getMovieApi,
+  setBookingStage,
+  getSeanceApi,
+  getCurrencyApi,
+} from '../../redux/actions/actions';
 import SeatMap from './SeatMap';
 import SeatTypeCard from './SeatTypeCard';
 import BookingStage from '../BookingStage/BookingStage';
 import StopWatch from './StopWatch';
 import UserOrder from './UserOrders/UserOrder';
-import PaymentPage from '../PaymentPage/PaymentPage';
-import SuccessPaymentPage from './SuccessPaymentPage/SuccessPaymentPage';
+import PaymentPage from '../../views/PaymentPage';
+import SuccessPaymentPage from '../../views/SuccessPaymentPage';
 
 const mapStateToProps = state => {
   return {
@@ -19,13 +26,11 @@ const mapStateToProps = state => {
   };
 };
 
-const seanceIdRegexp = /^\/schedule\/movie\/((?:[^\/]+?))\/seance\/((?:[^\/]+?))(?:\/(?=$))?(?:\/login|\/registration)?$/;
+const seanceIdRegexp = /^\/schedule\/movie\/((?:[^/]+?))\/seance\/((?:[^/]+?))(?:\/(?=$))?(?:\/login|\/registration)?$/;
 
 class ConnectedSeatSelectionPage extends Component {
   constructor(props) {
     super(props);
-
-    this.canvasParent = React.createRef();
   }
 
   onCloseButton = () => {
@@ -70,12 +75,14 @@ class ConnectedSeatSelectionPage extends Component {
   };
 
   componentDidMount() {
+    this.setState({ path: this.props.history.location.pathname });
     if (!this.props.movie) {
       this.props.getMovieApi(this.props.match.params.movieId);
     }
     this.props.setSeanceId(this.props.match.params.seanceId);
     this.props.setBlur(true);
     this.props.setBookingStage(1);
+    this.props.getCurrencyApi();
   }
 
   componentWillUnmount() {
@@ -86,6 +93,7 @@ class ConnectedSeatSelectionPage extends Component {
     if (this.props.userName !== nextProps.userName) {
       this.props.getSeanceApi(this.props.match.params.seanceId);
     }
+
     return nextProps !== this.props;
   }
 
@@ -106,6 +114,10 @@ class ConnectedSeatSelectionPage extends Component {
                 <span className="icon-cross" onClick={this.onCloseButton} />
               </div>
             </div>
+            <div className="bottom_element">
+              <BookingStage />
+              {seanceInfo.blockedSeatsByUser[0] && <StopWatch />}
+            </div>
           </div>
           {seanceInfo.seance && (
             <div className="seat_selection_page__body">
@@ -118,10 +130,10 @@ class ConnectedSeatSelectionPage extends Component {
                 <div className="seance_info__wrapper">
                   <div className="seance_info__cinema_info">
                     <h1 className="cinema_info__movie_name">{movie && movie.name}</h1>
-                    <div className="cinema_info__adress">
+                    <div className="cinema_info__address">
                       <span className="text_icon icon-location2"></span>
                       <span>
-                        {seanceInfo.cinemaInfo.cinemaName}, {seanceInfo.cinemaInfo.adress} /{' '}
+                        {seanceInfo.cinemaInfo.cinemaName}, {seanceInfo.cinemaInfo.address} /{' '}
                         {seanceInfo.seance.hallName}
                       </span>
                     </div>
@@ -143,7 +155,7 @@ class ConnectedSeatSelectionPage extends Component {
               <Route
                 exact
                 path={seanceIdRegexp}
-                render={props => {
+                render={() => {
                   return (
                     <div className="body__seats">
                       <SeatMap />
@@ -160,10 +172,6 @@ class ConnectedSeatSelectionPage extends Component {
                 }}
               />
               <Route path="/schedule/movie/:movieId/seance/:seanceId/payment/accepted" component={SuccessPaymentPage} />
-              <div className="bottom_element">
-                {seanceInfo.blockedSeatsByUser[0] && <StopWatch />}
-                <BookingStage />
-              </div>
             </div>
           )}
         </div>
@@ -174,7 +182,7 @@ class ConnectedSeatSelectionPage extends Component {
 
 const SeatSelectionPage = connect(
   mapStateToProps,
-  { setBlur, setSeanceId, getMovieApi, setBookingStage, getSeanceApi }
+  { setBlur, setSeanceId, getMovieApi, setBookingStage, getSeanceApi, getCurrencyApi }
 )(ConnectedSeatSelectionPage);
 
 export default withRouter(SeatSelectionPage);

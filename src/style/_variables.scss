@@ -1,7 +1,10 @@
 $maxBodyWidth: 2560px;
 $maxHeaderWidth: 1680px;
+$mediaWidthLarge: 1200px;
 $mediaWidthMedium: 800px;
 $mediaWidthSmall: 460px;
+
+$fontFamily: 'Roboto', sans-serif;
 
 $mainColor: #8e8e8e;
 $secondaryColorDark: #373737;
@@ -14,7 +17,7 @@ $lineColorGray: rgba(
   $color: #fff,
   $alpha: 0.2
 );
-$gradientColorLine: linear-gradient(to right, $lineColor, $lineColorDark, $lineColor);
+$gradientColorLine: linear-gradient(to right, rgba(0, 0, 0, 0), $lineColorDark, rgba(0, 0, 0, 0));
 $mainColorText: rgba(
   $color: #fff,
   $alpha: 0.95

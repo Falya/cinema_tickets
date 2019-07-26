@@ -1,4 +1,4 @@
-import { BASE_URL } from './config/config';
+import { BASE_URL, CURRENCY_URL, CURRENCY_API_KEY } from './config/config';
 import store from './redux/store/store';
 import { actionTypes } from './redux/constants/action-types';
 
@@ -43,7 +43,6 @@ export function getSeancesByMovieId(params) {
   };
 
   const url = new URL(`${BASE_URL}/movies/movie/seances/`);
-  // url.search = new URLSearchParams(customParams);
 
   return fetch(url, options).then(res => res.json());
 }
@@ -131,7 +130,9 @@ export function toBlockSeat(params) {
       if (res.status < 400) {
         return res.json();
       }
-      return res.status;
+      return {
+        status: res.status,
+      };
     })
     .catch(err => console.log(err));
 }
@@ -165,8 +166,6 @@ export function makePayment(params) {
   };
 
   return fetch(url, options).then(res => {
-    console.log('response received');
-    console.dir(res);
     return res.json();
   });
 }
@@ -191,4 +190,19 @@ export function getUserProfile() {
     .then(result => {
       return result;
     });
+}
+
+export function getCurrency() {
+  const url = new URL(`https://cors-anywhere.herokuapp.com/${CURRENCY_URL}${CURRENCY_API_KEY}`);
+  const options = {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/html',
+    },
+  };
+  return fetch(url, options)
+    .then(res => res.json())
+    .then(res => res.data.USDBYN);
 }

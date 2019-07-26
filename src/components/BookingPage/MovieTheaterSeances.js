@@ -19,7 +19,7 @@ class MovieTheaterSeances extends Component {
       <div className="seances__card">
         <div className="card__cinema_info">
           <h3>{movieTheater.cinemaName}</h3>
-          <span>{movieTheater.adress}</span>
+          <span>{movieTheater.address}</span>
         </div>
         <div className="seance">{this.renderSeances(movieTheater.seances)}</div>
       </div>

@@ -56,6 +56,7 @@
           font-size: 1.3em;
           color: $lineColorLight;
           opacity: 0.8;
+          margin: 5px;
           transition: color, opacity, transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
           &:hover {
             color: $lineColor;
@@ -70,17 +71,25 @@
         .nav_bar__title,
         h3 {
           color: $secondaryColorDarkText;
-          margin: 0;
+          margin: 0 10px;
           z-index: 1;
           font-size: 1.2em;
           font-weight: 700;
         }
+      }
+
+      .bottom_element {
+        margin-top: auto;
       }
       @media screen and (max-width: $mediaWidthMedium) {
         padding: 0 5px;
 
         .header__nav_bar {
           padding: 0;
+
+          h3 {
+            font-size: 0.9em;
+          }
         }
       }
     }
@@ -151,7 +160,7 @@
               letter-spacing: 0.2em;
             }
 
-            .cinema_info__adress {
+            .cinema_info__address {
               display: flex;
               align-items: baseline;
               margin-bottom: 10px;
@@ -275,7 +284,7 @@
                 width: 70%;
                 margin: auto;
 
-                &::after {
+                &::before {
                   color: $lineColorGray;
                   content: 'VIP';
                   position: absolute;
@@ -303,6 +312,7 @@
 
               &.seat_sold {
                 background-color: $lineColorGray;
+                border-color: $lineColorGray;
                 cursor: not-allowed;
 
                 &:hover {
@@ -315,6 +325,7 @@
 
               &.seat_blocked {
                 background-color: rgba($color: $lineColorDark, $alpha: 0.5);
+                border-color: $lineColorGray;
                 position: relative;
 
                 &:hover {
@@ -350,6 +361,7 @@
 
               @media (max-width: $mediaWidthSmall) {
                 text-align: right;
+
                 &.row_end {
                   text-align: left;
                 }
@@ -552,10 +564,6 @@
           }
         }
       }
-
-      .bottom_element {
-        margin-top: auto;
-      }
     }
   }
 }
@@ -579,7 +587,7 @@
 
 .block_timer {
   display: flex;
-  padding: 10px;
+  padding: 5px;
   justify-content: center;
   align-items: baseline;
   color: $lineColorLight;
@@ -589,5 +597,9 @@
     margin: 0 5px;
     color: $lineColor;
     font-weight: 400;
+  }
+
+  @media (max-width: $mediaWidthMedium) {
+    font-size: 0.7em;
   }
 }

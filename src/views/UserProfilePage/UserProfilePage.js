@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './user-profile-page.scss';
-import { withRouter } from 'react-router-dom';
-import { Avatar, Card, Skeleton, Tabs } from 'antd';
+import { withRouter, Redirect } from 'react-router-dom';
+import Avatar from 'antd/lib/avatar';
+import Card from 'antd/lib/card';
+import Skeleton from 'antd/lib/skeleton';
+import Tabs from 'antd/lib/tabs';
 import TicketList from './TicketList';
 import { getUserProfileApi, setBlur } from '../../redux/actions/actions';
 
@@ -45,6 +48,13 @@ class ConnectedUserProfilePage extends Component {
     this.props.setBlur(true);
   }
 
+  // shouldComponentUpdate(nextProps) {
+  //   if (condition) {
+
+  //   }
+  //   return this.Props !== nextProps;
+  // }
+
   componentWillUnmount() {
     this.props.setBlur(false);
   }
@@ -53,6 +63,7 @@ class ConnectedUserProfilePage extends Component {
     const { loading, userProfile, userName } = this.props;
     return (
       <section className="user_profile">
+        {!userName && <Redirect to="/" />}
         {loading && <span className="icon-spinner2 page_spiner" />}
         <div className="user_profile__wrapper">
           <div className="user_profile__header">
