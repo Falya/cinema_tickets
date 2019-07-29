@@ -28,10 +28,9 @@ class ConnectedHeader extends Component {
             <RegLogGroup />
           </div>
           <SandwichButton onLogin={this.props.onLogin} onRegistration={this.props.onRegistration} />
-        </div>
-        <div className="bottom-header">
           <SearchField className="search-field" />
         </div>
+        <div className="bottom-header"></div>
       </header>
     );
   }

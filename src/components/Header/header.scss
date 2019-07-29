@@ -15,23 +15,25 @@ header {
 
   .top-header {
     width: 100%;
-    max-width: $maxHeaderWidth;
     display: flex;
     align-items: baseline;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 5px 15px;
     box-sizing: border-box;
     position: relative;
     color: $secondaryColorDarkText;
     margin: auto;
 
+    @media (max-width: $mediaWidthMedium) {
+      flex-wrap: wrap;
+    }
+
     .brand {
       text-align: left;
       cursor: default;
       box-sizing: border-box;
       font-size: 2em;
-      position: absolute;
-      left: 15px;
+      order: 1;
 
       .first {
         font-weight: 400;
@@ -50,87 +52,23 @@ header {
       }
     }
 
-    .menu-group {
-      display: flex;
-      justify-content: space-between;
-
-      @media (max-width: 840px) {
-        display: none;
-      }
-
-      li {
-        list-style: none;
-      }
-
-      .nav-group {
-        display: flex;
-        justify-content: space-between;
-
-        @media (max-width: 1200px) {
-          flex-basis: auto;
-
-          div {
-            margin: 0 20px;
-          }
-        }
-
-        div {
-          text-align: center;
-          box-sizing: border-box;
-          padding: 10px 0;
-          border-bottom: 2px solid transparent;
-          cursor: pointer;
-
-          &:hover {
-            border-bottom-color: $lineColor;
-            color: $secondaryColorLightText;
-          }
-        }
-      }
-
-      .reg-log-group {
-        display: flex;
-        margin-left: 3%;
-        text-align: right;
-        justify-content: flex-end;
-
-        .reg-log-link {
-          margin: 0 10px;
-          padding: 10px 0;
-          width: max-content;
-          box-sizing: border-box;
-          border-bottom: 2px solid transparent;
-          color: $secondaryColorDarkText;
-          cursor: pointer;
-
-          &:hover {
-            border-bottom-color: $lineColorLight;
-            color: $secondaryColorLightText;
-          }
-        }
-      }
-    }
-  }
-
-  .bottom-header {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    width: 100%;
-    max-width: $maxHeaderWidth;
-    margin: auto;
-    padding: 3px 0;
-    background: $mainColor;
-    box-shadow: $boxShadow;
-
     .search-field {
+      order: 2;
       display: flex;
-      flex-basis: 80%;
+      align-self: flex-end;
+      padding-top: 10px;
+      flex-basis: 50%;
+      box-sizing: border-box;
+      margin: 0 auto;
       justify-content: center;
       align-items: center;
+      border: 1px solid $lineColorGray;
+      padding: 2px 2px 2px 5px;
+      border-radius: 50px;
 
       @media (max-width: $mediaWidthMedium) {
-        flex-basis: 100%;
+        order: 4;
+        flex-basis: 90%;
         font-size: 0.9em;
       }
 
@@ -141,7 +79,7 @@ header {
       }
 
       div {
-        flex-basis: 60%;
+        width: 100%;
         display: flex;
         box-sizing: border-box;
         flex-direction: column;
@@ -202,6 +140,7 @@ header {
         margin-left: 10px;
         border: 1px solid;
         color: $mainColorText;
+        border-radius: 0px 50px 50px 0px;
         font-weight: 300;
         cursor: pointer;
 
@@ -217,8 +156,66 @@ header {
       }
     }
 
-    @media (max-width: $mediaWidthMedium) {
-      width: 90%;
+    .menu-group {
+      display: flex;
+      justify-content: space-between;
+      order: 3;
+
+      @media (max-width: 840px) {
+        display: none;
+      }
+
+      li {
+        list-style: none;
+      }
+
+      .nav-group {
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width: 1200px) {
+          flex-basis: auto;
+
+          div {
+            margin: 0 20px;
+          }
+        }
+
+        div {
+          text-align: center;
+          box-sizing: border-box;
+          padding: 10px 0;
+          border-bottom: 2px solid transparent;
+          cursor: pointer;
+
+          &:hover {
+            border-bottom-color: $lineColor;
+            color: $secondaryColorLightText;
+          }
+        }
+      }
+
+      .reg-log-group {
+        display: flex;
+        margin-left: 3%;
+        text-align: right;
+        justify-content: flex-end;
+
+        .reg-log-link {
+          margin: 0 10px;
+          padding: 10px 0;
+          width: max-content;
+          box-sizing: border-box;
+          border-bottom: 2px solid transparent;
+          color: $secondaryColorDarkText;
+          cursor: pointer;
+
+          &:hover {
+            border-bottom-color: $lineColorLight;
+            color: $secondaryColorLightText;
+          }
+        }
+      }
     }
   }
 }

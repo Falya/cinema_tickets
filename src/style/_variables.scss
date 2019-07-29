@@ -6,9 +6,9 @@ $mediaWidthSmall: 460px;
 
 $fontFamily: 'Roboto', sans-serif;
 
-$mainColor: #8e8e8e;
-$secondaryColorDark: #373737;
-$secondaryColorLight: #616161;
+$mainColor: #29434e;
+$secondaryColorDark: #1c313a;
+$secondaryColorLight: #4f5b62;
 $gradientColor: linear-gradient(to right, $secondaryColorDark, #4f5255);
 $lineColor: #90caf9;
 $lineColorLight: #c3fdff;
@@ -29,7 +29,7 @@ $secondaryColorDarkText: rgba(
 );
 $secondaryColorLightText: rgba(
   $color: #fff,
-  $alpha: 0.8
+  $alpha: 0.7
 );
 
 $lineColorText: rgba(
