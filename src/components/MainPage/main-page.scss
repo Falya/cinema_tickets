@@ -158,12 +158,9 @@ section {
                 .button-link {
                   display: flex;
                   justify-content: center;
-                  margin-top: auto;
-
-                  button {
-                    flex-basis: 80%;
-                    box-sizing: border-box;
-                  }
+                  margin: auto auto 0 auto;
+                  width: 80%;
+                  box-sizing: border-box;
                 }
               }
 
