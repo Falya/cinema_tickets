@@ -13,8 +13,10 @@ const SeatMapRowRender = props => {
     const middle = props.maxLength / 2;
     let size = 1;
     let style = {};
+    const { emptyPlaces } = row;
 
     for (let i = 1; i <= row.rowLength; i++) {
+      emptyPlaces && emptyPlaces.some(place => place === i) && i++;
       let seatState = null;
       let pos = i;
 
@@ -73,7 +75,7 @@ const SeatMapRowRender = props => {
         <SeatComponent
           style={style}
           rowNumber={row.rowNumber}
-          seatNumber={i}
+          seatNumber={calcSeatCoefficient(i, emptyPlaces)}
           seatType={row.rowType}
           seatState={seatState}
           seatPrice={row.price}
@@ -102,6 +104,15 @@ function calcRowCoefficient(rowNumber, vipRows) {
   }
 
   return rowNumber;
+}
+
+function calcSeatCoefficient(seat, emptyPlaces) {
+  if (emptyPlaces) {
+    const coef = emptyPlaces.filter(place => seat - place > 0).length;
+    return coef ? seat - coef : seat;
+  }
+
+  return seat;
 }
 
 export default SeatMapRowRender;

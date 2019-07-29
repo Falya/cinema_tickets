@@ -105,6 +105,7 @@ class ConnectedSeatComponent extends Component {
         title={this.props.seatType}
         overlayClassName="tooltip_overlay"
         content={this.makeContent()}
+        visible={this.props.isEmptyPlace}
         mouseEnterDelay={0.2}>
         <div
           className={`seat ${this.seatStateDefinition()} ${this.props.seatType.toLowerCase()}`}
