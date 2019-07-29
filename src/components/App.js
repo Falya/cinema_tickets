@@ -55,7 +55,7 @@ class ConnectedApp extends Component {
   render() {
     const { loading } = this.props;
     return (
-      <div>
+      <div style={{ position: 'relative' }}>
         <div className="wrapper">
           {loading && (
             <div className="page_spiner">

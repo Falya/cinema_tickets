@@ -2,9 +2,10 @@ import React from 'react';
 import './booking-stage.scss';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ seanceReducer }) => {
   return {
-    bookingStage: state.seanceReducer.bookingStage,
+    bookingStage: seanceReducer.bookingStage,
+    blockedSeats: seanceReducer.seanceInfo.blockedSeatsByUser,
   };
 };
 
@@ -15,16 +16,16 @@ function ConnectedBookingStage(props) {
       <div className="stage stage_2">2</div>
       <div className="stage stage_3">3</div>
       <div className="stage stage_4">4</div>
-      {drawProgress(props.bookingStage)}
+      {drawProgress(props.bookingStage, props.blockedSeats)}
     </div>
   );
 }
 const BookingStage = connect(mapStateToProps)(ConnectedBookingStage);
 export default BookingStage;
 
-function drawProgress(stage) {
+function drawProgress(stage, blocked) {
   let options = {
-    width: `${(100 / 3) * stage}%`,
+    width: `${blocked.length ? (100 / 3) * stage : 0}%`,
   };
   return <div className="progress" style={options}></div>;
 }

@@ -121,7 +121,7 @@ class ConnectedSeatSelectionPage extends Component {
             </div>
             <div className="bottom_element">
               <BookingStage />
-              {seanceInfo.blockedSeatsByUser[0] && <StopWatch />}
+              <div className="stop_watch__wrapper">{seanceInfo.blockedSeatsByUser[0] && <StopWatch />}</div>
             </div>
           </div>
           {seanceInfo.seance && (
