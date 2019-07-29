@@ -9,6 +9,7 @@ import {
   setBookingStage,
   getSeanceApi,
   getCurrencyApi,
+  setModalHeight,
 } from '../../redux/actions/actions';
 import SeatMap from './SeatMap';
 import SeatTypeCard from './SeatTypeCard';
@@ -24,6 +25,7 @@ const mapStateToProps = state => {
     movie: state.movieReducer.movie,
     seanceInfo: state.seanceReducer.seanceInfo,
     userName: state.userNameReducer.userName,
+    totalPrice: state.orderReducer.order.totalPrice,
   };
 };
 
@@ -34,6 +36,7 @@ class ConnectedSeatSelectionPage extends Component {
     super(props);
 
     this.socket = seatsSocket(this.props.match.params.seanceId, this.props.getSeanceApi);
+    this.page = React.createRef();
   }
 
   onCloseButton = () => {
@@ -97,16 +100,21 @@ class ConnectedSeatSelectionPage extends Component {
   shouldComponentUpdate(nextProps) {
     if (this.props.userName !== nextProps.userName) {
       this.props.getSeanceApi(this.props.match.params.seanceId);
+      this.props.setModalHeight(0);
     }
 
     return nextProps !== this.props;
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    this.props.setModalHeight(this.page.current.scrollHeight);
+  }
+
   render() {
     const { movie, seanceInfo } = this.props;
     return (
-      <section className="seat_selection_page">
-        <div className="seat_selection_page__wrapper">
+      <section className="seat_selection_page" key="selection_page">
+        <div className="seat_selection_page__wrapper" ref={this.page}>
           <div className="seat_selection_page__header">
             <div className="header__nav_bar">
               <div className="nav_bar__back_btn" onClick={this.onBackButton}>
@@ -121,7 +129,7 @@ class ConnectedSeatSelectionPage extends Component {
             </div>
             <div className="bottom_element">
               <BookingStage />
-              {seanceInfo.blockedSeatsByUser[0] && <StopWatch />}
+              <div className="stop_watch__wrapper">{seanceInfo.blockedSeatsByUser[0] && <StopWatch />}</div>
             </div>
           </div>
           {seanceInfo.seance && (
@@ -187,7 +195,7 @@ class ConnectedSeatSelectionPage extends Component {
 
 const SeatSelectionPage = connect(
   mapStateToProps,
-  { setBlur, setSeanceId, getMovieApi, setBookingStage, getSeanceApi, getCurrencyApi }
+  { setBlur, setSeanceId, getMovieApi, setBookingStage, getSeanceApi, getCurrencyApi, setModalHeight }
 )(ConnectedSeatSelectionPage);
 
 export default withRouter(SeatSelectionPage);

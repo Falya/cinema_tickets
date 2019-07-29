@@ -1,15 +1,5 @@
 @import '../../style/variables';
 
-@keyframes progress-frame {
-  0% {
-    width: 0%;
-  }
-
-  100% {
-    width: 33%;
-  }
-}
-
 .booking_stage {
   margin: 10px;
   padding: 0 10px;
@@ -54,8 +44,7 @@
     border-radius: 0 50px 50px 0;
     grid-column: 1 / span 3;
     background: linear-gradient(to right, $lineColorLight, $lineColor);
-    animation: 1s progress-frame cubic-bezier(0.19, 1, 0.22, 1.2);
-    transition: width 1s cubic-bezier(0.19, 1, 0.22, 1.2);
+    transition: width 2s cubic-bezier(0.19, 1, 0.22, 1.2);
   }
 
   @media (max-width: $mediaWidthMedium) {

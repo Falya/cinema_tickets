@@ -121,3 +121,17 @@ export function getCurrencyApi() {
     type: actionTypes.CURRENCY_REQUESTED,
   };
 }
+
+export function setModalHeight(payload) {
+  return {
+    type: actionTypes.SET_MODAL_HEIGHT,
+    payload,
+  };
+}
+
+export function setSeatLoadingState(payload) {
+  return {
+    type: actionTypes.SET_SEAT_LOADING_STATE,
+    payload,
+  };
+}
