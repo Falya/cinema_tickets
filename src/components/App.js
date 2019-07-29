@@ -17,12 +17,19 @@ const mapStateToProps = state => {
     isBlur: state.blurReducer.isBlur,
     userName: state.userNameReducer.userName,
     loading: state.loadingStateReducer.loading,
+    modalHeight: state.modalPageReducer.modalPageHeight,
   };
 };
 
 class ConnectedApp extends Component {
   constructor(props) {
     super(props);
+
+    this.wrapper = React.createRef();
+    this.state = {
+      startHeight: 0,
+      windowWidth: 0,
+    };
   }
 
   componentDidMount() {
@@ -30,6 +37,8 @@ class ConnectedApp extends Component {
     if (token) {
       this.props.getUserName();
     }
+
+    window.addEventListener('resize', this.getWindowWidth);
 
     window.addEventListener('storage', e => {
       if (e.key === 'token') {
@@ -44,19 +53,45 @@ class ConnectedApp extends Component {
     });
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     const { token } = localStorage;
     if (token && !nextProps.userName) {
       this.props.getUserName();
     }
-    return nextProps !== this.props;
+
+    if (
+      nextProps.isBlur &&
+      nextState.startHeight &&
+      window.screen.width <= 800 &&
+      nextProps.modalHeight > nextState.startHeight
+    ) {
+      this.wrapper.current.style.height = `${nextProps.modalHeight}px`;
+    } else {
+      this.wrapper.current.style.height = `max-content`;
+    }
+
+    return nextProps !== this.props || nextState !== this.state;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.loading && !this.state.startHeight) {
+      this.setState({ startHeight: this.wrapper.current.offsetHeight });
+    }
+  }
+
+  getWindowWidth = () => {
+    this.setState({ windowWith: window.screen.width });
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.getWindowWidth);
   }
 
   render() {
     const { loading } = this.props;
     return (
       <div style={{ position: 'relative' }}>
-        <div className="wrapper">
+        <div className="wrapper" ref={this.wrapper} key="wrapper">
           {loading && (
             <div className="page_spiner">
               <span className="icon-spinner2" />

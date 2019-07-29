@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Popover from 'antd/lib/popover';
 import { connect } from 'react-redux';
 import { toBlockSeat, unBlockSeat } from '../../webAPI';
-import { getSeanceApi } from '../../redux/actions/actions';
+import { getSeanceApi, setSeatLoadingState } from '../../redux/actions/actions';
 import { withRouter } from 'react-router-dom';
 import message from 'antd/lib/message';
 
@@ -49,6 +49,7 @@ class ConnectedSeatComponent extends Component {
   };
 
   onSeatClick = () => {
+    const { setSeatLoadingState } = this.props;
     if (!this.props.seatState) {
       const params = {
         row: this.props.rowNumber,
@@ -57,6 +58,8 @@ class ConnectedSeatComponent extends Component {
         price: this.props.seatPrice,
         seatType: this.props.seatType,
       };
+
+      setSeatLoadingState(true);
 
       toBlockSeat(params)
         .then(res => {
@@ -80,6 +83,9 @@ class ConnectedSeatComponent extends Component {
       const params = {
         seatId: seat._id,
       };
+
+      setSeatLoadingState(true);
+
       unBlockSeat(params)
         .then(res => {
           this.props.getSeanceApi(this.props.seanceId);
@@ -113,7 +119,7 @@ class ConnectedSeatComponent extends Component {
 
 const SeatComponent = connect(
   mapStateToProps,
-  { getSeanceApi }
+  { getSeanceApi, setSeatLoadingState }
 )(ConnectedSeatComponent);
 
 export default withRouter(SeatComponent);
