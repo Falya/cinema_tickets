@@ -25,7 +25,7 @@ export default BookingStage;
 
 function drawProgress(stage, blocked) {
   let options = {
-    width: `${blocked.length ? (100 / 3) * stage : 0}%`,
+    width: `${blocked.length || stage === 3 ? (100 / 3) * stage : 0}%`,
   };
   return <div className="progress" style={options}></div>;
 }
