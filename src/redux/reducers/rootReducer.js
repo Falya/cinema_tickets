@@ -10,6 +10,7 @@ import seanceReducer from './seanceReducer';
 import userNameReducer from './userNameReducer';
 import orderReducer from './orderReducer';
 import userProfileReducer from './userProfileReducer';
+import modalPageReducer from './modalPageReducer';
 
 export default combineReducers({
   blurReducer,
@@ -23,4 +24,5 @@ export default combineReducers({
   userNameReducer,
   orderReducer,
   userProfileReducer,
+  modalPageReducer,
 });

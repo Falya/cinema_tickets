@@ -19,6 +19,7 @@ class MovieSlider extends Component {
   }
 
   changeSlidesNumber = e => {
+    console.log(this.slider.current);
     this.setState({ resolution: e.target.innerWidth });
   };
 
@@ -42,9 +43,12 @@ class MovieSlider extends Component {
       infinite: true,
       speed: 500,
       autoplaySpeed: 2500,
-      slidesToShow: resolution <= 460 ? 2 : resolution <= 800 ? 4 : 5,
+      slidesToShow: resolution <= 460 ? 2 : resolution <= 800 ? 3 : resolution <= 1200 ? 4 : 5,
       slidesToScroll: 1,
       className: 'heading-body',
+      adaptiveHeight: false,
+      variableWidth: false,
+      minHeight: 'max-content',
       autoplay: true,
       arrows: false,
       swipe: true,

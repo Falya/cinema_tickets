@@ -27,7 +27,7 @@
 
   .seat_selection_page__wrapper {
     width: 100%;
-    min-height: 100vh;
+    height: max-content;
     margin: 0 auto;
     display: flex;
     max-width: $maxHeaderWidth;
@@ -97,7 +97,7 @@
     .seat_selection_page__body {
       display: flex;
       flex-direction: column;
-      flex-basis: 100%;
+      height: max-content;
       box-sizing: border-box;
       justify-content: start;
 
@@ -156,8 +156,7 @@
 
             .cinema_info__movie_name {
               color: $mainColorText;
-              font-weight: bolder;
-              letter-spacing: 0.2em;
+              font-weight: 900;
             }
 
             .cinema_info__address {
@@ -221,7 +220,7 @@
       .body__seats {
         display: flex;
         justify-content: center;
-        margin: 10px;
+        margin: 20px 10px;
         height: max-content;
 
         @media (max-width: $mediaWidthMedium) {
@@ -435,7 +434,8 @@
         }
 
         @media (max-width: $mediaWidthMedium) {
-          margin-top: 50px;
+          flex-basis: auto;
+          padding-top: 50px;
           font-size: 1em;
         }
 
@@ -570,8 +570,8 @@
           border-radius: $borderRadius;
           margin-top: 20px;
           width: 80%;
-          height: max-content;
-          padding: 10px;
+          height: 50px;
+          padding: 0 10px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -605,21 +605,29 @@
   }
 }
 
-.block_timer {
-  display: flex;
+.stop_watch__wrapper {
   padding: 5px;
-  justify-content: center;
-  align-items: baseline;
-  color: $lineColorLight;
-  font-weight: 300;
-
-  .time {
-    margin: 0 5px;
-    color: $lineColor;
-    font-weight: 400;
-  }
+  height: 37px;
 
   @media (max-width: $mediaWidthMedium) {
-    font-size: 0.7em;
+    height: 30px;
+  }
+
+  .block_timer {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: $lineColorLight;
+    font-weight: 300;
+
+    .time {
+      margin: 0 5px;
+      color: $lineColor;
+      font-weight: 400;
+    }
+
+    @media (max-width: $mediaWidthMedium) {
+      font-size: 0.7em;
+    }
   }
 }

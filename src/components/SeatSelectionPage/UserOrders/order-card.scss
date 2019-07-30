@@ -20,6 +20,11 @@
     font-size: 0.8em;
     cursor: pointer;
 
+    &.payment {
+      bottom: auto;
+      top: 5px;
+    }
+
     &:hover {
       color: $lineColor;
     }

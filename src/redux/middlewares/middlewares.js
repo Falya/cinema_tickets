@@ -10,7 +10,6 @@ function isLoadingMiddleware({ getState, dispatch }) {
       switch (action.type) {
         case actionTypes.MOVIE_REQUESTED:
         case actionTypes.SEANCES_REQUESTED:
-
         case actionTypes.MOVIES_REQUESTED:
         case actionTypes.USER_PROFILE_REQUESTED:
           if (!loading) {
@@ -28,10 +27,6 @@ function isLoadingMiddleware({ getState, dispatch }) {
               payload: true,
             });
           }
-          dispatch({
-            type: actionTypes.SET_SEAT_LOADING_STATE,
-            payload: true,
-          });
           break;
 
         case actionTypes.SEANCE_LOADED:

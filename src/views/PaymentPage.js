@@ -27,10 +27,10 @@ class ConnectedPaymentPage extends Component {
       <div className="payment_page">
         <div className="payment_page__order">
           {this.props.orderTickets.map(ticket => {
-            return <OrderCard seat={ticket} />;
+            return <OrderCard seat={ticket} className="payment" />;
           })}
           {this.props.orderFeatures.map(feature => {
-            return <OrderCard feature={feature} />;
+            return <OrderCard feature={feature} className="payment" />;
           })}
         </div>
         <div className="payment_page__total_pay">
