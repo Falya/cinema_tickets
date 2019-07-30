@@ -51,6 +51,7 @@ class ConnectedSeatComponent extends Component {
 
   onSeatClick = () => {
     const { setSeatLoadingState } = this.props;
+
     if (!this.props.seatState) {
       const params = {
         row: this.props.rowNumber,
