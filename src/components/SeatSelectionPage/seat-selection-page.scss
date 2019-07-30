@@ -32,7 +32,6 @@
     display: flex;
     max-width: $maxHeaderWidth;
     flex-direction: column;
-    // overflow: auto;
 
     .seat_selection_page__header {
       display: flex;
@@ -157,8 +156,7 @@
 
             .cinema_info__movie_name {
               color: $mainColorText;
-              font-weight: bolder;
-              letter-spacing: 0.2em;
+              font-weight: 900;
             }
 
             .cinema_info__address {

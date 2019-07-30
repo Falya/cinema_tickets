@@ -74,7 +74,9 @@ class ConnectedOrderCard extends Component {
             <span className="seat_price">{seat ? seat.price : feature.price} BYN</span>
           </div>
         </div>
-        <span className="icon-cross" onClick={this.onCrossClick}></span>
+        <span
+          className={`icon-cross ${this.props.className ? this.props.className : ''}`}
+          onClick={this.onCrossClick}></span>
       </div>
     );
   }
