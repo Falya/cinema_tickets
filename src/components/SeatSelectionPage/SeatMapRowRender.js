@@ -22,14 +22,14 @@ const SeatMapRowRender = props => {
 
       const isSold =
         soldSeats.length &&
-        soldSeats.some(({ rowNumber, seatNumber }) => rowNumber === row.rowNumber && seatNumber === i);
+        soldSeats.some(({ rowNumber, seatPosition }) => rowNumber === row.rowNumber && seatPosition === i);
 
       const isLocked =
-        blockedSeats.length && blockedSeats.some(blocked => blocked.row == row.rowNumber && blocked.seat == i);
+        blockedSeats.length && blockedSeats.some(blocked => blocked.row == row.rowNumber && blocked.seatPosition == i);
 
       const isLockedByUser =
         blockedSeatsByUser.length &&
-        blockedSeatsByUser.some(blocked => blocked.row == row.rowNumber && blocked.seat == i);
+        blockedSeatsByUser.some(blocked => blocked.row == row.rowNumber && blocked.seatPosition == i);
 
       if (isSold || isLocked) {
         seatState = 'sold';
@@ -76,6 +76,7 @@ const SeatMapRowRender = props => {
           style={style}
           rowNumber={row.rowNumber}
           seatNumber={calcSeatCoefficient(i, emptyPlaces)}
+          seatPosition={i}
           seatType={row.rowType}
           seatState={seatState}
           seatPrice={row.price}

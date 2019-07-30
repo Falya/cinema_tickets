@@ -19,7 +19,6 @@ class MovieSlider extends Component {
   }
 
   changeSlidesNumber = e => {
-    console.log(this.slider.current);
     this.setState({ resolution: e.target.innerWidth });
   };
 

@@ -20,6 +20,7 @@ class ConnectedSeatComponent extends Component {
     this.state = {
       rowNumber: this.props.rowNumber,
       seatNumber: this.props.seatNumber,
+      seatPosition: this.props.seatPosition,
       messageDuration: 5,
     };
   }
@@ -54,6 +55,7 @@ class ConnectedSeatComponent extends Component {
       const params = {
         row: this.props.rowNumber,
         seat: this.props.seatNumber,
+        seatPosition: this.props.seatPosition,
         seanceId: this.props.seanceId,
         price: this.props.seatPrice,
         seatType: this.props.seatType,
@@ -78,7 +80,7 @@ class ConnectedSeatComponent extends Component {
 
     if (this.props.seatState === 'blocked') {
       const [seat] = this.props.blockedByUser.filter(
-        seat => seat.row === this.props.rowNumber && seat.seat === this.props.seatNumber
+        seat => seat.row === this.props.rowNumber && seat.seatPosition === this.props.seatPosition
       );
       const params = {
         seatId: seat._id,

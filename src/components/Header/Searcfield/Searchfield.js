@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Icon from 'antd/lib/icon';
 
 const mapStateToProps = state => {
   return {
@@ -86,6 +87,18 @@ class ConnectedSearchField extends Component {
     }
   };
 
+  onBlur = e => {
+    if (this.state.searchTerm) {
+      e.target.focus();
+    }
+  };
+
+  onFormFocus = e => {
+    const form = e.currentTarget;
+    const input = form.querySelector('input');
+    input.focus();
+  };
+
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState.selected && nextState.selected !== this.state.selected && !nextState.currentFocus) {
       this.openMovie(nextState.selected);
@@ -104,7 +117,11 @@ class ConnectedSearchField extends Component {
 
   render() {
     return (
-      <form className={this.props.className} onSubmit={this.onSubmit} onKeyDown={this.onKeyDown}>
+      <form
+        className={this.props.className}
+        onSubmit={this.onSubmit}
+        onKeyDown={this.onKeyDown}
+        onFocus={this.onFormFocus}>
         <label htmlFor="search-field">Search</label>
         <div>
           <input
@@ -113,6 +130,7 @@ class ConnectedSearchField extends Component {
             autoComplete="off"
             onChange={this.onInput}
             value={this.state.searchTerm}
+            onBlur={this.onBlur}
           />
           {this.state.matches.length > 0 && (
             <div>
@@ -120,7 +138,9 @@ class ConnectedSearchField extends Component {
             </div>
           )}
         </div>
-        <button>Go</button>
+        <button className="search-toggle">
+          <Icon type="search" />
+        </button>
       </form>
     );
   }

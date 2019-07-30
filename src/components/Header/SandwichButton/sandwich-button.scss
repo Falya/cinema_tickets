@@ -21,7 +21,7 @@
   -webkit-user-select: none;
   user-select: none;
 
-  @media (max-width: 840px) {
+  @media (max-width: $mediaWidthMedium) {
     display: block;
   }
 
