@@ -42,9 +42,21 @@ class MovieSlider extends Component {
       infinite: true,
       speed: 500,
       autoplaySpeed: 2500,
-      slidesToShow: resolution <= 460 ? 2 : resolution <= 800 ? 4 : 5,
+      slidesToShow:
+        resolution <= 460
+          ? 2
+          : resolution <= 800
+          ? 3
+          : resolution <= 1200
+          ? 4
+          : this.props.children.length > 5
+          ? 5
+          : this.props.children.length,
       slidesToScroll: 1,
       className: 'heading-body',
+      adaptiveHeight: false,
+      variableWidth: false,
+      minHeight: 'max-content',
       autoplay: true,
       arrows: false,
       swipe: true,

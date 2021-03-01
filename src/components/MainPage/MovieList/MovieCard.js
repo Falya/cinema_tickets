@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Button from 'antd/lib/button';
 
 class MovieCard extends Component {
@@ -11,15 +11,17 @@ class MovieCard extends Component {
     };
   }
 
+  onCardClick = () => {
+    this.props.history.push(`/schedule/movie/${this.props.movie._id}`);
+  };
+
   render() {
     return (
       <div className="card" key={this.props.movie._id}>
         <div className="card-body">
           <figure>
             <div className="image-wrapper">
-              <Link to={`/schedule/movie/${this.props.movie._id}`}>
-                <div className="card-overlay" />
-              </Link>
+              <div className="card-overlay" onClick={this.onCardClick} />
               <img src={this.props.movie.poster} alt="" />
             </div>
             <figcaption>
@@ -30,15 +32,13 @@ class MovieCard extends Component {
               <span>{this.props.movie.genre.join(', ')}</span>
             </figcaption>
           </figure>
-          <Link className="button-link" to={`/schedule/movie/${this.props.movie._id}`}>
-            <Button size="normal" ghost>
-              booking
-            </Button>
-          </Link>
+          <Button size="normal" className="button-link" ghost onClick={this.onCardClick}>
+            booking
+          </Button>
         </div>
       </div>
     );
   }
 }
 
-export default MovieCard;
+export default withRouter(MovieCard);

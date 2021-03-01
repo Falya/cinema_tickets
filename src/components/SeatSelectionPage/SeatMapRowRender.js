@@ -13,21 +13,23 @@ const SeatMapRowRender = props => {
     const middle = props.maxLength / 2;
     let size = 1;
     let style = {};
+    const { emptyPlaces } = row;
 
     for (let i = 1; i <= row.rowLength; i++) {
+      emptyPlaces && emptyPlaces.some(place => place === i) && i++;
       let seatState = null;
       let pos = i;
 
       const isSold =
         soldSeats.length &&
-        soldSeats.some(({ rowNumber, seatNumber }) => rowNumber === row.rowNumber && seatNumber === i);
+        soldSeats.some(({ rowNumber, seatPosition }) => rowNumber === row.rowNumber && seatPosition === i);
 
       const isLocked =
-        blockedSeats.length && blockedSeats.some(blocked => blocked.row == row.rowNumber && blocked.seat == i);
+        blockedSeats.length && blockedSeats.some(blocked => blocked.row == row.rowNumber && blocked.seatPosition == i);
 
       const isLockedByUser =
         blockedSeatsByUser.length &&
-        blockedSeatsByUser.some(blocked => blocked.row == row.rowNumber && blocked.seat == i);
+        blockedSeatsByUser.some(blocked => blocked.row == row.rowNumber && blocked.seatPosition == i);
 
       if (isSold || isLocked) {
         seatState = 'sold';
@@ -73,7 +75,8 @@ const SeatMapRowRender = props => {
         <SeatComponent
           style={style}
           rowNumber={row.rowNumber}
-          seatNumber={i}
+          seatNumber={calcSeatCoefficient(i, emptyPlaces)}
+          seatPosition={i}
           seatType={row.rowType}
           seatState={seatState}
           seatPrice={row.price}
@@ -102,6 +105,15 @@ function calcRowCoefficient(rowNumber, vipRows) {
   }
 
   return rowNumber;
+}
+
+function calcSeatCoefficient(seat, emptyPlaces) {
+  if (emptyPlaces) {
+    const coef = emptyPlaces.filter(place => seat - place > 0).length;
+    return coef ? seat - coef : seat;
+  }
+
+  return seat;
 }
 
 export default SeatMapRowRender;

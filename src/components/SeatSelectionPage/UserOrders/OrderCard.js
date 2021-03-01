@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { unBlockSeat } from '../../../webAPI';
 import { connect } from 'react-redux';
+import message from 'antd/lib/message';
 import { getSeanceApi, setOrderFeature } from '../../../redux/actions/actions';
 import './order-card.scss';
 
@@ -43,6 +44,7 @@ class ConnectedOrderCard extends Component {
       const newFeatures = this.props.features.filter(item => item.product !== this.props.feature.product);
       newFeature.amount = 5 * this.props.blockedSeats.length;
       this.props.setOrderFeature([...newFeatures, newFeature]);
+      message.info(`The max amount of ${feature.product} will be reduced to ${5 * this.props.blockedSeats.length} pc.`);
     }
   }
 
@@ -72,7 +74,9 @@ class ConnectedOrderCard extends Component {
             <span className="seat_price">{seat ? seat.price : feature.price} BYN</span>
           </div>
         </div>
-        <span className="icon-cross" onClick={this.onCrossClick}></span>
+        <span
+          className={`icon-cross ${this.props.className ? this.props.className : ''}`}
+          onClick={this.onCrossClick}></span>
       </div>
     );
   }

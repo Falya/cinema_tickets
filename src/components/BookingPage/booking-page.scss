@@ -303,10 +303,10 @@ $mediaWidthSmall: 460px;
               }
               @media screen and (max-width: $mediaWidthSmall) {
                 h1 {
-                  font-size: 1.5em;
+                  font-size: 1em;
                 }
                 span {
-                  font-size: 0.9em;
+                  font-size: 0.7em;
                 }
               }
             }
@@ -347,6 +347,7 @@ $mediaWidthSmall: 460px;
             @media screen and (max-width: $mediaWidthSmall) {
               .seances__card {
                 .card__cinema_info {
+                  font-size: 0.7em;
                   flex-basis: 35%;
                 }
 
@@ -357,7 +358,7 @@ $mediaWidthSmall: 460px;
                     width: 45%;
 
                     .card__time {
-                      font-size: 1em;
+                      font-size: 0.9em;
                     }
 
                     .card__format {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Popover from 'antd/lib/popover';
 import { connect } from 'react-redux';
 import { toBlockSeat, unBlockSeat } from '../../webAPI';
-import { getSeanceApi } from '../../redux/actions/actions';
+import { getSeanceApi, setSeatLoadingState } from '../../redux/actions/actions';
 import { withRouter } from 'react-router-dom';
 import message from 'antd/lib/message';
 
@@ -20,6 +20,7 @@ class ConnectedSeatComponent extends Component {
     this.state = {
       rowNumber: this.props.rowNumber,
       seatNumber: this.props.seatNumber,
+      seatPosition: this.props.seatPosition,
       messageDuration: 5,
     };
   }
@@ -49,14 +50,18 @@ class ConnectedSeatComponent extends Component {
   };
 
   onSeatClick = () => {
+    const { setSeatLoadingState } = this.props;
     if (!this.props.seatState) {
       const params = {
         row: this.props.rowNumber,
         seat: this.props.seatNumber,
+        seatPosition: this.props.seatPosition,
         seanceId: this.props.seanceId,
         price: this.props.seatPrice,
         seatType: this.props.seatType,
       };
+
+      setSeatLoadingState(true);
 
       toBlockSeat(params)
         .then(res => {
@@ -75,11 +80,14 @@ class ConnectedSeatComponent extends Component {
 
     if (this.props.seatState === 'blocked') {
       const [seat] = this.props.blockedByUser.filter(
-        seat => seat.row === this.props.rowNumber && seat.seat === this.props.seatNumber
+        seat => seat.row === this.props.rowNumber && seat.seatPosition === this.props.seatPosition
       );
       const params = {
         seatId: seat._id,
       };
+
+      setSeatLoadingState(true);
+
       unBlockSeat(params)
         .then(res => {
           this.props.getSeanceApi(this.props.seanceId);
@@ -99,6 +107,7 @@ class ConnectedSeatComponent extends Component {
         title={this.props.seatType}
         overlayClassName="tooltip_overlay"
         content={this.makeContent()}
+        visible={this.props.isEmptyPlace}
         mouseEnterDelay={0.2}>
         <div
           className={`seat ${this.seatStateDefinition()} ${this.props.seatType.toLowerCase()}`}
@@ -113,7 +122,7 @@ class ConnectedSeatComponent extends Component {
 
 const SeatComponent = connect(
   mapStateToProps,
-  { getSeanceApi }
+  { getSeanceApi, setSeatLoadingState }
 )(ConnectedSeatComponent);
 
 export default withRouter(SeatComponent);
